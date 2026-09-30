@@ -30,21 +30,22 @@ MAX_TRIES = 20
 
 def evaluate(pid, a, b, vias, avoid, cache):
     """BRouter legality audit + Bavaria border + LIVE OSM check of every unpaved run.
-    Returns (ok, km, live_unpaved_km, coords)."""
+    Returns (ok, km, live_unpaved_km, coords, problems)."""
     geo = pr.route(pid, a, b, vias, avoid)
     audit = route_check.audit(geo)
     coords = geo["features"][0]["geometry"]["coordinates"]
     if audit["verstoesse"] or not all(pr.in_bavaria(c[0], c[1]) for c in coords[::4]):
-        return False, audit["km"], 0.0, coords
-    live = 0.0
+        return False, audit["km"], 0.0, coords, []
+    live, all_probs = 0.0, []
     for r in gravel_probe.segments(geo, min_km=0.1):
         run = {"km": r["km"], "tags": r["tags"], "pts": pr.dense_slice(coords, r["at_m"], r["len_m"])}
         probs, n, hits = osm_verify.check_run(run, cache)
-        if probs:
-            return False, audit["km"], 0.0, coords
+        all_probs += probs
         if n:
             live += r["km"] * hits / n
-    return True, audit["km"], round(live, 2), coords
+    if all_probs:
+        return False, audit["km"], 0.0, coords, all_probs
+    return True, audit["km"], round(live, 2), coords, []
 
 
 def main():
@@ -56,11 +57,16 @@ def main():
     cache = osm_verify.load_cache()
     result, report = {}, []
     for n, (a, b) in enumerate(zip(chain, chain[1:]), 1):
-        avoid = ng.get(str(n))
-        blocked = [(x, y) for x, y, _ in (avoid or [])]
+        avoid = list(ng.get(str(n), []))
         vias = list(pr.VIA.get(b["id"], []))
-        ok, km, unp, coords = evaluate(pid, a, b, vias, avoid, cache)
+        for _ in range(6):   # clean the base route first: block every live-check failure
+            ok, km, unp, coords, probs = evaluate(pid, a, b, vias, avoid, cache)
+            if ok or not probs:
+                break
+            avoid += [[p["lon"], p["lat"], 40] for p in probs]
         assert ok, f"Basisroute Etappe {n} besteht die Prüfung nicht"
+        ng[str(n)] = avoid
+        blocked = [(x, y) for x, y, _ in avoid]
         base_km, base_unp = km, unp
         sample = coords[::8]
 
@@ -81,7 +87,7 @@ def main():
             ends = pr.order_vias(coords, [tuple(s["start"]), tuple(s["end"])])
             trial = pr.order_vias(coords, vias + ends)
             try:
-                ok, tkm, tunp, _ = evaluate(pid, a, b, trial, avoid, cache)
+                ok, tkm, tunp, _, _ = evaluate(pid, a, b, trial, avoid, cache)
             except Exception as e:  # noqa: BLE001  (routing failure = reject candidate)
                 print("   verworfen:", e)
                 continue
@@ -97,6 +103,7 @@ def main():
               f'{km} km/{unp} km ({len(used)} Abschnitte)')
         report.append({"etappe": n, "vorher_km": base_km, "vorher_unbefestigt": base_unp,
                        "nachher_km": km, "nachher_unbefestigt": unp, "abschnitte": used})
+    pr.NOGO_FILE.write_text(json.dumps(ng, indent=1))
     (TOOLS / "gravel_vias.json").write_text(json.dumps({"vias": result, "bericht": report}, ensure_ascii=False, indent=1))
 
 
