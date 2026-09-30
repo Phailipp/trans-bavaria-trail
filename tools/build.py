@@ -327,8 +327,8 @@ def atlas_cards(brews):
             f'<h3>{e(b["name"])}</h3>'
             f'<p class="bplace">{e(b["ort"])} · Lkr. {e(b["landkreis"].replace("Landkreis ", ""))}</p>'
             f'<p class="bdesc">{e(b["beschreibung"])}</p>'
-            f'<p class="bspec"><b class="mono">Im Glas</b> {e(b["spezialitaet"])}</p>'
-            f'<div class="bfoot"><div class="badges">{"".join(badges)}</div>{link}</div>'
+            + (f'<p class="bspec"><b class="mono">Im Glas</b> {e(b["spezialitaet"])}</p>' if b.get("spezialitaet") else "")
+            + f'<div class="bfoot"><div class="badges">{"".join(badges)}</div>{link}</div>'
             "</li>"
         )
     return "".join(out)

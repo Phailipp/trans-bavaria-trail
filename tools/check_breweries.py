@@ -8,6 +8,9 @@ Run: python3 tools/check_breweries.py   (exit code 1 on any problem)
 import json
 import math
 import subprocess
+import time
+import urllib.parse
+import urllib.request
 import sys
 from pathlib import Path
 
@@ -39,6 +42,53 @@ def district_of(lon, lat):
     return next((n for n in polys if in_district(lon, lat, n)), None)
 
 
+CACHE = TOOLS / ".geocache.json"
+
+
+def geocode(query):
+    cache = json.loads(CACHE.read_text()) if CACHE.exists() else {}
+    if query not in cache:
+        url = "https://photon.komoot.io/api/?" + urllib.parse.urlencode(
+            {"q": query, "limit": 5, "bbox": "8.9,47.2,13.9,50.6", "lang": "de"})
+        with urllib.request.urlopen(url, timeout=20) as r:
+            cache[query] = [
+                {"lat": f["geometry"]["coordinates"][1], "lon": f["geometry"]["coordinates"][0],
+                 "name": f["properties"].get("name"), "county": f["properties"].get("county", ""),
+                 "state": f["properties"].get("state", ""), "key": f["properties"].get("osm_key")}
+                for f in json.load(r)["features"]
+            ]
+        CACHE.write_text(json.dumps(cache, ensure_ascii=False))
+        time.sleep(1)
+    return cache[query]
+
+
+def km(a_lat, a_lon, b_lat, b_lon):
+    return math.dist((a_lat * 111.2, a_lon * 111.2 * math.cos(math.radians(a_lat))),
+                     (b_lat * 111.2, b_lon * 111.2 * math.cos(math.radians(b_lat))))
+
+
+def place_check(b):
+    """Returns an error string or None. The coordinate must be within 3 km of the named place."""
+    lk = b["landkreis"].replace("Landkreis ", "").split(" (")[0].strip()
+    ort = b["ort"].split(" (")[0]
+    queries = [f'{ort} {b.get("gemeinde", "")}'.strip(), ort]
+    hits = []
+    for q in queries:
+        hits = [h for h in geocode(q) if h["state"] == "Bayern" and h["key"] in ("place", "boundary")]
+        if hits:
+            break
+    if not hits:
+        return f"Ort '{ort}' nicht in OSM gefunden"
+    best = min(hits, key=lambda h: km(b["lat"], b["lon"], h["lat"], h["lon"]))
+    d = km(b["lat"], b["lon"], best["lat"], best["lon"])
+    lk_ok = lk.lower() in best["county"].lower() or best["county"].lower().replace("landkreis ", "") in lk.lower()
+    if d > 3:
+        return f"Koordinate {d:.1f} km von OSM-Ort {best['name']} ({best['county']}) entfernt"
+    if best["county"] and not lk_ok:
+        return f"Landkreis '{lk}' passt nicht zu OSM '{best['county']}'"
+    return None
+
+
 def url_ok(url):
     for method in (["-I"], []):
         r = subprocess.run(
@@ -61,6 +111,10 @@ def main(check_urls=True):
         actual = district_of(b["lon"], b["lat"])
         if actual != b["bezirk"]:
             problems.append(f"{tag}: Koordinate liegt in {actual}, angegeben {b['bezirk']}")
+        if "--no-geo" not in sys.argv:
+            err = place_check(b)
+            if err:
+                problems.append(f"{tag}: {err}")
         key = b["name"].lower().strip()
         if key in seen:
             problems.append(f"{tag}: doppelter Name")
