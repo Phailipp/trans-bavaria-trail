@@ -354,6 +354,14 @@ def main():
         .replace("{{STAMP}}", stamp())
     )
     out = re.sub(r"\{\{TULIP_(\d)\}\}", lambda m: TULIPS[m.group(1)], out)
+    if not brews:
+        # no researched data yet: ship the page without the atlas
+        out = re.sub(r"<!--ATLAS-START-->.*?<!--ATLAS-END-->", "", out, flags=re.S)
+        out = re.sub(r"\s*<!--ATLAS-NAV--><a href=\"#atlas\">Atlas</a>", "", out)
+        out = out.replace('\n              <li><a href="#atlas">Brauerei-Atlas</a></li>', "")
+        out = re.sub(r'<strong data-count="0">0</strong>\s*<span class="mono">Landbrauereien</span>\s*<p>[^<]*</p>',
+                     '<strong data-count="10">10</strong>\n            <span class="mono">Brauerei-Ziele</span>\n            <p>Auf der Ideenliste. Tendenz: durstig.</p>', out)
+    out = out.replace("<!--ATLAS-NAV-->", "").replace("<!--ATLAS-START-->", "").replace("<!--ATLAS-END-->", "")
     for b in brews:
         assert 47.2 < b["lat"] < 50.6 and 8.9 < b["lon"] < 13.9, b["name"]
     assert "{{" not in out, re.findall(r"\{\{\w+\}\}", out)
