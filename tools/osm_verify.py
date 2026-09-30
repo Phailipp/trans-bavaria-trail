@@ -57,6 +57,11 @@ def seg_dist_m(p, a, b):
     return math.hypot(ax + t * dx, ay + t * dy)
 
 
+def point_dist_m(a, b):
+    kx = 111320 * math.cos(math.radians(a[1]))
+    return math.hypot((b[0] - a[0]) * kx, (b[1] - a[1]) * 110540)
+
+
 def nearest_way(p, ways):
     best = None
     for w in ways:
@@ -78,18 +83,23 @@ def check_way(tags):
 
 
 def main():
-    stages = json.loads((TOOLS / "stages.json").read_text(encoding="utf-8"))["etappen"]
+    src = Path(sys.argv[1]) if len(sys.argv) > 1 else TOOLS / "stages.json"
+    stages = json.loads(src.read_text(encoding="utf-8"))["etappen"]
     cache, problems, report = {}, [], []
     for s in stages:
         for run in s.get("schotter_abschnitte", []):
             pts = run["pts"]
-            samples, acc = [pts[0]], 0.0
+            # interior samples only (run ends sit on junctions with the paved road)
+            samples, acc = [], 0.0
             for a, b in zip(pts, pts[1:]):
-                acc += seg_dist_m(a, a, b)
+                acc += point_dist_m(a, b)
                 if acc >= SAMPLE_M:
                     samples.append(b)
-                    acc = 0
-            samples.append(pts[-1])
+                    acc = 0.0
+            if not samples and len(pts) >= 3:
+                samples = [pts[len(pts) // 2]]
+            if not samples:
+                samples = [((pts[0][0] + pts[-1][0]) / 2, (pts[0][1] + pts[-1][1]) / 2)]
             seen, still_unpaved = {}, 0
             for p in samples:
                 bbox = (p[0] - BOX, p[1] - BOX, p[0] + BOX, p[1] + BOX)
