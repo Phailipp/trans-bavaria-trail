@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="de" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Trans Bavaria Trail – Offroad von Brauerei zu Brauerei</title>
+    <meta
+      name="description"
+      content="Legaler Schotter, kleine Straßen und Bayerns ehrlichste Brauereien: Der Trans Bavaria Trail führt quer durch alle sieben Regierungsbezirke. Ein Enduro-Routenprojekt der Bavarian Beer Seekers – aktuell im Scouting."
+    />
+    <meta name="theme-color" content="#0d1624" />
+    <!-- Entfernen, sobald das Impressum vollständig ist -->
+    <meta name="robots" content="noindex" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:title" content="Trans Bavaria Trail – Offroad to Bavaria's best breweries" />
+    <meta
+      property="og:description"
+      content="Staub am Stiefel. Schaum im Krug. Eine Enduro-Route durch alle sieben Bezirke Bayerns – von Brauerei zu Brauerei. Aktuell im Scouting."
+    />
+    <meta property="og:image" content="https://phailipp.github.io/trans-bavaria-trail/assets/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="preload" href="assets/fonts/BigShouldersDisplay-900-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/InterTight-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/tbt-logo.webp" as="image" />
+    <link rel="stylesheet" href="assets/fonts.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Zum Inhalt springen</a>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="site-header" id="header">
+      <a class="brand" href="#top" aria-label="Trans Bavaria Trail – zur Startseite">
+        <img src="assets/tbt-logo-512.webp" alt="" width="44" height="47" />
+        <span class="brand-text">Trans <span>Bavaria</span><br />Trail</span>
+      </a>
+      <nav class="nav mono" id="nav" aria-label="Hauptnavigation">
+        <a href="#idee">Idee</a>
+        <a href="#route">Route</a>
+        <a href="#code">Code</a>
+        <a href="#setup">Setup</a>
+        <a href="#crew">Crew</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn header-cta" href="#mitmachen">Scout-Liste <span class="arrow" aria-hidden="true">→</span></a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <main id="main">
+      <!-- HERO ------------------------------------------------------ -->
+      <section class="hero" id="top">
+        <canvas id="topo" aria-hidden="true"></canvas>
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <p class="status-pill mono"><i></i> Scouting-Phase · Route in Entwicklung</p>
+            <h1>
+              <span class="line"><span>Staub am Stiefel.</span></span>
+              <span class="line"><span>Schaum im Krug.</span></span>
+              <span class="line"><span class="small">Aber schön der Reihe nach.</span></span>
+            </h1>
+            <p class="lead hero-lead">
+              Der Trans Bavaria Trail verbindet legalen Schotter, kleine Straßen und Bayerns ehrlichste
+              Brauereien – quer durch alle sieben Regierungsbezirke. Gescoutet von Fahrern, für Fahrer.
+            </p>
+            <div class="hero-actions">
+              <a class="btn" href="#route">Route entdecken <span class="arrow" aria-hidden="true">↘</span></a>
+              <a class="btn btn-ghost" href="#mitmachen">Auf die Scout-Liste</a>
+            </div>
+          </div>
+          <div class="hero-patch">
+            <div class="patch-glow" aria-hidden="true"></div>
+            <span class="coord coord-a mono" aria-hidden="true">N 49.70° · E 9.26°<br />Start · Miltenberg</span>
+            <div class="tilt" id="tilt">
+              <img
+                src="assets/tbt-logo.webp"
+                width="900"
+                height="953"
+                alt="Trans Bavaria Trail Patch – Offroad to Bavaria's best breweries. A Bavarian Beer Seekers Adventure, Est. 2022"
+              />
+            </div>
+            <span class="coord coord-b mono" aria-hidden="true">N 47.57° · E 10.29°<br />Ziel · Rettenberg</span>
+          </div>
+        </div>
+        <div class="landscape" id="landscape">{{LANDSCAPE}}</div>
+        <a class="scroll-cue mono" href="#idee"><span>Scroll</span><i></i></a>
+      </section>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Gravel</span><span class="dot">◆</span><span>Kehre</span><span class="dot">◆</span><span>Helles</span><span class="dot">◆</span><span>Schotter</span><span class="dot">◆</span><span>Zoigl</span><span class="dot">◆</span><span>Dunkel</span><span class="dot">◆</span><span>2-Track</span><span class="dot">◆</span><span>Rauchbier</span><span class="dot">◆</span><span>Roadbook</span><span class="dot">◆</span><span>Weissbier</span><span class="dot">◆</span><span>Prost</span><span class="dot">◆</span>
+          <span>Gravel</span><span class="dot">◆</span><span>Kehre</span><span class="dot">◆</span><span>Helles</span><span class="dot">◆</span><span>Schotter</span><span class="dot">◆</span><span>Zoigl</span><span class="dot">◆</span><span>Dunkel</span><span class="dot">◆</span><span>2-Track</span><span class="dot">◆</span><span>Rauchbier</span><span class="dot">◆</span><span>Roadbook</span><span class="dot">◆</span><span>Weissbier</span><span class="dot">◆</span><span>Prost</span><span class="dot">◆</span>
+        </div>
+      </div>
+
+      <!-- IDEE ------------------------------------------------------ -->
+      <section class="section" id="idee">
+        <div class="wrap">
+          <div class="section-tag mono"><span><b>01</b> / Die Idee</span><span class="hide-sm">Offroad · Bayern · Brauereien</span></div>
+          <p class="manifest" id="manifest" aria-label="Ein Freistaat. Sieben Bezirke. Kein direkter Weg. Und am Ende jedes Fahrtags ein Bräustüberl.">
+            Ein Freistaat. <span data-hl>Sieben Bezirke.</span> Kein direkter Weg. Und am Ende jedes Fahrtags
+            <span data-am>ein Bräustüberl.</span>
+          </p>
+          <div class="cards-3">
+            <article class="card reveal">
+              <div class="num mono"><span>01 / Ride</span>
+                <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 50c10-2 12-14 22-16s12 8 22 2 8-18 8-18"/><circle cx="58" cy="18" r="3" fill="currentColor"/><path d="M6 50l0 0" stroke-width="6"/><path d="M14 58h8M30 58h4M42 58h10" stroke-dasharray="1 5"/></svg>
+              </div>
+              <h3>Offroad – aber legal.</h3>
+              <p>Schotter, freigegebene Feldwege, kleine Straßen. Forstwege ohne Freigabe? Nicht im Track. Punkt.</p>
+            </article>
+            <article class="card reveal" data-delay="1">
+              <div class="num mono"><span>02 / Seek</span>
+                <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><path d="M14 20h28v34a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4z"/><path d="M42 26h6a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4h-6"/><path d="M14 20c0-6 4-10 9-8 2-5 10-5 12 0 5-2 9 2 7 8"/><path d="M22 30v20M30 30v20"/></svg>
+              </div>
+              <h3>Von Brauerei zu Brauerei.</h3>
+              <p>Jeder Fahrtag endet dort, wo das Bier gebraut wird – am liebsten mit Zimmer überm Sudhaus.</p>
+            </article>
+            <article class="card reveal" data-delay="2">
+              <div class="num mono"><span>03 / Crew</span>
+                <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="32" cy="32" r="24"/><path d="M32 8v8M32 48v8M8 32h8M48 32h8"/><path d="M26 38l4-12 12-4-4 12z" fill="currentColor" fill-opacity=".25"/></svg>
+              </div>
+              <h3>Von Fahrern gebaut.</h3>
+              <p>Keine Agentur, kein Reiseveranstalter. Die Bavarian Beer Seekers scouten jeden Kilometer selbst.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS ----------------------------------------------------- -->
+      <section class="stats" aria-label="Das Projekt in Zahlen">
+        <div class="wrap stats-grid">
+          <div class="stat reveal">
+            <strong data-count="7">7</strong>
+            <span class="mono">Regierungsbezirke</span>
+            <p>Von Unterfranken bis ins Allgäu.</p>
+          </div>
+          <div class="stat reveal" data-delay="1">
+            <strong data-count="10">10</strong>
+            <span class="mono">Brauerei-Ziele</span>
+            <p>Auf der Ideenliste. Tendenz: durstig.</p>
+          </div>
+          <div class="stat reveal" data-delay="2">
+            <strong>0</strong>
+            <span class="mono">Gesperrte Forstwege</span>
+            <p>Regel, nicht Zufall.</p>
+          </div>
+          <div class="stat reveal" data-delay="3">
+            <strong data-count="2022">2022</strong>
+            <span class="mono">Crew gegründet</span>
+            <p>Bavarian Beer Seekers MC.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ROUTE ----------------------------------------------------- -->
+      <section class="section route" id="route">
+        <div class="wrap">
+          <div class="section-tag mono"><span><b>02</b> / Die Route</span><span class="hide-sm">Etappen-Idee · in Planung</span></div>
+          <div class="route-head">
+            <h2 class="h-display reveal">Vom Main<br />zu den <em>Alpen.</em></h2>
+            <p class="lead muted reveal" data-delay="1">
+              Sieben Etappen, sieben Bezirke, ein Faden aus Schotter. Die Linie ist eine Idee – jeder Abschnitt wird
+              gefahren und geprüft, bevor er in den Track kommt.
+            </p>
+          </div>
+
+          <div class="route-body">
+            <div class="map-sticky">
+              <div class="map-frame">
+                <div class="map-meta mono">
+                  <span>Bayern · Etappe <b id="map-stage">01</b>/07</span>
+                  <span id="map-district">Unterfranken</span>
+                </div>
+                {{MAP}}
+              </div>
+              <p class="map-note mono">Linienführung schematisch. Keine Kooperation mit den genannten Brauereien.</p>
+            </div>
+
+            <ol class="stages" id="stages">
+              <li class="stage" data-district="Unterfranken" data-until="kreuzberg">
+                <div class="stage-top">{{TULIP_1}}<span class="mono">Etappe 01<span>Unterfranken</span></span></div>
+                <h3>Main &amp; Rhön</h3>
+                <p>
+                  Start am Main in Miltenberg, dann hinauf in die Rhön: weit, windig, das Land der offenen Fernen.
+                  Auf dem Kreuzberg brauen die Franziskaner – ein Klosterbier mit Aussicht.
+                </p>
+                <div class="brewery-chips">
+                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Brauerei Faust <small>Miltenberg</small></span>
+                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Klosterbrauerei Kreuzberg <small>Rhön</small></span>
+                </div>
+              </li>
+              <li class="stage" data-district="Oberfranken" data-until="rothenbach">
+                <div class="stage-top">{{TULIP_2}}<span class="mono">Etappe 02<span>Oberfranken</span></span></div>
+                <h3>Bamberg &amp; Fränkische Schweiz</h3>
+                <p>
+                  Rauchbier in Bamberg, dann hinein in eine der brauereidichtesten Gegenden der Welt. Aufseß steht mit
+                  vier Brauereien bei rund 1.500 Einwohnern im Guinness-Buch.
+                </p>
+                <div class="brewery-chips">
+                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Aecht Schlenkerla <small>Bamberg</small></span>
+                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Brauereigasthof Rothenbach <small>Aufseß</small></span>
+                </div>
+              </li>
+              <li class="stage" data-district="Oberpfalz" data-until="zoigl">
+                <div class="stage-top">{{TULIP_3}}<span class="mono">Etappe 03<span>Oberpfalz</span></span></div>
+                <h3>Steinwald &amp; Zoigl-Land</h3>
+                <p>
+                  Wenn der Zoiglstern hängt, ist ausgeschenkt. Gebraut wird im Kommunbrauhaus, getrunken reihum in den
+                  Stuben – gelebtes Kulturerbe statt Folklore.
+                </p>
+                <div class="brewery-chips">
+                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Zoigl-Stuben <small>Windischeschenbach</small></span>
+                </div>
+              </li>
+              <li class="stage" data-district="Niederbayern" data-until="kuchlbauer">
+                <div class="stage-top">{{TULIP_4}}<span class="mono">Etappe 04<span>Niederbayern</span></span></div>
+                <h3>Donaudurchbruch &amp; Hopfenland</h3>
+                <p>
+                  Die Donau zwängt sich durch den Kalk – wir schauen vom Ufer aus zu, der Durchbruch ist Aussicht, kein
+                  Streckenabschnitt. Danach Weißbier zwischen Hopfengärten.
+                </p>
+                <div class="brewery-chips">
+                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Klosterbrauerei Weltenburg <small>Kelheim</small></span>
+                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Kuchlbauer <small>Abensberg</small></span>
+                </div>
+              </li>
+              <li class="stage" data-district="Mittelfranken" data-until="spalt">
+                <div class="stage-top">{{TULIP_5}}<span class="mono">Etappe 05<span>Mittelfranken</span></span></div>
+                <h3>Spalter Hopfenland</h3>
+                <p>
+                  Hopfenstadt Spalt, Fränkisches Seenland in Sichtweite. Die Stadtbrauerei gehört der Stadt – Bier, das
+                  den Bürgern gehört.
+                </p>
+                <div class="brewery-chips">
+                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Stadtbrauerei Spalt <small>Spalt</small></span>
+                </div>
+              </li>
+              <li class="stage" data-district="Oberbayern" data-until="andechs">
+                <div class="stage-top">{{TULIP_6}}<span class="mono">Etappe 06<span>Oberbayern</span></span></div>
+                <h3>Fünfseenland &amp; Heiliger Berg</h3>
+                <p>
+                  Moränenhügel, Seen, die ersten Berge am Horizont. Am Ende der Heilige Berg: Die Enduro bleibt unten,
+                  der letzte Anstieg geht zu Fuß.
+                </p>
+                <div class="brewery-chips">
+                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Klosterbrauerei Andechs <small>Andechs</small></span>
+                </div>
+              </li>
+              <li class="stage" data-district="Schwaben" data-until="zoetler">
+                <div class="stage-top">{{TULIP_7}}<span class="mono">Etappe 07<span>Schwaben</span></span></div>
+                <h3>Allgäu &amp; Grünten</h3>
+                <p>
+                  Finale am Fuß des Grünten. Zötler nennt sich älteste Familienbrauerei der Welt – überliefert seit 1447.
+                  Ein guter Ort, um anzukommen.
+                </p>
+                <div class="brewery-chips">
+                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Brauerei Zötler <small>Rettenberg</small></span>
+                </div>
+                <span class="candidate mono">Alle Stopps: Kandidaten, nicht bestätigt</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- CODE ------------------------------------------------------ -->
+      <section class="section code" id="code">
+        {{STAMP}}
+        <div class="wrap">
+          <div class="section-tag mono"><span><b>03</b> / Unser Code</span><span class="hide-sm">How we ride</span></div>
+          <div class="code-head">
+            <div>
+              <p class="eyebrow mono">Wild im Kopf</p>
+              <h2 class="h-display reveal">Sauber<br />auf dem <em>Trail.</em></h2>
+            </div>
+            <p class="lead reveal" data-delay="1">
+              Abenteuer funktioniert nur, wenn es morgen noch erlaubt ist. Darum ist der Umgang mit Wegen, Menschen und
+              Landschaft kein Kleingedrucktes – sondern Teil der Route.
+            </p>
+          </div>
+          <div class="rules">
+            <div class="rule reveal"><span class="mono">Regel 01</span><h3>Legal lines only</h3><p>Nur Wege, die für Kraftfahrzeuge freigegeben sind. Vor Ort gilt das Schild, nicht das GPX.</p></div>
+            <div class="rule reveal" data-delay="1"><span class="mono">Regel 02</span><h3>Small crews</h3><p>Zwei bis vier Maschinen. Kleine Gruppen fallen nicht auf – und kommen überall unter.</p></div>
+            <div class="rule reveal" data-delay="2"><span class="mono">Regel 03</span><h3>Quiet throttle</h3><p>Serienauspuff, Schritttempo durch Dörfer, Gas weg bei Wanderern und Reitern.</p></div>
+            <div class="rule key reveal"><span class="mono">Regel 04</span><h3>Erst parken, dann Prost</h3><p>Bier gibt es, wenn der Seitenständer für heute unten ist. Keine Ausnahme.</p></div>
+            <div class="rule reveal" data-delay="1"><span class="mono">Regel 05</span><h3>Support local</h3><p>Übernachten, essen, tanken im Ort. Der Trail soll den Dörfern etwas bringen.</p></div>
+            <div class="rule reveal" data-delay="2"><span class="mono">Regel 06</span><h3>Leave no trace</h3><p>Kein Müll, keine Spurrillen in nasser Wiese, kein Wildcampen am Waldrand.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SETUP ----------------------------------------------------- -->
+      <section class="section" id="setup">
+        <div class="wrap">
+          <div class="section-tag mono"><span><b>04</b> / Setup</span><span class="hide-sm">Was du brauchst</span></div>
+          <div class="setup-grid">
+            <div>
+              <h2 class="h-display reveal">Kein Rennen.<br /><em>Keine Kaffee&shy;fahrt.</em></h2>
+              <p class="lead muted reveal" data-delay="1" style="margin-top: 28px">
+                Der Trail ist für Genussfahrer mit Schotter-Erfahrung gedacht. Wie anspruchsvoll die einzelnen
+                Abschnitte werden, sagen wir erst, wenn wir sie selbst gefahren sind.
+              </p>
+            </div>
+            <dl class="spec">
+              <div class="reveal"><dt class="mono">Motorrad</dt><dd><strong>Enduro oder Reise-Enduro</strong><span>Straßenzugelassen, vom Leichtgewicht bis zur großen GS. Hauptsache Serienauspuff.</span></dd></div>
+              <div class="reveal"><dt class="mono">Reifen</dt><dd><strong>50/50 oder gröber</strong><span>Schotter, Lehm, Regen – Bayern kann alles an einem Tag.</span></dd></div>
+              <div class="reveal"><dt class="mono">Navigation</dt><dd><strong>GPX-fähig</strong><span>Garmin, OsmAnd, Locus oder Kurviger. Der Track soll als GPX kommen.</span></dd></div>
+              <div class="reveal"><dt class="mono">Crew</dt><dd><strong>2–4 Leute</strong><span>Leiser Auftritt, niemand bleibt allein im Graben.</span></dd></div>
+              <div class="reveal"><dt class="mono">Nacht</dt><dd><strong>Gasthof statt Zelt</strong><span>Brauereigasthöfe mit Zimmern – so wird das Bier zum Feierabend, nicht zum Risiko.</span></dd></div>
+              <div class="reveal"><dt class="mono">Mindset</dt><dd><strong>Plan B im Tankrucksack</strong><span>Sperrschild? Umdrehen. Das GPX ist ein Vorschlag, die Beschilderung ist Gesetz.</span></dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- CREW ------------------------------------------------------ -->
+      <section class="section crew" id="crew">
+        <div class="wrap">
+          <div class="section-tag mono"><span><b>05</b> / Die Crew</span><span class="hide-sm">Bavarian Beer Seekers MC. Nomads</span></div>
+          <div class="crew-grid">
+            <div class="bbs-seal reveal" id="seal">{{SEAL}}</div>
+            <div class="crew-copy">
+              <p class="eyebrow mono">Est. 2022 · Bayern</p>
+              <h2 class="h-display reveal">Freunde.<br />Enduros.<br /><em>Durst auf Umwege.</em></h2>
+              <p class="lead reveal" data-delay="1">
+                Die Bavarian Beer Seekers sind kein Veranstalter und keine Marke mit Marketingabteilung. Wir sind eine
+                Crew, die lieber Geschichten sammelt als Kilometer – und den Trail baut, den wir selbst fahren wollen.
+              </p>
+              <ol class="timeline">
+                <li class="reveal"><span class="mono">2022</span><strong>Crew gegründet</strong><span>Die Bavarian Beer Seekers formieren sich als Nomads.</span></li>
+                <li class="reveal now"><span class="mono">Jetzt</span><strong>Scouting &amp; Kartenarbeit</strong><span>Wege prüfen, Brauereien testen, Sperrschilder notieren.</span></li>
+                <li class="reveal"><span class="mono">Next</span><strong>Testfahrten</strong><span>Jede Etappe wird gefahren, bevor sie in den Track kommt.</span></li>
+                <li class="reveal"><span class="mono">Release</span><strong>GPX für die Scout-Liste</strong><span>Wer auf der Liste steht, erfährt es zuerst.</span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ ------------------------------------------------------- -->
+      <section class="section" id="faq">
+        <div class="wrap">
+          <div class="section-tag mono"><span><b>06</b> / FAQ</span><span class="hide-sm">Ehrliche Antworten</span></div>
+          <div class="faq-grid">
+            <h2 class="h-display reveal">Fragen<br />am <em>Stammtisch.</em></h2>
+            <div class="faq-list">
+              <details>
+                <summary>Ist das legal?<i aria-hidden="true"></i></summary>
+                <div class="answer"><p>Ja – das ist die Grundregel. Wir planen ausschließlich auf öffentlichen Straßen und Wegen, die für Kraftfahrzeuge freigegeben sind. Wald- und Forstwege sind in Bayern für private Fahrten grundsätzlich tabu und gehören nicht in den Track. Lieber ein Stück Asphalt mehr als ein ignoriertes Verbotsschild. Vor Ort gilt immer die Beschilderung.</p></div>
+              </details>
+              <details>
+                <summary>Bier und Motorrad – geht das zusammen?<i aria-hidden="true"></i></summary>
+                <div class="answer"><p>Nein. Deshalb gilt: Bier erst, wenn das Motorrad für den Tag geparkt ist. Die Etappen sollen so geplant sein, dass man an oder nahe der Brauerei übernachten kann – und am nächsten Morgen ausgeschlafen weiterfährt.</p></div>
+              </details>
+              <details>
+                <summary>Welches Motorrad brauche ich?<i aria-hidden="true"></i></summary>
+                <div class="answer"><p>Eine straßenzugelassene Enduro oder Reise-Enduro mit passenden Reifen. Bitte mit Serienauspuff – „quiet throttle“ ist Teil der Idee. Wie schwierig einzelne Abschnitte sind, kommunizieren wir erst, wenn wir sie selbst gefahren sind.</p></div>
+              </details>
+              <details>
+                <summary>Wann gibt’s den GPX-Track?<i aria-hidden="true"></i></summary>
+                <div class="answer"><p>Wenn er fertig ist. Die Route ist im Scouting und wir nennen kein Datum, das wir nicht halten können. Wer auf der Scout-Liste steht, erfährt es zuerst.</p></div>
+              </details>
+              <details>
+                <summary>Kann ich mitfahren?<i aria-hidden="true"></i></summary>
+                <div class="answer"><p>Buchbare Touren gibt es nicht – wir sind eine Freundes-Crew, kein Reiseveranstalter. Helfen kannst du trotzdem: mit Brauerei-Tipps, Wegehinweisen oder Infos zu Sperrungen.</p></div>
+              </details>
+              <details>
+                <summary>Was kostet das?<i aria-hidden="true"></i></summary>
+                <div class="answer"><p>Aktuell nichts, weil es noch nichts gibt. Wie der Track später verfügbar sein wird, ist noch nicht entschieden – das sagen wir transparent, sobald es feststeht.</p></div>
+              </details>
+              <details>
+                <summary>Ist das Teil des TET?<i aria-hidden="true"></i></summary>
+                <div class="answer"><p>Nein. Der Trans Euro Trail ist eine großartige Inspiration, aber der Trans Bavaria Trail ist ein eigenständiges Projekt ohne Verbindung zum TET.</p></div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MITMACHEN ------------------------------------------------- -->
+      <section class="section join" id="mitmachen">
+        <div class="wrap">
+          <div class="section-tag mono"><span><b>07</b> / Mitmachen</span><span class="hide-sm">Scout-Liste &amp; Tipps</span></div>
+          <div class="join-grid">
+            <div class="join-card reveal">
+              <p class="eyebrow mono">Scout-Liste</p>
+              <h2>Sei dabei, wenn der Trail aufgeht.</h2>
+              <p>
+                Wir scouten noch: Schotter, Sperrschilder, Stammtische. Trag dich ein – du hörst von uns, sobald der
+                erste Track veröffentlicht wird. Kein Spam, jederzeit abmeldbar.
+              </p>
+              <form class="form" data-form="scout" novalidate>
+                <div class="row">
+                  <div class="field"><label for="s-name">Vorname</label><input id="s-name" name="name" autocomplete="given-name" /></div>
+                  <div class="field"><label for="s-mail">E-Mail *</label><input id="s-mail" name="email" type="email" autocomplete="email" required /></div>
+                </div>
+                <div class="field">
+                  <label for="s-bike">Dein Motorrad (optional)</label>
+                  <input id="s-bike" name="bike" placeholder="z. B. Ténéré 700" />
+                </div>
+                <input class="hp" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+                <button class="btn" type="submit">Auf die Scout-Liste <span class="arrow" aria-hidden="true">→</span></button>
+                <p class="form-status" role="status" aria-live="polite"></p>
+                <p class="form-note">Wir melden uns nur, wenn es wirklich was Neues gibt. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+              </form>
+            </div>
+            <div class="join-card light reveal" data-delay="1">
+              <p class="eyebrow mono">Brauerei-Tipp</p>
+              <h2>Du kennst den besten Bierkeller im Umkreis?</h2>
+              <p>
+                Kleine Brauerei, ehrliches Bier, vielleicht sogar ein Zimmer für die Nacht? Verrat’s uns. Wir schauen es
+                uns beim Scouting an. Versprechen können wir nichts – aber jeder Tipp wird gelesen.
+              </p>
+              <form class="form" data-form="tipp" novalidate>
+                <div class="row">
+                  <div class="field"><label for="t-brew">Brauerei *</label><input id="t-brew" name="brauerei" required /></div>
+                  <div class="field"><label for="t-town">Ort *</label><input id="t-town" name="ort" required /></div>
+                </div>
+                <div class="field">
+                  <label for="t-bez">Regierungsbezirk</label>
+                  <select id="t-bez" name="bezirk">
+                    <option value="">Bitte wählen</option>
+                    <option>Oberbayern</option><option>Niederbayern</option><option>Oberpfalz</option>
+                    <option>Oberfranken</option><option>Mittelfranken</option><option>Unterfranken</option><option>Schwaben</option>
+                  </select>
+                </div>
+                <div class="field"><label for="t-why">Warum passt sie?</label><textarea id="t-why" name="warum" placeholder="Bier, Biergarten, Zimmer, Anfahrt über Schotter …"></textarea></div>
+                <input class="hp" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+                <button class="btn" type="submit">Tipp einreichen <span class="arrow" aria-hidden="true">→</span></button>
+                <p class="form-status" role="status" aria-live="polite"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <p class="prost" aria-hidden="true">Prost</p>
+        <div class="footer-row">
+          <div class="footer-brand">
+            <img src="assets/tbt-logo-512.webp" alt="" width="92" height="97" loading="lazy" />
+            <div>
+              <span class="brand-text">Trans <span>Bavaria</span> Trail</span>
+              <p>Offroad to Bavaria’s best breweries.<br />A Bavarian Beer Seekers Adventure.</p>
+            </div>
+          </div>
+          <div>
+            <h4 class="mono">Trail</h4>
+            <ul>
+              <li><a href="#idee">Die Idee</a></li>
+              <li><a href="#route">Die Route</a></li>
+              <li><a href="#code">Unser Code</a></li>
+              <li><a href="#mitmachen">Scout-Liste</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="mono">Rechtliches</h4>
+            <ul>
+              <li><a href="impressum.html">Impressum</a></li>
+              <li><a href="datenschutz.html">Datenschutz</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom mono">
+          <span>© 2026 Bavarian Beer Seekers MC. Nomads</span>
+          <span>Ride legal · Drink after parking</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="main.js" defer></script>
+  </body>
+</html>
