@@ -15,7 +15,6 @@ ROOT = Path(__file__).resolve().parent.parent
 TOOLS = ROOT / "tools"
 
 paths = json.loads((TOOLS / "paths.json").read_text())
-route = json.loads((TOOLS / "route.json").read_text(encoding="utf-8"))
 
 DISTRICT_LABELS = {
     "Unterfranken": (150, 205),
@@ -28,51 +27,78 @@ DISTRICT_LABELS = {
 }
 
 
-def route_fractions():
-    """Fraction of the route length at which each stop is reached."""
-    pts = [tuple(map(float, p.split(","))) for p in route["route"][1:].split(" ")]
-    cum = [0.0]
-    for a, b in zip(pts, pts[1:]):
-        cum.append(cum[-1] + math.dist(a, b))
-    total = cum[-1]
-    out = {}
-    for s in route["stops"]:
-        i = min(range(len(pts)), key=lambda k: math.dist(pts[k], (s["x"], s["y"])))
-        out[s["id"]] = round(cum[i] / total, 4)
-    return out
+def _dp(pts, eps):
+    """Douglas-Peucker simplification in map units."""
+    if len(pts) < 3:
+        return pts
+    (x1, y1), (x2, y2) = pts[0], pts[-1]
+    length = math.hypot(x2 - x1, y2 - y1) or 1e-9
+    dmax, idx = 0, 0
+    for i in range(1, len(pts) - 1):
+        x, y = pts[i]
+        d = abs((y2 - y1) * x - (x2 - x1) * y + x2 * y1 - y2 * x1) / length
+        if d > dmax:
+            dmax, idx = d, i
+    if dmax > eps:
+        return _dp(pts[: idx + 1], eps)[:-1] + _dp(pts[idx:], eps)
+    return [pts[0], pts[-1]]
+
+
+def load_route():
+    """Computed route: stages.json (audited) + GPX tracks -> projected map path and pins."""
+    import gpxpy
+
+    stages = json.loads((TOOLS / "stages.json").read_text(encoding="utf-8"))["etappen"]
+    gpx = gpxpy.parse((ROOT / "gpx" / "trans-bavaria-trail-entwurf.gpx").read_text(encoding="utf-8"))
+    assert len(gpx.tracks) == len(stages)
+    pts = []
+    for trk in gpx.tracks:
+        seg = [project(p.longitude, p.latitude) for p in trk.segments[0].points]
+        pts.extend(_dp(seg, 0.6) if not pts else _dp(seg, 0.6)[1:])
+    d = "M" + " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+    total = sum(s["km"] for s in stages)
+    wps = gpx.waypoints
+    pins, cum = [], 0.0
+    for i, w in enumerate(wps):
+        x, y = project(w.longitude, w.latitude)
+        if i:
+            cum += stages[i - 1]["km"]
+        ort = stages[i - 1]["nach"] if i else stages[0]["von"]
+        pins.append({"id": "start" if i == 0 else stages[i - 1]["ziel_id"], "x": x, "y": y,
+                     "at": round(cum / total, 4), "ort": ort.split(" (")[0], "lat": w.latitude, "lon": w.longitude})
+    return {"d": d, "stages": stages, "pins": pins, "total": total}
+
+
+ROUTE = None
 
 
 def bavaria_map():
-    frac = route_fractions()
+    r = ROUTE
     h = paths["H"]
     parts = [
         f'<svg id="bayern-map" viewBox="-20 -20 1040 {h + 40}" role="img" '
         f'aria-labelledby="map-title map-desc">',
-        '<title id="map-title">Karte Bayern mit Etappen-Idee des Trans Bavaria Trail</title>',
-        '<desc id="map-desc">Schematische Linie vom Main bei Miltenberg durch alle sieben '
-        "Regierungsbezirke bis ins Allgäu nach Rettenberg, mit zehn Brauerei-Zielen.</desc>",
+        '<title id="map-title">Karte Bayern mit dem berechneten Etappen-Entwurf des Trans Bavaria Trail</title>',
+        f'<desc id="map-desc">Route von {r["pins"][0]["ort"]} durch alle sieben Regierungsbezirke bis '
+        f'{r["pins"][-1]["ort"]}, {len(r["stages"])} Etappen mit Übernachtung an Brauereien.</desc>',
         f'<path class="land" d="{paths["bayern"]}"/>',
     ]
     for name, d in paths["rb"].items():
         parts.append(f'<path class="district" data-district="{name}" d="{d}"/>')
     for name, (x, y) in DISTRICT_LABELS.items():
         parts.append(f'<text class="district-label" x="{x}" y="{y}" text-anchor="middle">{name}</text>')
-    parts.append(f'<path class="route-ghost" d="{route["route"]}"/>')
-    parts.append(f'<path class="route-line" id="route-line" d="{route["route"]}"/>')
-    label_side = {"kreuzberg": "end", "faust": "start", "zoigl": "start", "kuchlbauer": "start",
-                  "weltenburg": "start", "spalt": "end", "rothenbach": "start", "schlenkerla": "end",
-                  "andechs": "start", "zoetler": "start"}
-    offsets = {"weltenburg": (0, -14), "kuchlbauer": (0, 16), "schlenkerla": (0, -12),
-               "rothenbach": (0, 16), "kreuzberg": (0, 6)}
-    for s in route["stops"]:
-        side = label_side.get(s["id"], "start")
-        dx = 18 if side == "start" else -18
-        ox, oy = offsets.get(s["id"], (0, 6))
+    parts.append(f'<path class="route-ghost" d="{r["d"]}"/>')
+    parts.append(f'<path class="route-line" id="route-line" d="{r["d"]}"/>')
+    for i, p in enumerate(r["pins"]):
+        # labels on the side with more room: west half -> right of pin, east half -> left
+        side = "start" if p["x"] < 560 else "end"
+        dx = 16 if side == "start" else -16
+        dy = 6
         parts.append(
-            f'<g class="pin" data-stop="{s["id"]}" data-at="{frac[s["id"]]}">'
-            f'<circle class="halo" cx="{s["x"]}" cy="{s["y"]}" r="9"/>'
-            f'<circle class="dot" cx="{s["x"]}" cy="{s["y"]}" r="9"/>'
-            f'<text x="{s["x"] + dx + ox}" y="{s["y"] + oy}" text-anchor="{side}">{s["town"].split(" ")[0]}</text>'
+            f'<g class="pin" data-stop="{p["id"]}" data-at="{p["at"]}">'
+            f'<circle class="halo" cx="{p["x"]:.1f}" cy="{p["y"]:.1f}" r="8"/>'
+            f'<circle class="dot" cx="{p["x"]:.1f}" cy="{p["y"]:.1f}" r="8"/>'
+            f'<text x="{p["x"] + dx:.1f}" y="{p["y"] + dy:.1f}" text-anchor="{side}">{html.escape(p["ort"])}</text>'
             "</g>"
         )
     parts.append(
@@ -84,6 +110,42 @@ def bavaria_map():
     )
     parts.append("</svg>")
     return "".join(parts)
+
+
+def fmt_km(v):
+    return f"{v:.0f}" if v >= 10 else f"{v:.1f}".replace(".", ",")
+
+
+def stages_html(brews):
+    r = ROUTE
+    by_id = {b["id"]: b for b in brews}
+    e = html.escape
+    out = []
+    turns = [(-35, 60), (70, None), (0, -90), (-120, None), (45, -45), (-80, 30), (110, None),
+             (-20, 90), (60, -60), (-100, None), (30, None), (-60, 45)]
+    for s in r["stages"]:
+        ziel = by_id[s["ziel_id"]]
+        t = turns[(s["nr"] - 1) % len(turns)]
+        chips = "".join(
+            f'<span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>'
+            f'{e(u["name"])} <small>{e(u["ort"])}</small></span>'
+            for u in s["unterwegs"]
+        )
+        unterwegs = (f'<p class="stage-sub mono">Einkehr unterwegs</p><div class="brewery-chips">{chips}</div>'
+                     if chips else "")
+        region = f' · {e(ziel["landschaft"])}' if ziel.get("landschaft") else ""
+        out.append(
+            f'<li class="stage" data-district="{e(ziel["bezirk"])}" data-until="{s["ziel_id"]}">'
+            f'<div class="stage-top">{tulip(*t)}<span class="mono">Etappe {s["nr"]:02d}'
+            f'<span>{e(" · ".join(s["bezirke"]))}</span></span></div>'
+            f'<h3>{e(s["von"].split(" (")[0])} → {e(s["nach"].split(" (")[0])}</h3>'
+            f'<dl class="stage-facts"><div><dt class="mono">Strecke</dt><dd>{fmt_km(s["km"])} km</dd></div>'
+            f'<div><dt class="mono">Unbefestigt (legal)</dt><dd>{fmt_km(s["unbefestigt_km"])} km</dd></div></dl>'
+            f'<p><b>Übernachtung:</b> {e(ziel["name"])} in {e(ziel["ort"])}{region} – mit Gästezimmern.</p>'
+            f"{unterwegs}"
+            "</li>"
+        )
+    return "".join(out)
 
 
 def pine(x, base, h, rnd):
@@ -294,7 +356,7 @@ def atlas_map(brews):
     ]
     for name, d in paths["rb"].items():
         parts.append(f'<path class="district" data-district="{name}" d="{d}"/>')
-    parts.append(f'<path class="route-ghost" d="{route["route"]}"/>')
+    parts.append(f'<path class="route-ghost" d="{ROUTE["d"]}"/>')
     for b in brews:
         x, y = project(b["lon"], b["lat"])
         cls = "bdot room" if b.get("zimmer") == "ja" else "bdot"
@@ -335,7 +397,9 @@ def atlas_cards(brews):
 
 
 def main():
+    global ROUTE
     src = (TOOLS / "index.src.html").read_text(encoding="utf-8")
+    ROUTE = load_route()
     atlas = load_breweries()
     brews = atlas["brauereien"]
     chips = "".join(
@@ -349,6 +413,15 @@ def main():
         .replace("{{ATLAS_COUNT}}", str(len(brews)))
         .replace("{{ATLAS_STAND}}", atlas["stand"])
         .replace("{{MAP}}", bavaria_map())
+        .replace("{{STAGES}}", stages_html(brews))
+        .replace("{{ROUTE_KM}}", f"{ROUTE['total']:.0f}")
+        .replace("{{ROUTE_N2}}", f"{len(ROUTE['stages']):02d}")
+        .replace("{{ROUTE_N}}", str(len(ROUTE['stages'])))
+        .replace("{{ROUTE_FIRST_DISTRICT}}", ROUTE["stages"][0]["bezirke"][0])
+        .replace("{{ROUTE_UNPAVED_KM}}", f"{sum(x['unbefestigt_km'] for x in ROUTE['stages']):.0f}")
+        .replace("{{ROUTE_UNPAVED_PCT}}", f"{sum(x['unbefestigt_km'] for x in ROUTE['stages']) / ROUTE['total'] * 100:.1f}".replace(".", ","))
+        .replace("{{ZIEL_COORD}}", f"N {ROUTE['pins'][-1]['lat']:.2f}° · E {ROUTE['pins'][-1]['lon']:.2f}°")
+        .replace("{{ZIEL_ORT}}", ROUTE["pins"][-1]["ort"])
         .replace("{{LANDSCAPE}}", landscape())
         .replace("{{SEAL}}", bbs_seal())
         .replace("{{STAMP}}", stamp())

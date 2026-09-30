@@ -13,7 +13,12 @@ High-end One-Pager für den **Trans Bavaria Trail**: eine Enduro-Route der Bavar
 | `index.html` | **Generiert.** Bitte nicht direkt bearbeiten, sondern `tools/index.src.html`. |
 | `tools/index.src.html` | Inhalte und Texte der Seite |
 | `tools/build.py` | Baut `index.html`. Erzeugt die Bayern-Karte (echte Bezirksgrenzen), die Route, die Hero-Landschaft, die Roadbook-Tulpen und das BBS-Siegel als Inline-SVG. |
-| `tools/paths.json`, `tools/route.json` | Geodaten: Grenzen der Bezirke und Brauerei-Koordinaten |
+| `tools/paths.json` | Kartengeometrie der Bezirke |
+| `tools/breweries.json` | Brauerei-Atlas (doppelt verifiziert) |
+| `tools/check_breweries.py` | Maschinelle Prüfung: Bezirk, OSM-Ort ≤ 3 km, Links, Dubletten |
+| `tools/tbt-legal.brf` | BRouter-Profil: nur für Kfz freigegebene Wege, bevorzugt unbefestigt |
+| `tools/route_check.py` | Unabhängige Prüfung jeder Route auf Zulässigkeit laut OSM-Tags |
+| `tools/plan_route.py` | Rechnet die Etappen, prüft sie (0 Verstöße, alles in Bayern) und schreibt `gpx/` + `tools/stages.json` |
 | `styles.css` | Designsystem (Farbpalette aus dem Patch) |
 | `main.js` | Interaktionen: Topo-Linien, Parallax, Route beim Scrollen, Formulare |
 | `assets/fonts/` | Selbst gehostete Schriften, damit nichts an Google Fonts übertragen wird (DSGVO) |

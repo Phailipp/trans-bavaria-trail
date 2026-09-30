@@ -1,0 +1,110 @@
+# Trans Bavaria Trail – strict-legal enduro profile for BRouter
+#
+# Only ways that OpenStreetMap marks as open to motor vehicles:
+# - public roads (primary..unclassified, residential, living_street)
+# - tracks / service / unknown roads ONLY with an explicit motor vehicle
+#   permission (yes|designated). "permissive" (owner's goodwill) and
+#   "destination" (residents only) are NOT accepted.
+# - any motorcycle / motor_vehicle / vehicle / access prohibition wins
+# Among legal ways it prefers small roads and unpaved surfaces and
+# avoids motorways/trunk roads entirely.
+
+---context:global
+
+assign validForCars        = true
+assign turnInstructionMode = 1
+assign pass1coefficient    = 1.3
+assign processUnusedTags   = false
+
+---context:way
+
+assign isresidentialorliving = or highway=residential|living_street living_street=yes
+
+
+assign prohibited =
+       or motorcycle=no|private|agricultural|destination|permit
+       or motor_vehicle=no|private|agricultural|destination|permit|emergency|psv|hov
+       or vehicle=no|private|agricultural|destination|permit|psv|military|emergency|hov
+          access=no|private|agricultural|destination|customers|delivery|psv|hov|permit|military
+
+assign explicit_yes =
+       or motorcycle=yes|designated
+       or motor_vehicle=yes|designated
+       or motorcar=yes|designated
+       or vehicle=yes|designated
+          access=yes|designated
+
+assign public_road =
+       or highway=primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified
+          isresidentialorliving
+
+assign legal =
+       if prohibited then false
+       else if public_road then true
+       else if highway=track|service|road then explicit_yes
+       else false
+
+assign isbadoneway = if reversedirection=yes then ( if oneway= then junction=roundabout else oneway=yes|true|1 ) else oneway=-1
+
+assign unpaved =
+       or surface=unpaved|gravel|fine_gravel|compacted|dirt|earth|ground|grass|pebblestone|rock
+          tracktype=grade2|grade3|grade4|grade5
+
+assign basecost =
+       switch highway=motorway|motorway_link|trunk|trunk_link 10000
+       switch highway=primary|primary_link                    5
+       switch highway=secondary|secondary_link                2.4
+       switch highway=tertiary|tertiary_link                  1.4
+       switch highway=unclassified                            1
+       switch isresidentialorliving                           1.6
+       switch highway=track                                   0.85
+       switch highway=service                                 1.6
+       switch highway=road                                    2
+       10000
+
+assign costfactor =
+       if not legal then 10000
+       else if isbadoneway then 10000
+       else if route=ferry then 10000
+       else if unpaved then multiply basecost 0.6
+       else basecost
+
+assign turncost = 0
+assign initialcost = 0
+
+assign priorityclassifier =
+  if      ( highway=primary|primary_link      ) then  26
+  else if ( highway=secondary|secondary_link  ) then  24
+  else if ( highway=tertiary|tertiary_link    ) then  22
+  else if ( highway=unclassified              ) then  20
+  else if ( isresidentialorliving             ) then  6
+  else if ( highway=service                   ) then  6
+  else if ( highway=track                     ) then  2
+  else 0
+
+assign isgoodoneway = if reversedirection=yes then oneway=-1
+                      else if oneway= then junction=roundabout else oneway=yes|true|1
+assign isroundabout = junction=roundabout
+assign islinktype = highway=primary_link|secondary_link|tertiary_link
+assign isgoodforcars = if greater priorityclassifier 6 then true else false
+
+assign classifiermask add          isbadoneway
+                      add multiply isgoodoneway   2
+                      add multiply isroundabout   4
+                      add multiply islinktype     8
+                          multiply isgoodforcars 16
+
+---context:node
+
+assign nodeaccess
+       switch motorcar=
+              switch motor_vehicle=
+                     switch vehicle=
+                            switch access=
+                                   not barrier=gate|bollard|lift_gate|cycle_barrier|block|chain|jersey_barrier
+                                   access=yes|designated
+                            vehicle=yes|designated
+                     motor_vehicle=yes|designated
+              motorcar=yes|designated
+
+assign initialcost = switch nodeaccess 0 1000000

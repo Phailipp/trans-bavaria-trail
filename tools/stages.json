@@ -1,0 +1,281 @@
+{
+ "profil": "tbt-legal.brf",
+ "etappen": [
+  {
+   "nr": 1,
+   "von": "Miltenberg",
+   "nach": "Ochsenfurt",
+   "ziel_brauerei": "Kauzen-Bräu (Gasthof Kauzen)",
+   "ziel_id": "kauzen-braeu-gasthof-kauzen-ochsenfurt",
+   "km": 130.8,
+   "unbefestigt_km": 2.5,
+   "unbefestigt_anteil": 1.9,
+   "strassentypen_km": {
+    "tertiary": 62.3,
+    "secondary": 28.4,
+    "residential": 19.9,
+    "unclassified": 13.9,
+    "track": 4.8,
+    "primary": 0.8,
+    "living_street": 0.4,
+    "secondary_link": 0.2,
+    "tertiary_link": 0.0
+   },
+   "bezirke": [
+    "Unterfranken"
+   ],
+   "unterwegs": [],
+   "verstoesse": 0
+  },
+  {
+   "nr": 2,
+   "von": "Ochsenfurt",
+   "nach": "Stublang",
+   "ziel_brauerei": "Gasthof-Brauerei Hennemann",
+   "ziel_id": "gasthof-brauerei-hennemann-stublang",
+   "km": 140.8,
+   "unbefestigt_km": 0.2,
+   "unbefestigt_anteil": 0.1,
+   "strassentypen_km": {
+    "tertiary": 67.2,
+    "unclassified": 51.9,
+    "secondary": 14.7,
+    "residential": 6.8,
+    "primary": 0.1,
+    "primary_link": 0.0
+   },
+   "bezirke": [
+    "Unterfranken",
+    "Mittelfranken",
+    "Oberfranken"
+   ],
+   "unterwegs": [
+    {
+     "id": "hausbrauerei-und-brauerei-gasthof-duell-gnodstadt",
+     "name": "Hausbrauerei und Brauerei-Gasthof Düll",
+     "ort": "Gnodstadt"
+    },
+    {
+     "id": "brauerei-gasthof-ott-oberleinleiter",
+     "name": "Brauerei-Gasthof Ott",
+     "ort": "Oberleinleiter"
+    },
+    {
+     "id": "huebner-braeu-steinfeld",
+     "name": "Hübner-Bräu",
+     "ort": "Steinfeld"
+    },
+    {
+     "id": "brauerei-gasthof-zwanzger-uehlfeld",
+     "name": "Brauerei Gasthof Zwanzger",
+     "ort": "Uehlfeld"
+    },
+    {
+     "id": "brauerei-gasthaus-rittmayer-aisch",
+     "name": "Brauerei & Gasthaus Rittmayer",
+     "ort": "Aisch"
+    }
+   ],
+   "verstoesse": 0
+  },
+  {
+   "nr": 3,
+   "von": "Stublang",
+   "nach": "Schlammersdorf",
+   "ziel_brauerei": "Püttner Bräu",
+   "ziel_id": "puettner-braeu-schlammersdorf",
+   "km": 89.2,
+   "unbefestigt_km": 6.6,
+   "unbefestigt_anteil": 7.4,
+   "strassentypen_km": {
+    "unclassified": 43.7,
+    "tertiary": 34.5,
+    "residential": 7.9,
+    "track": 1.6,
+    "secondary": 1.3,
+    "primary": 0.2,
+    "tertiary_link": 0.1
+   },
+   "bezirke": [
+    "Oberfranken",
+    "Oberpfalz"
+   ],
+   "unterwegs": [],
+   "verstoesse": 0
+  },
+  {
+   "nr": 4,
+   "von": "Schlammersdorf",
+   "nach": "Bodenwöhr (Ludwigsheide)",
+   "ziel_brauerei": "Brauerei Jacob",
+   "ziel_id": "brauerei-jacob-bodenwoehr-ludwigsheide",
+   "km": 99.2,
+   "unbefestigt_km": 5.7,
+   "unbefestigt_anteil": 5.8,
+   "strassentypen_km": {
+    "tertiary": 40.3,
+    "unclassified": 40.1,
+    "residential": 8.1,
+    "track": 3.7,
+    "service": 3.1,
+    "secondary": 2.9,
+    "primary": 0.9,
+    "living_street": 0.2,
+    "primary_link": 0.0
+   },
+   "bezirke": [
+    "Oberpfalz"
+   ],
+   "unterwegs": [],
+   "verstoesse": 0
+  },
+  {
+   "nr": 5,
+   "von": "Bodenwöhr (Ludwigsheide)",
+   "nach": "Eck",
+   "ziel_brauerei": "Brauerei Gasthof Eck",
+   "ziel_id": "brauerei-gasthof-eck-eck",
+   "km": 80.5,
+   "unbefestigt_km": 0.0,
+   "unbefestigt_anteil": 0.0,
+   "strassentypen_km": {
+    "unclassified": 49.9,
+    "tertiary": 14.9,
+    "residential": 12.1,
+    "secondary": 3.6,
+    "primary": 0.0
+   },
+   "bezirke": [
+    "Oberpfalz",
+    "Niederbayern"
+   ],
+   "unterwegs": [],
+   "verstoesse": 0
+  },
+  {
+   "nr": 6,
+   "von": "Eck",
+   "nach": "Mariakirchen",
+   "ziel_brauerei": "Schlossbräu Mariakirchen",
+   "ziel_id": "schlossbraeu-mariakirchen-mariakirchen",
+   "km": 79.4,
+   "unbefestigt_km": 0.5,
+   "unbefestigt_anteil": 0.7,
+   "strassentypen_km": {
+    "tertiary": 44.0,
+    "unclassified": 24.4,
+    "residential": 6.1,
+    "secondary": 4.9
+   },
+   "bezirke": [
+    "Niederbayern"
+   ],
+   "unterwegs": [],
+   "verstoesse": 0
+  },
+  {
+   "nr": 7,
+   "von": "Mariakirchen",
+   "nach": "Stierberg",
+   "ziel_brauerei": "Brauerei Stierberg",
+   "ziel_id": "brauerei-stierberg-stierberg",
+   "km": 83.1,
+   "unbefestigt_km": 5.0,
+   "unbefestigt_anteil": 6.0,
+   "strassentypen_km": {
+    "unclassified": 63.6,
+    "tertiary": 17.5,
+    "secondary": 1.3,
+    "residential": 0.6
+   },
+   "bezirke": [
+    "Niederbayern",
+    "Oberbayern"
+   ],
+   "unterwegs": [
+    {
+     "id": "brunner-braeu-spanberg-spanberg",
+     "name": "Brunner-Bräu Spanberg",
+     "ort": "Spanberg"
+    }
+   ],
+   "verstoesse": 0
+  },
+  {
+   "nr": 8,
+   "von": "Stierberg",
+   "nach": "Aying",
+   "ziel_brauerei": "Ayinger Privatbrauerei",
+   "ziel_id": "ayinger-privatbrauerei-aying",
+   "km": 80.4,
+   "unbefestigt_km": 15.2,
+   "unbefestigt_anteil": 18.9,
+   "strassentypen_km": {
+    "unclassified": 45.3,
+    "secondary": 10.0,
+    "track": 9.5,
+    "tertiary": 7.9,
+    "residential": 7.3,
+    "living_street": 0.4,
+    "primary": 0.0
+   },
+   "bezirke": [
+    "Oberbayern"
+   ],
+   "unterwegs": [
+    {
+     "id": "privatbrauerei-schweiger-schweiger-braeu-markt-schwaben",
+     "name": "Privatbrauerei Schweiger (Schweiger Bräu)",
+     "ort": "Markt Schwaben"
+    }
+   ],
+   "verstoesse": 0
+  },
+  {
+   "nr": 9,
+   "von": "Aying",
+   "nach": "Irsee",
+   "ziel_brauerei": "Irseer Klosterbräu",
+   "ziel_id": "irseer-klosterbraeu-irsee",
+   "km": 132.7,
+   "unbefestigt_km": 2.4,
+   "unbefestigt_anteil": 1.8,
+   "strassentypen_km": {
+    "unclassified": 65.7,
+    "tertiary": 37.1,
+    "secondary": 13.5,
+    "residential": 13.3,
+    "track": 2.6,
+    "tertiary_link": 0.4,
+    "primary": 0.2
+   },
+   "bezirke": [
+    "Oberbayern",
+    "Schwaben"
+   ],
+   "unterwegs": [],
+   "verstoesse": 0
+  },
+  {
+   "nr": 10,
+   "von": "Irsee",
+   "nach": "Missen",
+   "ziel_brauerei": "Brauereigasthof Schäffler (Schäffler Bräu)",
+   "ziel_id": "brauereigasthof-schaeffler-schaeffler-braeu-missen",
+   "km": 64.8,
+   "unbefestigt_km": 0.0,
+   "unbefestigt_anteil": 0.0,
+   "strassentypen_km": {
+    "unclassified": 33.8,
+    "tertiary": 27.4,
+    "residential": 2.4,
+    "secondary": 1.2
+   },
+   "bezirke": [
+    "Schwaben"
+   ],
+   "unterwegs": [],
+   "verstoesse": 0
+  }
+ ]
+}

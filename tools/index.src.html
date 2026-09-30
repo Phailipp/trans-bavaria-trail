@@ -67,7 +67,7 @@
             </h1>
             <p class="lead hero-lead">
               Der Trans Bavaria Trail verbindet legalen Schotter, kleine Straßen und Bayerns ehrlichste
-              Brauereien – quer durch alle sieben Regierungsbezirke. Gescoutet von Fahrern, für Fahrer.
+              Brauereien – quer durch alle sieben Regierungsbezirke. Geplant von Fahrern, für Fahrer.
             </p>
             <div class="hero-actions">
               <a class="btn" href="#route">Route entdecken <span class="arrow" aria-hidden="true">↘</span></a>
@@ -85,7 +85,7 @@
                 alt="Trans Bavaria Trail Patch – Offroad to Bavaria's best breweries. A Bavarian Beer Seekers Adventure, Est. 2022"
               />
             </div>
-            <span class="coord coord-b mono" aria-hidden="true">N 47.57° · E 10.29°<br />Ziel · Rettenberg</span>
+            <span class="coord coord-b mono" aria-hidden="true">{{ZIEL_COORD}}<br />Ziel · {{ZIEL_ORT}}</span>
           </div>
         </div>
         <div class="landscape" id="landscape">{{LANDSCAPE}}</div>
@@ -162,12 +162,13 @@
       <!-- ROUTE ----------------------------------------------------- -->
       <section class="section route" id="route">
         <div class="wrap">
-          <div class="section-tag mono"><span><b>02</b> / Die Route</span><span class="hide-sm">Etappen-Idee · in Planung</span></div>
+          <div class="section-tag mono"><span><b>02</b> / Die Route</span><span class="hide-sm">Entwurf v0.1 · noch nicht abgefahren</span></div>
           <div class="route-head">
             <h2 class="h-display reveal">Vom Main<br />zu den <em>Alpen.</em></h2>
             <p class="lead muted reveal" data-delay="1">
-              Sieben Etappen, sieben Bezirke, ein Faden aus Schotter. Die Linie ist eine Idee – jeder Abschnitt wird
-              gefahren und geprüft, bevor er in den Track kommt.
+              {{ROUTE_KM}} km in {{ROUTE_N}} Etappen durch alle sieben Bezirke. Jede Nacht an einer Brauerei mit
+              Gästezimmern. Gerechnet nur über Wege, die laut OpenStreetMap für Kraftfahrzeuge freigegeben sind –
+              jetzt wird gefahren und geprüft.
             </p>
           </div>
 
@@ -175,97 +176,25 @@
             <div class="map-sticky">
               <div class="map-frame">
                 <div class="map-meta mono">
-                  <span>Bayern · Etappe <b id="map-stage">01</b>/07</span>
-                  <span id="map-district">Unterfranken</span>
+                  <span>Bayern · Etappe <b id="map-stage">01</b>/{{ROUTE_N2}}</span>
+                  <span id="map-district">{{ROUTE_FIRST_DISTRICT}}</span>
                 </div>
                 {{MAP}}
               </div>
-              <p class="map-note mono">Linienführung schematisch. Keine Kooperation mit den genannten Brauereien.</p>
+              <p class="map-note mono">Berechneter Entwurf, nicht abgefahren. Vor Ort gilt die Beschilderung. Keine Kooperation mit den genannten Brauereien.</p>
             </div>
 
-            <ol class="stages" id="stages">
-              <li class="stage" data-district="Unterfranken" data-until="kreuzberg">
-                <div class="stage-top">{{TULIP_1}}<span class="mono">Etappe 01<span>Unterfranken</span></span></div>
-                <h3>Main &amp; Rhön</h3>
+            <div>
+              <ol class="stages" id="stages">{{STAGES}}</ol>
+              <div class="gpx-box reveal">
+                <p class="eyebrow mono">GPX-Entwurf</p>
                 <p>
-                  Start am Main in Miltenberg, dann hinauf in die Rhön: weit, windig, das Land der offenen Fernen.
-                  Auf dem Kreuzberg brauen die Franziskaner – ein Klosterbier mit Aussicht.
+                  Alle {{ROUTE_N}} Etappen als Tracks, Übernachtungen als Wegpunkte. Unbefestigte, legal befahrbare Abschnitte laut
+                  Kartendaten: {{ROUTE_UNPAVED_KM}} km ({{ROUTE_UNPAVED_PCT}} %). Das GPX ist ein Vorschlag – Sperrschild heißt umdrehen.
                 </p>
-                <div class="brewery-chips">
-                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Brauerei Faust <small>Miltenberg</small></span>
-                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Klosterbrauerei Kreuzberg <small>Rhön</small></span>
-                </div>
-              </li>
-              <li class="stage" data-district="Oberfranken" data-until="rothenbach">
-                <div class="stage-top">{{TULIP_2}}<span class="mono">Etappe 02<span>Oberfranken</span></span></div>
-                <h3>Bamberg &amp; Fränkische Schweiz</h3>
-                <p>
-                  Rauchbier in Bamberg, dann hinein in eine der brauereidichtesten Gegenden der Welt. Aufseß kam mit
-                  vier Brauereien ins Guinness-Buch der Rekorde – für die damals höchste Brauereidichte der Welt.
-                </p>
-                <div class="brewery-chips">
-                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Aecht Schlenkerla <small>Bamberg</small></span>
-                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Brauereigasthof Rothenbach <small>Aufseß</small></span>
-                </div>
-              </li>
-              <li class="stage" data-district="Oberpfalz" data-until="zoigl">
-                <div class="stage-top">{{TULIP_3}}<span class="mono">Etappe 03<span>Oberpfalz</span></span></div>
-                <h3>Steinwald &amp; Zoigl-Land</h3>
-                <p>
-                  Wenn der Zoiglstern hängt, ist ausgeschenkt. Gebraut wird im Kommunbrauhaus, getrunken reihum in den
-                  Stuben – gelebtes Kulturerbe statt Folklore.
-                </p>
-                <div class="brewery-chips">
-                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Zoigl-Stuben <small>Windischeschenbach</small></span>
-                </div>
-              </li>
-              <li class="stage" data-district="Niederbayern" data-until="kuchlbauer">
-                <div class="stage-top">{{TULIP_4}}<span class="mono">Etappe 04<span>Niederbayern</span></span></div>
-                <h3>Donaudurchbruch &amp; Hopfenland</h3>
-                <p>
-                  Die Donau zwängt sich durch den Kalk – wir schauen vom Ufer aus zu, der Durchbruch ist Aussicht, kein
-                  Streckenabschnitt. Danach Weißbier zwischen Hopfengärten.
-                </p>
-                <div class="brewery-chips">
-                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Klosterbrauerei Weltenburg <small>Kelheim</small></span>
-                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Kuchlbauer <small>Abensberg</small></span>
-                </div>
-              </li>
-              <li class="stage" data-district="Mittelfranken" data-until="spalt">
-                <div class="stage-top">{{TULIP_5}}<span class="mono">Etappe 05<span>Mittelfranken</span></span></div>
-                <h3>Spalter Hopfenland</h3>
-                <p>
-                  Hopfenstadt Spalt, Fränkisches Seenland in Sichtweite. Die Stadtbrauerei gehört der Stadt – Bier, das
-                  den Bürgern gehört.
-                </p>
-                <div class="brewery-chips">
-                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Stadtbrauerei Spalt <small>Spalt</small></span>
-                </div>
-              </li>
-              <li class="stage" data-district="Oberbayern" data-until="andechs">
-                <div class="stage-top">{{TULIP_6}}<span class="mono">Etappe 06<span>Oberbayern</span></span></div>
-                <h3>Fünfseenland &amp; Heiliger Berg</h3>
-                <p>
-                  Moränenhügel, Seen, die ersten Berge am Horizont. Am Ende der Heilige Berg: Die Enduro bleibt unten,
-                  der letzte Anstieg geht zu Fuß.
-                </p>
-                <div class="brewery-chips">
-                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Klosterbrauerei Andechs <small>Andechs</small></span>
-                </div>
-              </li>
-              <li class="stage" data-district="Schwaben" data-until="zoetler">
-                <div class="stage-top">{{TULIP_7}}<span class="mono">Etappe 07<span>Schwaben</span></span></div>
-                <h3>Allgäu &amp; Grünten</h3>
-                <p>
-                  Finale im Oberallgäu, am Fuß des Grünten: Die Privat-Brauerei Zötler braut in Rettenberg. Ein guter
-                  Ort, um anzukommen.
-                </p>
-                <div class="brewery-chips">
-                  <span class="chip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="currentColor"/></svg>Brauerei Zötler <small>Rettenberg</small></span>
-                </div>
-                <span class="candidate mono">Alle Stopps: Kandidaten, nicht bestätigt</span>
-              </li>
-            </ol>
+                <a class="btn" href="gpx/trans-bavaria-trail-entwurf.gpx" download>GPX herunterladen <span class="arrow" aria-hidden="true">↓</span></a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -346,7 +275,7 @@
             <dl class="spec">
               <div class="reveal"><dt class="mono">Motorrad</dt><dd><strong>Enduro oder Reise-Enduro</strong><span>Straßenzugelassen, vom Leichtgewicht bis zur großen GS. Hauptsache Serienauspuff.</span></dd></div>
               <div class="reveal"><dt class="mono">Reifen</dt><dd><strong>50/50 oder gröber</strong><span>Schotter, Lehm, Regen – Bayern kann alles an einem Tag.</span></dd></div>
-              <div class="reveal"><dt class="mono">Navigation</dt><dd><strong>GPX-fähig</strong><span>Garmin, OsmAnd, Locus oder Kurviger. Der Track soll als GPX kommen.</span></dd></div>
+              <div class="reveal"><dt class="mono">Navigation</dt><dd><strong>GPX-fähig</strong><span>Garmin, OsmAnd, Locus oder Kurviger. Der Entwurf liegt als GPX bereit.</span></dd></div>
               <div class="reveal"><dt class="mono">Crew</dt><dd><strong>2–4 Leute</strong><span>Leiser Auftritt, niemand bleibt allein im Graben.</span></dd></div>
               <div class="reveal"><dt class="mono">Nacht</dt><dd><strong>Gasthof statt Zelt</strong><span>Brauereigasthöfe mit Zimmern – so wird das Bier zum Feierabend, nicht zum Risiko.</span></dd></div>
               <div class="reveal"><dt class="mono">Mindset</dt><dd><strong>Plan B im Tankrucksack</strong><span>Sperrschild? Umdrehen. Das GPX ist ein Vorschlag, die Beschilderung ist Gesetz.</span></dd></div>
@@ -372,7 +301,7 @@
                 <li class="reveal"><span class="mono">2022</span><strong>Crew gegründet</strong><span>Die Bavarian Beer Seekers formieren sich als Nomads.</span></li>
                 <li class="reveal now"><span class="mono">Jetzt</span><strong>Scouting &amp; Kartenarbeit</strong><span>Wege prüfen, Brauereien testen, Sperrschilder notieren.</span></li>
                 <li class="reveal"><span class="mono">Next</span><strong>Testfahrten</strong><span>Jede Etappe wird gefahren, bevor sie in den Track kommt.</span></li>
-                <li class="reveal"><span class="mono">Release</span><strong>GPX für die Scout-Liste</strong><span>Wer auf der Liste steht, erfährt es zuerst.</span></li>
+                <li class="reveal"><span class="mono">Release</span><strong>Geprüfter Track</strong><span>Wenn alle Etappen gefahren sind. Wer auf der Scout-Liste steht, erfährt es zuerst.</span></li>
               </ol>
             </div>
           </div>
@@ -400,7 +329,7 @@
               </details>
               <details>
                 <summary>Wann gibt’s den GPX-Track?<i aria-hidden="true"></i></summary>
-                <div class="answer"><p>Wenn er fertig ist. Die Route ist im Scouting und wir nennen kein Datum, das wir nicht halten können. Wer auf der Scout-Liste steht, erfährt es zuerst.</p></div>
+                <div class="answer"><p>Einen berechneten Entwurf gibt es schon – oben bei der Route zum Download. Er ist noch nicht abgefahren. Den geprüften Track veröffentlichen wir, wenn alle Etappen gefahren sind; ein Datum nennen wir erst, wenn wir es halten können. Wer auf der Scout-Liste steht, erfährt es zuerst.</p></div>
               </details>
               <details>
                 <summary>Kann ich mitfahren?<i aria-hidden="true"></i></summary>

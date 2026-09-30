@@ -6,6 +6,7 @@
 - Vor jedem Push `python3 tools/build.py` ausführen und die Seite prüfen.
 
 ## Seite
+- Route neu rechnen: `python3 tools/plan_route.py` (nur Übernachtungen mit doppelt bestätigten Zimmern, 0 Zulässigkeits-Verstöße, kein Punkt außerhalb Bayerns), danach `python3 tools/build.py`.
 - `index.html` wird generiert. Texte in `tools/index.src.html` ändern, Brauerei-Daten in `tools/breweries.json`.
 - Ehrlich bleiben: Die Route ist in Planung, Brauereien sind Kandidaten, keine Kooperationen.
 
