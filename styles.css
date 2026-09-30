@@ -2,6 +2,7 @@
    Trans Bavaria Trail — design tokens (taken from the patch)
 ------------------------------------------------------------------- */
 :root {
+  color-scheme: dark;
   --navy: #0d1624;
   --ink: #111e30;
   --ink-2: #16263b;
