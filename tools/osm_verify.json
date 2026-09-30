@@ -1,787 +1,288 @@
 {
  "probleme": [
-  "E2: way/283216799: nicht legal: highway=track ohne Kfz-Freigabe",
-  "E3: way/4485794: nicht legal: highway=track ohne Kfz-Freigabe",
-  "E3: way/4538098: nicht legal: highway=track ohne Kfz-Freigabe",
-  "E3: Abschnitt 6.0 km laut aktuellen OSM-Daten überwiegend befestigt",
-  "E3: Abschnitt 2.26 km laut aktuellen OSM-Daten überwiegend befestigt",
-  "E4: way/94158023: nicht legal: highway=path",
-  "E4: way/136742006: nicht legal: highway=track ohne Kfz-Freigabe",
-  "E4: Abschnitt 2.41 km laut aktuellen OSM-Daten überwiegend befestigt",
-  "E4: way/39364485: nicht legal: highway=track ohne Kfz-Freigabe",
-  "E5: way/27720076: nicht legal: highway=track ohne Kfz-Freigabe",
-  "E5: way/27739237: nicht legal: highway=track ohne Kfz-Freigabe",
-  "E6: way/211297811: nicht legal: highway=track ohne Kfz-Freigabe",
-  "E6: Abschnitt 3.83 km laut aktuellen OSM-Daten überwiegend befestigt",
-  "E6: Abschnitt 2.02 km laut aktuellen OSM-Daten überwiegend befestigt",
-  "E6: way/211297811: nicht legal: highway=track ohne Kfz-Freigabe",
-  "E8: way/14835002: zeitliche Sperre access:conditional=destination @ (2026 Aug 20-2026 Nov 5)",
-  "E8: way/493459136: nicht legal: highway=service ohne Kfz-Freigabe",
-  "E8: Abschnitt 0.4 km laut aktuellen OSM-Daten überwiegend befestigt",
-  "E8: way/63578742: nicht legal: motor_vehicle=forestry",
-  "E8: way/693942497: nicht legal: motor_vehicle=forestry",
-  "E8: way/117704927: nicht legal: motor_vehicle=forestry",
-  "E8: Abschnitt 3.42 km laut aktuellen OSM-Daten überwiegend befestigt",
-  "E8: Abschnitt 7.59 km laut aktuellen OSM-Daten überwiegend befestigt",
-  "E8: way/656992931: nicht legal: highway=footway",
-  "E8: way/873056363: nicht legal: highway=service ohne Kfz-Freigabe",
-  "E8: way/13620113: nicht legal: highway=track ohne Kfz-Freigabe",
-  "E8: way/45034845: nicht legal: highway=path",
-  "E8: way/1272072527: nicht legal: motor_vehicle=forestry",
-  "E8: way/117704927: nicht legal: motor_vehicle=forestry",
-  "E8: way/63578742: nicht legal: motor_vehicle=forestry",
-  "E8: way/38693143: nicht legal: motor_vehicle=forestry",
-  "E8: way/51686440: nicht legal: motor_vehicle=forestry",
-  "E8: way/79564571: nicht legal: highway=service ohne Kfz-Freigabe",
-  "E9: way/1162758896: nicht legal: highway=track ohne Kfz-Freigabe",
-  "E9: way/291653516: nicht legal: highway=track ohne Kfz-Freigabe"
+  {
+   "etappe": 4,
+   "lon": 11.947648,
+   "lat": 49.57172,
+   "grund": "kein Weg der Klasse ['track'] im Umkreis 20 m (gefunden: path, tertiary)"
+  },
+  {
+   "etappe": 4,
+   "lon": 12.241156,
+   "lat": 49.478019,
+   "grund": "way/339688787: nicht legal: highway=track ohne Kfz-Freigabe"
+  },
+  {
+   "etappe": 4,
+   "lon": 12.244896,
+   "lat": 49.476303,
+   "grund": "kein Weg der Klasse ['track'] im Umkreis 20 m (gefunden: residential, service)"
+  },
+  {
+   "etappe": 4,
+   "lon": 12.244461,
+   "lat": 49.473472,
+   "grund": "kein Weg der Klasse ['track'] im Umkreis 20 m (gefunden: residential)"
+  },
+  {
+   "etappe": 6,
+   "lon": 12.66482,
+   "lat": 48.745656,
+   "grund": "way/1421974129: nicht legal: highway=track ohne Kfz-Freigabe"
+  },
+  {
+   "etappe": 6,
+   "lon": 12.664477,
+   "lat": 48.745857,
+   "grund": "way/1421974129: nicht legal: highway=track ohne Kfz-Freigabe"
+  },
+  {
+   "etappe": 6,
+   "lon": 12.682173,
+   "lat": 48.746683,
+   "grund": "kein Weg der Klasse ['track'] im Umkreis 20 m (gefunden: tertiary)"
+  },
+  {
+   "etappe": 6,
+   "lon": 12.68755,
+   "lat": 48.746338,
+   "grund": "kein Weg der Klasse ['track'] im Umkreis 20 m (gefunden: tertiary)"
+  },
+  {
+   "etappe": 6,
+   "lon": 12.685054,
+   "lat": 48.746682,
+   "grund": "kein Weg der Klasse ['track'] im Umkreis 20 m (gefunden: service, tertiary)"
+  },
+  {
+   "etappe": 8,
+   "lon": 12.023068,
+   "lat": 48.085272,
+   "grund": "kein Weg der Klasse ['track'] im Umkreis 20 m (gefunden: footway, path, residential, service)"
+  }
  ],
+ "unbefestigt_live_km": {
+  "1": 2.4,
+  "2": 2.0,
+  "3": 22.6,
+  "4": 2.4,
+  "5": 0.0,
+  "6": 11.6,
+  "7": 1.2,
+  "8": 18.2,
+  "9": 8.8,
+  "10": 1.2
+ },
  "abschnitte": [
   {
    "etappe": 1,
    "km": 2.35,
-   "ways": [
-    "37077423"
-   ],
-   "stichproben": 5,
-   "davon_unbefestigt_aktuell": 5
+   "stichproben": 4,
+   "aktuell_unbefestigt": 4
   },
   {
    "etappe": 1,
    "km": 0.14,
-   "ways": [
-    "37546169"
-   ],
    "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
+   "aktuell_unbefestigt": 0
   },
   {
    "etappe": 2,
    "km": 0.15,
-   "ways": [
-    "74376277"
-   ],
    "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
+   "aktuell_unbefestigt": 1
   },
   {
    "etappe": 2,
    "km": 0.6,
-   "ways": [
-    "248028511"
-   ],
    "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
-  },
-  {
-   "etappe": 2,
-   "km": 1.39,
-   "ways": [
-    "283216799",
-    "38501010"
-   ],
-   "stichproben": 3,
-   "davon_unbefestigt_aktuell": 3
+   "aktuell_unbefestigt": 1
   },
   {
    "etappe": 2,
    "km": 0.53,
-   "ways": [
-    "26406991"
-   ],
    "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
+   "aktuell_unbefestigt": 1
   },
   {
    "etappe": 2,
    "km": 0.75,
-   "ways": [
-    "26406998"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
+   "stichproben": 2,
+   "aktuell_unbefestigt": 2
   },
   {
    "etappe": 3,
    "km": 6.25,
-   "ways": [
-    "4485794"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
+   "stichproben": 12,
+   "aktuell_unbefestigt": 12
   },
   {
    "etappe": 3,
-   "km": 3.54,
-   "ways": [
-    "4538098"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
+   "km": 5.32,
+   "stichproben": 10,
+   "aktuell_unbefestigt": 9
   },
   {
    "etappe": 3,
    "km": 5.29,
-   "ways": [
-    "125350128",
-    "160570473",
-    "32344217",
-    "36772902",
-    "36839279",
-    "4295304"
-   ],
    "stichproben": 10,
-   "davon_unbefestigt_aktuell": 10
+   "aktuell_unbefestigt": 9
   },
   {
    "etappe": 3,
    "km": 6.0,
-   "ways": [
-    "199830994"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 0
+   "stichproben": 10,
+   "aktuell_unbefestigt": 9
   },
   {
    "etappe": 3,
    "km": 2.26,
-   "ways": [
-    "1378661482"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 0
-  },
-  {
-   "etappe": 4,
-   "km": 2.47,
-   "ways": [
-    "146798501",
-    "766275809",
-    "803861199",
-    "94158023",
-    "94158057"
-   ],
    "stichproben": 5,
-   "davon_unbefestigt_aktuell": 4
-  },
-  {
-   "etappe": 4,
-   "km": 2.87,
-   "ways": [
-    "107544649",
-    "107544654",
-    "251733002",
-    "251733004",
-    "29563059",
-    "29563161"
-   ],
-   "stichproben": 6,
-   "davon_unbefestigt_aktuell": 6
-  },
-  {
-   "etappe": 4,
-   "km": 0.93,
-   "ways": [
-    "60384249"
-   ],
-   "stichproben": 2,
-   "davon_unbefestigt_aktuell": 2
+   "aktuell_unbefestigt": 3
   },
   {
    "etappe": 4,
    "km": 2.32,
-   "ways": [
-    "110576737",
-    "110576739",
-    "110926831",
-    "116034351",
-    "251733005",
-    "32070852",
-    "489281755"
-   ],
-   "stichproben": 7,
-   "davon_unbefestigt_aktuell": 5
-  },
-  {
-   "etappe": 4,
-   "km": 1.54,
-   "ways": [
-    "157974275",
-    "45829574"
-   ],
-   "stichproben": 3,
-   "davon_unbefestigt_aktuell": 3
-  },
-  {
-   "etappe": 4,
-   "km": 0.28,
-   "ways": [
-    "30389926"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
-  },
-  {
-   "etappe": 4,
-   "km": 2.16,
-   "ways": [
-    "30389869",
-    "31835357",
-    "44099738",
-    "489272330",
-    "489272339"
-   ],
    "stichproben": 5,
-   "davon_unbefestigt_aktuell": 4
-  },
-  {
-   "etappe": 4,
-   "km": 1.0,
-   "ways": [
-    "136742006",
-    "136742015"
-   ],
-   "stichproben": 2,
-   "davon_unbefestigt_aktuell": 2
-  },
-  {
-   "etappe": 4,
-   "km": 0.68,
-   "ways": [
-    "138776581"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
-  },
-  {
-   "etappe": 4,
-   "km": 0.34,
-   "ways": [
-    "157413973"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
-  },
-  {
-   "etappe": 4,
-   "km": 0.77,
-   "ways": [
-    "27553820"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
-  },
-  {
-   "etappe": 4,
-   "km": 0.72,
-   "ways": [
-    "128217210"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
-  },
-  {
-   "etappe": 4,
-   "km": 1.19,
-   "ways": [
-    "128111415",
-    "128216286"
-   ],
-   "stichproben": 2,
-   "davon_unbefestigt_aktuell": 2
-  },
-  {
-   "etappe": 4,
-   "km": 0.8,
-   "ways": [
-    "128216287"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
+   "aktuell_unbefestigt": 3
   },
   {
    "etappe": 4,
    "km": 2.41,
-   "ways": [
-    "128549171"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 0
-  },
-  {
-   "etappe": 4,
-   "km": 2.9,
-   "ways": [
-    "39364485",
-    "418785688",
-    "94432227",
-    "94890980"
-   ],
-   "stichproben": 6,
-   "davon_unbefestigt_aktuell": 6
-  },
-  {
-   "etappe": 5,
-   "km": 8.31,
-   "ways": [
-    "27671269",
-    "27720076",
-    "27739235",
-    "27739237",
-    "418785688",
-    "94432227",
-    "94890980"
-   ],
-   "stichproben": 18,
-   "davon_unbefestigt_aktuell": 18
+   "stichproben": 5,
+   "aktuell_unbefestigt": 2
   },
   {
    "etappe": 5,
    "km": 0.61,
-   "ways": [
-    "1195129965"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
+   "stichproben": 2,
+   "aktuell_unbefestigt": 0
   },
   {
    "etappe": 5,
    "km": 1.05,
-   "ways": [
-    "31451407"
-   ],
    "stichproben": 2,
-   "davon_unbefestigt_aktuell": 2
+   "aktuell_unbefestigt": 0
   },
   {
    "etappe": 6,
    "km": 1.91,
-   "ways": [
-    "232970416",
-    "35127601",
-    "899656606"
-   ],
    "stichproben": 4,
-   "davon_unbefestigt_aktuell": 4
+   "aktuell_unbefestigt": 4
   },
   {
    "etappe": 6,
-   "km": 3.12,
-   "ways": [
-    "659125554",
-    "78447487",
-    "94224144",
-    "94224150",
-    "94224158"
-   ],
+   "km": 4.1,
    "stichproben": 6,
-   "davon_unbefestigt_aktuell": 4
+   "aktuell_unbefestigt": 6
+  },
+  {
+   "etappe": 6,
+   "km": 0.72,
+   "stichproben": 2,
+   "aktuell_unbefestigt": 0
+  },
+  {
+   "etappe": 6,
+   "km": 0.72,
+   "stichproben": 2,
+   "aktuell_unbefestigt": 2
+  },
+  {
+   "etappe": 6,
+   "km": 1.4,
+   "stichproben": 3,
+   "aktuell_unbefestigt": 1
   },
   {
    "etappe": 6,
    "km": 1.01,
-   "ways": [
-    "85147272"
-   ],
    "stichproben": 2,
-   "davon_unbefestigt_aktuell": 2
+   "aktuell_unbefestigt": 2
   },
   {
    "etappe": 6,
    "km": 0.82,
-   "ways": [
-    "85147296"
-   ],
    "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
+   "aktuell_unbefestigt": 1
   },
   {
    "etappe": 6,
-   "km": 0.48,
-   "ways": [
-    "85147279"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
+   "km": 1.85,
+   "stichproben": 3,
+   "aktuell_unbefestigt": 2
   },
   {
    "etappe": 6,
-   "km": 2.32,
-   "ways": [
-    "211297811",
-    "78447487",
-    "85154565",
-    "85154570"
-   ],
-   "stichproben": 5,
-   "davon_unbefestigt_aktuell": 4
-  },
-  {
-   "etappe": 6,
-   "km": 3.83,
-   "ways": [
-    "78447487"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 0
-  },
-  {
-   "etappe": 6,
-   "km": 2.02,
-   "ways": [
-    "78447487"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 0
-  },
-  {
-   "etappe": 6,
-   "km": 1.92,
-   "ways": [
-    "211297811",
-    "25366245",
-    "659125554",
-    "78447487",
-    "84943449",
-    "85147272",
-    "85147279",
-    "85147296",
-    "85154565",
-    "85154570",
-    "94224144",
-    "94224150"
-   ],
-   "stichproben": 18,
-   "davon_unbefestigt_aktuell": 11
-  },
-  {
-   "etappe": 6,
-   "km": 0.74,
-   "ways": [
-    "94191991"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
-  },
-  {
-   "etappe": 6,
-   "km": 0.65,
-   "ways": [
-    "94197750"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
+   "km": 1.32,
+   "stichproben": 2,
+   "aktuell_unbefestigt": 2
   },
   {
    "etappe": 7,
    "km": 1.19,
-   "ways": [
-    "44131513"
-   ],
-   "stichproben": 2,
-   "davon_unbefestigt_aktuell": 2
-  },
-  {
-   "etappe": 7,
-   "km": 0.9,
-   "ways": [
-    "37290934",
-    "58765425"
-   ],
-   "stichproben": 2,
-   "davon_unbefestigt_aktuell": 1
-  },
-  {
-   "etappe": 7,
-   "km": 0.99,
-   "ways": [
-    "37284933"
-   ],
-   "stichproben": 2,
-   "davon_unbefestigt_aktuell": 2
-  },
-  {
-   "etappe": 7,
-   "km": 1.11,
-   "ways": [
-    "229094901"
-   ],
-   "stichproben": 2,
-   "davon_unbefestigt_aktuell": 2
-  },
-  {
-   "etappe": 7,
-   "km": 0.53,
-   "ways": [
-    "197180102"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
-  },
-  {
-   "etappe": 7,
-   "km": 0.23,
-   "ways": [
-    "26299360"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
-  },
-  {
-   "etappe": 8,
-   "km": 1.65,
-   "ways": [
-    "1323450270",
-    "686924551"
-   ],
    "stichproben": 3,
-   "davon_unbefestigt_aktuell": 3
+   "aktuell_unbefestigt": 3
   },
   {
    "etappe": 8,
-   "km": 1.1,
-   "ways": [
-    "9658711"
-   ],
+   "km": 0.83,
    "stichproben": 2,
-   "davon_unbefestigt_aktuell": 2
+   "aktuell_unbefestigt": 1
   },
   {
    "etappe": 8,
-   "km": 0.99,
-   "ways": [
-    "14835002",
-    "493459136"
-   ],
-   "stichproben": 2,
-   "davon_unbefestigt_aktuell": 1
-  },
-  {
-   "etappe": 8,
-   "km": 2.52,
-   "ways": [
-    "181428100",
-    "23415983"
-   ],
-   "stichproben": 6,
-   "davon_unbefestigt_aktuell": 6
-  },
-  {
-   "etappe": 8,
-   "km": 0.4,
-   "ways": [
-    "1309921609"
-   ],
+   "km": 0.34,
    "stichproben": 1,
-   "davon_unbefestigt_aktuell": 0
-  },
-  {
-   "etappe": 8,
-   "km": 0.2,
-   "ways": [
-    "25725888"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
-  },
-  {
-   "etappe": 8,
-   "km": 0.94,
-   "ways": [
-    "89984925",
-    "89984926"
-   ],
-   "stichproben": 2,
-   "davon_unbefestigt_aktuell": 2
-  },
-  {
-   "etappe": 8,
-   "km": 0.64,
-   "ways": [
-    "25639298"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
+   "aktuell_unbefestigt": 0
   },
   {
    "etappe": 8,
    "km": 7.59,
-   "ways": [
-    "117704927",
-    "1552953032",
-    "220100620",
-    "26937182",
-    "63578742",
-    "693942497"
-   ],
-   "stichproben": 16,
-   "davon_unbefestigt_aktuell": 16
-  },
-  {
-   "etappe": 8,
-   "km": 3.42,
-   "ways": [
-    "138016921"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 0
+   "stichproben": 13,
+   "aktuell_unbefestigt": 13
   },
   {
    "etappe": 8,
    "km": 7.59,
-   "ways": [
-    "1003414071",
-    "107005821",
-    "1097367095",
-    "1107195639",
-    "117704898",
-    "117704914",
-    "117704927",
-    "1272072527",
-    "13616426",
-    "13620113",
-    "137941757",
-    "137993258",
-    "138016913",
-    "138016921",
-    "1385280706",
-    "1395064499",
-    "1408136496",
-    "1552953032",
-    "159204648",
-    "172373087",
-    "220100620",
-    "223123118",
-    "22703987",
-    "22703989",
-    "25347906",
-    "25353002",
-    "25353018",
-    "25353033",
-    "25681143",
-    "264106181",
-    "26937182",
-    "341801324",
-    "35983516",
-    "35999653",
-    "361786459",
-    "36701058",
-    "367295606",
-    "38583566",
-    "38693143",
-    "38704089",
-    "4045877",
-    "4046194",
-    "4046540",
-    "44820920",
-    "45034845",
-    "46948900",
-    "47424565",
-    "47431028",
-    "478474608",
-    "478474610",
-    "5115094",
-    "51686440",
-    "53215131",
-    "579634723",
-    "63578742",
-    "656992931",
-    "679342632",
-    "78346876",
-    "79564571",
-    "868363474",
-    "873056363",
-    "9936253"
-   ],
-   "stichproben": 82,
-   "davon_unbefestigt_aktuell": 23
-  },
-  {
-   "etappe": 8,
-   "km": 0.47,
-   "ways": [
-    "60011763"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
+   "stichproben": 13,
+   "aktuell_unbefestigt": 13
   },
   {
    "etappe": 8,
    "km": 3.58,
-   "ways": [
-    "42103342"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
+   "stichproben": 7,
+   "aktuell_unbefestigt": 5
   },
   {
-   "etappe": 8,
+   "etappe": 9,
    "km": 1.55,
-   "ways": [
-    "26992081",
-    "584982986"
-   ],
    "stichproben": 3,
-   "davon_unbefestigt_aktuell": 3
-  },
-  {
-   "etappe": 9,
-   "km": 1.93,
-   "ways": [
-    "160189207",
-    "862476845"
-   ],
-   "stichproben": 4,
-   "davon_unbefestigt_aktuell": 4
-  },
-  {
-   "etappe": 9,
-   "km": 1.93,
-   "ways": [
-    "1162758896",
-    "160189207",
-    "862476845"
-   ],
-   "stichproben": 5,
-   "davon_unbefestigt_aktuell": 5
+   "aktuell_unbefestigt": 3
   },
   {
    "etappe": 9,
    "km": 4.46,
-   "ways": [
-    "24388776"
-   ],
-   "stichproben": 3,
-   "davon_unbefestigt_aktuell": 3
+   "stichproben": 9,
+   "aktuell_unbefestigt": 9
   },
   {
    "etappe": 9,
-   "km": 6.78,
-   "ways": [
-    "291653516",
-    "70565333",
-    "871823069"
-   ],
-   "stichproben": 5,
-   "davon_unbefestigt_aktuell": 5
+   "km": 2.31,
+   "stichproben": 4,
+   "aktuell_unbefestigt": 4
   },
   {
    "etappe": 9,
-   "km": 0.14,
-   "ways": [
-    "1539845691"
-   ],
-   "stichproben": 1,
-   "davon_unbefestigt_aktuell": 1
+   "km": 0.95,
+   "stichproben": 2,
+   "aktuell_unbefestigt": 1
   },
   {
    "etappe": 10,
    "km": 1.19,
-   "ways": [
-    "200592331"
-   ],
-   "stichproben": 2,
-   "davon_unbefestigt_aktuell": 2
+   "stichproben": 3,
+   "aktuell_unbefestigt": 3
   }
  ]
 }
