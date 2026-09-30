@@ -79,7 +79,7 @@ def fetch(pid, a, b):
     return None
 
 
-def segments(geo):
+def segments(geo, min_km=MIN_KM):
     """Consecutive rows that are legal AND unpaved, merged into runs."""
     msgs = geo["features"][0]["properties"]["messages"]
     head, rows = msgs[0], msgs[1:]
@@ -92,8 +92,9 @@ def segments(geo):
         ok, _ = route_check.legal(t)
         if ok and route_check.unpaved(t):
             if cur is None:
-                cur = {"start": prev_pt or pt, "end": pt, "m": 0.0, "tags": set()}
+                cur = {"start": prev_pt or pt, "end": pt, "m": 0.0, "tags": set(), "pts": [prev_pt or pt]}
             cur["end"] = pt
+            cur["pts"].append(pt)
             cur["m"] += float(r[idist])
             cur["tags"].add(r[itags])
         elif cur is not None:
@@ -102,8 +103,8 @@ def segments(geo):
         prev_pt = pt
     if cur is not None:
         runs.append(cur)
-    return [{"start": s["start"], "end": s["end"], "km": round(s["m"] / 1000, 2), "tags": sorted(s["tags"])}
-            for s in runs if s["m"] >= MIN_KM * 1000]
+    return [{"start": s["start"], "end": s["end"], "km": round(s["m"] / 1000, 2), "tags": sorted(s["tags"]),
+             "pts": s["pts"]} for s in runs if s["m"] >= min_km * 1000]
 
 
 def main():

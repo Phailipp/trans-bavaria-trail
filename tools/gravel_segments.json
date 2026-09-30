@@ -1,0 +1,2539 @@
+{
+ "min_km": 0.8,
+ "segmente": [
+  {
+   "start": [
+    11.865461,
+    48.141178
+   ],
+   "end": [
+    11.943782,
+    48.100808
+   ],
+   "km": 7.59,
+   "tags": [
+    "highway=unclassified surface=compacted",
+    "highway=unclassified surface=compacted motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.087763,
+    47.931118
+   ],
+   "end": [
+    12.069078,
+    47.965306
+   ],
+   "km": 6.32,
+   "tags": [
+    "highway=track surface=compacted tracktype=grade2 motor_vehicle=yes",
+    "highway=track surface=pebblestone tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track surface=compacted tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track surface=pebblestone tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.206802,
+    49.355153
+   ],
+   "end": [
+    12.238471,
+    49.32502
+   ],
+   "km": 5.41,
+   "tags": [
+    "highway=service surface=compacted tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.524473,
+    48.673562
+   ],
+   "end": [
+    11.592602,
+    48.681551
+   ],
+   "km": 5.32,
+   "tags": [
+    "highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    11.518055,
+    50.175865
+   ],
+   "end": [
+    11.552337,
+    50.195405
+   ],
+   "km": 4.75,
+   "tags": [
+    "highway=unclassified surface=compacted tracktype=grade2 vehicle=yes",
+    "highway=unclassified surface=compacted tracktype=grade2 vehicle=yes oneway=no"
+   ]
+  },
+  {
+   "start": [
+    11.45536,
+    49.959915
+   ],
+   "end": [
+    11.495261,
+    49.983561
+   ],
+   "km": 4.47,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=compacted",
+    "reversedirection=yes highway=unclassified surface=compacted tracktype=grade2",
+    "reversedirection=yes highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    12.322056,
+    48.633762
+   ],
+   "end": [
+    12.374628,
+    48.638799
+   ],
+   "km": 4.4,
+   "tags": [
+    "highway=track surface=compacted tracktype=grade2 access=yes",
+    "highway=track surface=gravel tracktype=grade2 access=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    11.734276,
+    47.818477
+   ],
+   "end": [
+    11.782693,
+    47.828131
+   ],
+   "km": 4.31,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade1 motor_vehicle=yes",
+    "highway=track surface=gravel tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=unclassified surface=gravel tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    10.814099,
+    48.922684
+   ],
+   "end": [
+    10.860133,
+    48.930713
+   ],
+   "km": 3.77,
+   "tags": [
+    "highway=unclassified surface=fine_gravel",
+    "highway=unclassified surface=fine_gravel tracktype=grade2",
+    "reversedirection=yes highway=unclassified surface=compacted",
+    "reversedirection=yes highway=unclassified surface=fine_gravel tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    11.854738,
+    48.042281
+   ],
+   "end": [
+    11.849429,
+    48.058491
+   ],
+   "km": 3.42,
+   "tags": [
+    "reversedirection=yes highway=track surface=compacted tracktype=grade2 access=yes",
+    "reversedirection=yes highway=track surface=compacted tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.15816,
+    49.310566
+   ],
+   "end": [
+    11.193682,
+    49.327998
+   ],
+   "km": 3.29,
+   "tags": [
+    "highway=unclassified surface=compacted tracktype=grade2",
+    "reversedirection=yes highway=residential surface=compacted tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    11.217301,
+    48.327745
+   ],
+   "end": [
+    11.231344,
+    48.351819
+   ],
+   "km": 3.25,
+   "tags": [
+    "highway=track surface=unpaved tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=unclassified surface=unpaved tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    11.204546,
+    48.462608
+   ],
+   "end": [
+    11.204568,
+    48.483344
+   ],
+   "km": 3.23,
+   "tags": [
+    "highway=track surface=fine_gravel tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track tracktype=grade3 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.324517,
+    50.083396
+   ],
+   "end": [
+    11.31184,
+    50.105609
+   ],
+   "km": 3.13,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    11.006889,
+    48.635489
+   ],
+   "end": [
+    11.039893,
+    48.635996
+   ],
+   "km": 3.09,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes motorcar=yes motorcycle=yes"
+   ]
+  },
+  {
+   "start": [
+    10.449475,
+    47.722471
+   ],
+   "end": [
+    10.486759,
+    47.712352
+   ],
+   "km": 3.06,
+   "tags": [
+    "highway=track surface=pebblestone tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    10.115682,
+    48.331141
+   ],
+   "end": [
+    10.152425,
+    48.327316
+   ],
+   "km": 3.0,
+   "tags": [
+    "highway=unclassified surface=fine_gravel",
+    "highway=unclassified surface=gravel",
+    "highway=unclassified surface=ground",
+    "reversedirection=yes highway=unclassified surface=compacted",
+    "reversedirection=yes highway=unclassified surface=compacted tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    11.531829,
+    49.840756
+   ],
+   "end": [
+    11.518699,
+    49.863878
+   ],
+   "km": 3.0,
+   "tags": [
+    "highway=unclassified surface=gravel",
+    "reversedirection=yes highway=unclassified surface=fine_gravel",
+    "reversedirection=yes highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    11.623054,
+    50.068876
+   ],
+   "end": [
+    11.650349,
+    50.085914
+   ],
+   "km": 2.87,
+   "tags": [
+    "highway=track surface=compacted tracktype=grade2 motorcar=yes",
+    "highway=track surface=compacted tracktype=grade3 motorcar=yes",
+    "highway=track surface=unpaved tracktype=grade3 motorcar=yes"
+   ]
+  },
+  {
+   "start": [
+    10.691742,
+    48.505415
+   ],
+   "end": [
+    10.7245,
+    48.51151
+   ],
+   "km": 2.84,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade2 access=yes motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.047366,
+    48.245246
+   ],
+   "end": [
+    11.04708,
+    48.266875
+   ],
+   "km": 2.7,
+   "tags": [
+    "highway=track surface=compacted tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track surface=compacted tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.412333,
+    48.608459
+   ],
+   "end": [
+    12.41626,
+    48.615123
+   ],
+   "km": 2.7,
+   "tags": [
+    "highway=track surface=grass tracktype=grade5 access=yes",
+    "highway=track surface=gravel tracktype=grade3 access=yes",
+    "highway=track surface=ground tracktype=grade4 access=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade3 access=yes"
+   ]
+  },
+  {
+   "start": [
+    12.66798,
+    48.737539
+   ],
+   "end": [
+    12.666703,
+    48.744622
+   ],
+   "km": 2.51,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade4 access=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade3 access=yes"
+   ]
+  },
+  {
+   "start": [
+    12.074488,
+    48.209761
+   ],
+   "end": [
+    12.08973,
+    48.217776
+   ],
+   "km": 2.5,
+   "tags": [
+    "highway=track surface=compacted tracktype=grade2 motor_vehicle=yes",
+    "highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    12.430587,
+    48.570951
+   ],
+   "end": [
+    12.423064,
+    48.588228
+   ],
+   "km": 2.5,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade3 access=yes",
+    "highway=track surface=gravel tracktype=grade4 access=yes",
+    "highway=track surface=ground tracktype=grade4 access=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade3 access=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade4 access=yes",
+    "reversedirection=yes highway=track surface=ground tracktype=grade4 access=yes"
+   ]
+  },
+  {
+   "start": [
+    12.375943,
+    48.637172
+   ],
+   "end": [
+    12.40537,
+    48.643804
+   ],
+   "km": 2.46,
+   "tags": [
+    "reversedirection=yes highway=track surface=compacted tracktype=grade3 access=yes",
+    "reversedirection=yes highway=track surface=compacted tracktype=grade4 access=yes"
+   ]
+  },
+  {
+   "start": [
+    13.308592,
+    48.784245
+   ],
+   "end": [
+    13.315308,
+    48.800518
+   ],
+   "km": 2.44,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade2 access=yes motorcar=yes"
+   ]
+  },
+  {
+   "start": [
+    12.405178,
+    48.644209
+   ],
+   "end": [
+    12.435248,
+    48.650623
+   ],
+   "km": 2.41,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade3 access=yes",
+    "reversedirection=yes highway=track tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    11.950272,
+    49.55099
+   ],
+   "end": [
+    11.95061,
+    49.568764
+   ],
+   "km": 2.41,
+   "tags": [
+    "highway=track surface=grass tracktype=grade4 access=yes motorcar=yes motorcycle=yes",
+    "highway=track surface=grass tracktype=grade5 access=yes motorcar=yes motorcycle=yes",
+    "highway=track surface=gravel tracktype=grade2 access=yes motorcar=yes motorcycle=yes",
+    "highway=track surface=ground tracktype=grade3 access=yes motorcar=yes motorcycle=yes",
+    "highway=track surface=ground tracktype=grade5 access=yes",
+    "highway=track surface=ground tracktype=grade5 access=yes motorcar=yes motorcycle=yes",
+    "reversedirection=yes highway=track surface=ground tracktype=grade2 access=yes motorcar=yes motorcycle=yes",
+    "reversedirection=yes highway=track surface=ground tracktype=grade5 access=yes"
+   ]
+  },
+  {
+   "start": [
+    10.806013,
+    49.194819
+   ],
+   "end": [
+    10.837017,
+    49.19749
+   ],
+   "km": 2.38,
+   "tags": [
+    "highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    13.041767,
+    48.484457
+   ],
+   "end": [
+    13.063751,
+    48.492278
+   ],
+   "km": 2.36,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    10.26158,
+    48.276417
+   ],
+   "end": [
+    10.290483,
+    48.284685
+   ],
+   "km": 2.33,
+   "tags": [
+    "highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    13.002657,
+    48.473721
+   ],
+   "end": [
+    13.03275,
+    48.475587
+   ],
+   "km": 2.33,
+   "tags": [
+    "highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    12.449755,
+    48.648535
+   ],
+   "end": [
+    12.47285,
+    48.653379
+   ],
+   "km": 2.3,
+   "tags": [
+    "highway=track surface=compacted tracktype=grade2 access=yes",
+    "highway=track surface=compacted tracktype=grade4 access=yes",
+    "highway=track surface=concrete tracktype=grade4 access=yes",
+    "highway=track surface=gravel tracktype=grade4 access=yes",
+    "reversedirection=yes highway=track surface=compacted tracktype=grade4 access=yes",
+    "reversedirection=yes highway=track surface=grass tracktype=grade3 access=yes"
+   ]
+  },
+  {
+   "start": [
+    11.011913,
+    48.904565
+   ],
+   "end": [
+    11.02956,
+    48.92121
+   ],
+   "km": 2.3,
+   "tags": [
+    "highway=unclassified surface=fine_gravel tracktype=grade2",
+    "reversedirection=yes highway=unclassified surface=asphalt tracktype=grade2",
+    "reversedirection=yes highway=unclassified surface=fine_gravel tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    10.438059,
+    50.156713
+   ],
+   "end": [
+    10.443077,
+    50.174384
+   ],
+   "km": 2.3,
+   "tags": [
+    "highway=residential surface=concrete tracktype=grade2 motorcar=yes",
+    "highway=track surface=concrete tracktype=grade2 motorcar=yes"
+   ]
+  },
+  {
+   "start": [
+    11.317456,
+    48.079608
+   ],
+   "end": [
+    11.340601,
+    48.085828
+   ],
+   "km": 2.26,
+   "tags": [
+    "highway=track surface=grass tracktype=grade5 motor_vehicle=designated",
+    "highway=track surface=gravel tracktype=grade2 motor_vehicle=designated",
+    "reversedirection=yes highway=track surface=compacted tracktype=grade2 motor_vehicle=designated"
+   ]
+  },
+  {
+   "start": [
+    10.161711,
+    48.32959
+   ],
+   "end": [
+    10.187122,
+    48.337696
+   ],
+   "km": 2.25,
+   "tags": [
+    "highway=unclassified surface=compacted",
+    "highway=unclassified surface=compacted tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    11.082167,
+    50.192619
+   ],
+   "end": [
+    11.107076,
+    50.203705
+   ],
+   "km": 2.2,
+   "tags": [
+    "highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    10.241036,
+    48.318918
+   ],
+   "end": [
+    10.221301,
+    48.332305
+   ],
+   "km": 2.19,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes",
+    "reversedirection=yes highway=unclassified surface=gravel tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    11.101433,
+    48.309049
+   ],
+   "end": [
+    11.089244,
+    48.326613
+   ],
+   "km": 2.16,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    10.427663,
+    48.483316
+   ],
+   "end": [
+    10.424877,
+    48.50199
+   ],
+   "km": 2.12,
+   "tags": [
+    "highway=track surface=grass tracktype=grade4 access=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    12.703766,
+    48.723591
+   ],
+   "end": [
+    12.684799,
+    48.728666
+   ],
+   "km": 1.92,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade3 access=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade3 access=yes"
+   ]
+  },
+  {
+   "start": [
+    12.985007,
+    48.890519
+   ],
+   "end": [
+    12.993091,
+    48.88798
+   ],
+   "km": 1.91,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=compacted vehicle=unknown",
+    "reversedirection=yes highway=unclassified surface=compacted vehicle=unknown oneway=no"
+   ]
+  },
+  {
+   "start": [
+    10.65739,
+    48.840837
+   ],
+   "end": [
+    10.653597,
+    48.85635
+   ],
+   "km": 1.9,
+   "tags": [
+    "highway=track surface=compacted tracktype=grade2 access=yes",
+    "reversedirection=yes highway=track surface=concrete tracktype=grade2 access=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    10.418871,
+    48.228015
+   ],
+   "end": [
+    10.419714,
+    48.243319
+   ],
+   "km": 1.85,
+   "tags": [
+    "highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    10.445894,
+    48.454742
+   ],
+   "end": [
+    10.437552,
+    48.466804
+   ],
+   "km": 1.84,
+   "tags": [
+    "highway=residential surface=paved tracktype=grade2",
+    "highway=track surface=gravel tracktype=grade2 access=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes motorcar=yes motorcycle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.119272,
+    48.385887
+   ],
+   "end": [
+    11.141932,
+    48.389214
+   ],
+   "km": 1.83,
+   "tags": [
+    "reversedirection=yes highway=track surface=fine_gravel tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.349596,
+    50.400042
+   ],
+   "end": [
+    11.352989,
+    50.412523
+   ],
+   "km": 1.83,
+   "tags": [
+    "highway=track surface=fine_gravel tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track surface=paved tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.980234,
+    47.974044
+   ],
+   "end": [
+    11.992244,
+    47.985575
+   ],
+   "km": 1.79,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    10.46202,
+    48.500992
+   ],
+   "end": [
+    10.468121,
+    48.491218
+   ],
+   "km": 1.78,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    11.413982,
+    49.980458
+   ],
+   "end": [
+    11.426136,
+    49.989143
+   ],
+   "km": 1.77,
+   "tags": [
+    "highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    11.289385,
+    50.072355
+   ],
+   "end": [
+    11.284403,
+    50.080972
+   ],
+   "km": 1.77,
+   "tags": [
+    "highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    12.697471,
+    48.711758
+   ],
+   "end": [
+    12.703863,
+    48.720753
+   ],
+   "km": 1.75,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade3 access=yes"
+   ]
+  },
+  {
+   "start": [
+    12.688761,
+    48.701588
+   ],
+   "end": [
+    12.699791,
+    48.707994
+   ],
+   "km": 1.74,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade3 access=yes",
+    "reversedirection=yes highway=track surface=grass tracktype=grade5 access=yes"
+   ]
+  },
+  {
+   "start": [
+    11.194583,
+    47.713324
+   ],
+   "end": [
+    11.199849,
+    47.699075
+   ],
+   "km": 1.72,
+   "tags": [
+    "reversedirection=yes highway=track tracktype=grade2 access=yes",
+    "reversedirection=yes highway=unclassified tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    11.828972,
+    48.226081
+   ],
+   "end": [
+    11.848304,
+    48.227216
+   ],
+   "km": 1.71,
+   "tags": [
+    "reversedirection=yes highway=track surface=compacted tracktype=grade2 motorcar=yes motorcycle=yes",
+    "reversedirection=yes highway=track tracktype=grade2 motorcar=yes motorcycle=yes"
+   ]
+  },
+  {
+   "start": [
+    10.463516,
+    49.329175
+   ],
+   "end": [
+    10.48141,
+    49.330856
+   ],
+   "km": 1.68,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.606149,
+    47.849687
+   ],
+   "end": [
+    11.622125,
+    47.843418
+   ],
+   "km": 1.65,
+   "tags": [
+    "highway=track surface=compacted tracktype=grade2 motor_vehicle=yes",
+    "highway=track surface=gravel tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.612796,
+    47.847843
+   ],
+   "end": [
+    11.606149,
+    47.849687
+   ],
+   "km": 1.65,
+   "tags": [
+    "reversedirection=yes highway=track surface=compacted tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.238764,
+    48.227153
+   ],
+   "end": [
+    12.254452,
+    48.236921
+   ],
+   "km": 1.65,
+   "tags": [
+    "reversedirection=yes highway=track surface=pebblestone tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track surface=pebblestone tracktype=grade3 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    10.800781,
+    49.126766
+   ],
+   "end": [
+    10.807658,
+    49.140212
+   ],
+   "km": 1.63,
+   "tags": [
+    "highway=unclassified surface=fine_gravel access=yes"
+   ]
+  },
+  {
+   "start": [
+    11.126972,
+    48.507524
+   ],
+   "end": [
+    11.145564,
+    48.501571
+   ],
+   "km": 1.6,
+   "tags": [
+    "highway=unclassified surface=compacted motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    10.234367,
+    49.760978
+   ],
+   "end": [
+    10.238533,
+    49.767161
+   ],
+   "km": 1.59,
+   "tags": [
+    "highway=track surface=grass tracktype=grade4 access=yes",
+    "highway=track surface=grass tracktype=grade5 access=yes",
+    "reversedirection=yes highway=track surface=grass tracktype=grade4 access=yes"
+   ]
+  },
+  {
+   "start": [
+    11.42763,
+    50.256936
+   ],
+   "end": [
+    11.442406,
+    50.261239
+   ],
+   "km": 1.58,
+   "tags": [
+    "highway=unclassified surface=gravel",
+    "highway=unclassified surface=gravel tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    12.629287,
+    48.928051
+   ],
+   "end": [
+    12.646256,
+    48.928083
+   ],
+   "km": 1.57,
+   "tags": [
+    "reversedirection=yes highway=service surface=fine_gravel tracktype=grade2 access=yes motorcar=yes motorcycle=yes",
+    "reversedirection=yes highway=track surface=fine_gravel tracktype=grade2 access=yes motorcar=yes motorcycle=yes",
+    "reversedirection=yes highway=track surface=fine_gravel tracktype=grade3 access=yes motorcycle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.399289,
+    48.597996
+   ],
+   "end": [
+    12.41181,
+    48.608146
+   ],
+   "km": 1.56,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade3 access=yes"
+   ]
+  },
+  {
+   "start": [
+    12.420674,
+    48.5886
+   ],
+   "end": [
+    12.40992,
+    48.592464
+   ],
+   "km": 1.55,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade3 access=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade4 access=yes"
+   ]
+  },
+  {
+   "start": [
+    12.107764,
+    48.501513
+   ],
+   "end": [
+    12.122471,
+    48.506406
+   ],
+   "km": 1.54,
+   "tags": [
+    "highway=track surface=grass tracktype=grade3 access=yes motorcar=yes motorcycle=yes",
+    "highway=track surface=gravel tracktype=grade3 access=yes motorcar=yes motorcycle=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes motorcar=yes motorcycle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.646749,
+    48.928226
+   ],
+   "end": [
+    12.663093,
+    48.924778
+   ],
+   "km": 1.54,
+   "tags": [
+    "highway=track surface=asphalt tracktype=grade2 access=yes motorcar=yes motorcycle=yes",
+    "highway=track surface=fine_gravel tracktype=grade2 access=yes motorcar=yes motorcycle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.163456,
+    48.174144
+   ],
+   "end": [
+    11.15599,
+    48.182065
+   ],
+   "km": 1.53,
+   "tags": [
+    "highway=track surface=unpaved tracktype=grade4 motor_vehicle=yes",
+    "reversedirection=yes highway=track tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.375357,
+    47.987937
+   ],
+   "end": [
+    11.377474,
+    47.975146
+   ],
+   "km": 1.49,
+   "tags": [
+    "reversedirection=yes highway=track surface=compacted tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    10.608777,
+    49.32577
+   ],
+   "end": [
+    10.625293,
+    49.321233
+   ],
+   "km": 1.47,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    12.018041,
+    48.90471
+   ],
+   "end": [
+    12.005595,
+    48.912426
+   ],
+   "km": 1.45,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.854124,
+    48.024391
+   ],
+   "end": [
+    11.853832,
+    48.036223
+   ],
+   "km": 1.43,
+   "tags": [
+    "highway=track surface=unpaved tracktype=grade2 access=yes",
+    "reversedirection=yes highway=track surface=fine_gravel tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    11.021394,
+    48.172089
+   ],
+   "end": [
+    11.012015,
+    48.178448
+   ],
+   "km": 1.43,
+   "tags": [
+    "reversedirection=yes highway=track surface=compacted tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track surface=fine_gravel tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    10.540903,
+    48.511109
+   ],
+   "end": [
+    10.555543,
+    48.513124
+   ],
+   "km": 1.41,
+   "tags": [
+    "highway=track surface=unknown tracktype=grade3 access=yes motor_vehicle=yes",
+    "reversedirection=yes highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    11.3905,
+    48.544027
+   ],
+   "end": [
+    11.408936,
+    48.544379
+   ],
+   "km": 1.41,
+   "tags": [
+    "highway=track tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    10.86931,
+    49.279015
+   ],
+   "end": [
+    10.876707,
+    49.288457
+   ],
+   "km": 1.41,
+   "tags": [
+    "highway=unclassified surface=asphalt tracktype=grade2",
+    "highway=unclassified surface=concrete tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    12.820564,
+    48.247371
+   ],
+   "end": [
+    12.830664,
+    48.253189
+   ],
+   "km": 1.4,
+   "tags": [
+    "highway=track surface=compacted tracktype=grade2 access=yes",
+    "reversedirection=yes highway=track surface=unknown tracktype=grade3 access=yes",
+    "reversedirection=yes highway=track surface=unknown tracktype=grade4 access=yes"
+   ]
+  },
+  {
+   "start": [
+    12.285599,
+    47.847102
+   ],
+   "end": [
+    12.298986,
+    47.841859
+   ],
+   "km": 1.39,
+   "tags": [
+    "highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    12.096599,
+    48.324657
+   ],
+   "end": [
+    12.087705,
+    48.334109
+   ],
+   "km": 1.39,
+   "tags": [
+    "reversedirection=yes highway=track surface=compacted tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    10.750752,
+    49.711649
+   ],
+   "end": [
+    10.768085,
+    49.710452
+   ],
+   "km": 1.39,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade3 access=yes motorcar=yes motorcycle=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade3 access=yes motorcar=yes motorcycle=yes"
+   ]
+  },
+  {
+   "start": [
+    13.238036,
+    48.491658
+   ],
+   "end": [
+    13.250595,
+    48.498121
+   ],
+   "km": 1.38,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    11.067272,
+    48.906576
+   ],
+   "end": [
+    11.055013,
+    48.914437
+   ],
+   "km": 1.38,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=gravel tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    11.3892,
+    47.858498
+   ],
+   "end": [
+    11.38887,
+    47.870196
+   ],
+   "km": 1.37,
+   "tags": [
+    "reversedirection=yes highway=track tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    10.61638,
+    48.290822
+   ],
+   "end": [
+    10.613297,
+    48.30222
+   ],
+   "km": 1.35,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=compacted",
+    "reversedirection=yes highway=unclassified surface=gravel tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    13.283814,
+    48.522639
+   ],
+   "end": [
+    13.275156,
+    48.528999
+   ],
+   "km": 1.35,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    11.942816,
+    48.659096
+   ],
+   "end": [
+    11.958341,
+    48.66464
+   ],
+   "km": 1.35,
+   "tags": [
+    "reversedirection=yes highway=residential surface=pebblestone",
+    "reversedirection=yes highway=unclassified surface=pebblestone"
+   ]
+  },
+  {
+   "start": [
+    12.031613,
+    48.915763
+   ],
+   "end": [
+    12.046857,
+    48.919016
+   ],
+   "km": 1.35,
+   "tags": [
+    "highway=track surface=ground tracktype=grade3 access=yes motor_vehicle=designated",
+    "highway=track surface=unpaved tracktype=grade1 access=yes"
+   ]
+  },
+  {
+   "start": [
+    11.029503,
+    47.700008
+   ],
+   "end": [
+    11.045567,
+    47.701801
+   ],
+   "km": 1.33,
+   "tags": [
+    "highway=unclassified surface=compacted tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    11.413569,
+    48.257839
+   ],
+   "end": [
+    11.419991,
+    48.263309
+   ],
+   "km": 1.33,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade3 motor_vehicle=yes",
+    "reversedirection=yes highway=track tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track tracktype=grade3 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.433602,
+    48.565157
+   ],
+   "end": [
+    12.429978,
+    48.5704
+   ],
+   "km": 1.33,
+   "tags": [
+    "reversedirection=yes highway=track surface=grass tracktype=grade4 access=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade4 access=yes"
+   ]
+  },
+  {
+   "start": [
+    12.441799,
+    48.543224
+   ],
+   "end": [
+    12.441242,
+    48.554133
+   ],
+   "km": 1.32,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade3 access=yes"
+   ]
+  },
+  {
+   "start": [
+    12.440102,
+    48.554283
+   ],
+   "end": [
+    12.43192,
+    48.564005
+   ],
+   "km": 1.32,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade3 access=yes"
+   ]
+  },
+  {
+   "start": [
+    10.599813,
+    48.424023
+   ],
+   "end": [
+    10.59769,
+    48.431197
+   ],
+   "km": 1.3,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    10.447173,
+    48.442117
+   ],
+   "end": [
+    10.441313,
+    48.45278
+   ],
+   "km": 1.29,
+   "tags": [
+    "highway=track surface=gravel tracktype=unknown access=yes"
+   ]
+  },
+  {
+   "start": [
+    10.737194,
+    49.188884
+   ],
+   "end": [
+    10.748716,
+    49.181017
+   ],
+   "km": 1.29,
+   "tags": [
+    "highway=unclassified surface=gravel",
+    "reversedirection=yes highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    10.896513,
+    50.278232
+   ],
+   "end": [
+    10.913651,
+    50.280131
+   ],
+   "km": 1.29,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=asphalt tracktype=grade2",
+    "reversedirection=yes highway=unclassified surface=compacted tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    11.152946,
+    48.196508
+   ],
+   "end": [
+    11.157598,
+    48.202966
+   ],
+   "km": 1.26,
+   "tags": [
+    "highway=track tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.293985,
+    48.366704
+   ],
+   "end": [
+    12.279736,
+    48.368878
+   ],
+   "km": 1.24,
+   "tags": [
+    "highway=unclassified surface=gravel tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    10.996117,
+    47.845186
+   ],
+   "end": [
+    11.003501,
+    47.840975
+   ],
+   "km": 1.23,
+   "tags": [
+    "highway=unclassified surface=asphalt tracktype=grade2",
+    "highway=unclassified tracktype=grade2",
+    "reversedirection=yes highway=unclassified tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    11.982885,
+    50.150164
+   ],
+   "end": [
+    11.974951,
+    50.159757
+   ],
+   "km": 1.23,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes motorcar=yes motorcycle=yes",
+    "reversedirection=yes highway=track surface=ground tracktype=grade2 access=yes motorcar=yes motorcycle=yes",
+    "reversedirection=yes highway=track tracktype=grade2 access=yes motorcar=yes motorcycle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.036135,
+    47.669928
+   ],
+   "end": [
+    11.043184,
+    47.670276
+   ],
+   "km": 1.22,
+   "tags": [
+    "highway=residential surface=unpaved tracktype=grade2",
+    "highway=residential tracktype=grade2",
+    "highway=unclassified surface=unpaved tracktype=grade1",
+    "highway=unclassified surface=unpaved tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    10.397564,
+    49.113299
+   ],
+   "end": [
+    10.407537,
+    49.120779
+   ],
+   "km": 1.22,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade2 motor_vehicle=yes",
+    "highway=track tracktype=grade3 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.226779,
+    49.472194
+   ],
+   "end": [
+    12.24226,
+    49.473701
+   ],
+   "km": 1.21,
+   "tags": [
+    "highway=track surface=grass tracktype=grade3 access=yes",
+    "highway=track surface=gravel tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    11.206712,
+    48.483036
+   ],
+   "end": [
+    11.217404,
+    48.485541
+   ],
+   "km": 1.2,
+   "tags": [
+    "highway=track surface=grass tracktype=grade5 access=yes",
+    "highway=track surface=gravel tracktype=grade3 motor_vehicle=yes",
+    "highway=track surface=gravel tracktype=grade5 access=yes"
+   ]
+  },
+  {
+   "start": [
+    10.427583,
+    47.853071
+   ],
+   "end": [
+    10.441053,
+    47.858318
+   ],
+   "km": 1.19,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=fine_gravel"
+   ]
+  },
+  {
+   "start": [
+    12.809688,
+    48.507429
+   ],
+   "end": [
+    12.808111,
+    48.497358
+   ],
+   "km": 1.19,
+   "tags": [
+    "highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    11.759415,
+    48.255232
+   ],
+   "end": [
+    11.764007,
+    48.246731
+   ],
+   "km": 1.18,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=asphalt tracktype=grade2",
+    "reversedirection=yes highway=unclassified surface=pebblestone tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    12.090405,
+    49.274116
+   ],
+   "end": [
+    12.084563,
+    49.282421
+   ],
+   "km": 1.17,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes motor_vehicle=yes motorcar=yes motorcycle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.449226,
+    48.369079
+   ],
+   "end": [
+    11.441208,
+    48.376027
+   ],
+   "km": 1.15,
+   "tags": [
+    "highway=track tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.318334,
+    48.073301
+   ],
+   "end": [
+    11.317189,
+    48.076581
+   ],
+   "km": 1.14,
+   "tags": [
+    "reversedirection=yes highway=track surface=fine_gravel tracktype=grade2 motor_vehicle=designated",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 motor_vehicle=designated"
+   ]
+  },
+  {
+   "start": [
+    11.536308,
+    49.880295
+   ],
+   "end": [
+    11.537791,
+    49.888041
+   ],
+   "km": 1.13,
+   "tags": [
+    "highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    11.256019,
+    48.532101
+   ],
+   "end": [
+    11.267527,
+    48.527301
+   ],
+   "km": 1.12,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    12.400056,
+    48.267032
+   ],
+   "end": [
+    12.412428,
+    48.271855
+   ],
+   "km": 1.11,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    13.018149,
+    48.513181
+   ],
+   "end": [
+    13.024284,
+    48.504342
+   ],
+   "km": 1.11,
+   "tags": [
+    "highway=unclassified surface=gravel oneway=no"
+   ]
+  },
+  {
+   "start": [
+    10.642417,
+    48.490097
+   ],
+   "end": [
+    10.655364,
+    48.486093
+   ],
+   "km": 1.1,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    10.6785,
+    48.939986
+   ],
+   "end": [
+    10.692272,
+    48.936289
+   ],
+   "km": 1.1,
+   "tags": [
+    "highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    11.234292,
+    49.206183
+   ],
+   "end": [
+    11.239817,
+    49.19802
+   ],
+   "km": 1.08,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade3 access=yes motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.217808,
+    48.385874
+   ],
+   "end": [
+    11.226272,
+    48.389907
+   ],
+   "km": 1.07,
+   "tags": [
+    "highway=track surface=unknown tracktype=grade2 motor_vehicle=yes",
+    "highway=track tracktype=grade3 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.468803,
+    48.427642
+   ],
+   "end": [
+    12.480396,
+    48.431968
+   ],
+   "km": 1.05,
+   "tags": [
+    "highway=track surface=unpaved tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.838198,
+    49.209025
+   ],
+   "end": [
+    12.846673,
+    49.202193
+   ],
+   "km": 1.05,
+   "tags": [
+    "highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    12.585616,
+    47.844639
+   ],
+   "end": [
+    12.598599,
+    47.844417
+   ],
+   "km": 1.04,
+   "tags": [
+    "highway=unclassified surface=asphalt tracktype=grade2",
+    "highway=unclassified surface=gravel tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    13.094728,
+    48.521604
+   ],
+   "end": [
+    13.102094,
+    48.52813
+   ],
+   "km": 1.04,
+   "tags": [
+    "highway=track tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    11.954132,
+    49.473215
+   ],
+   "end": [
+    11.960549,
+    49.479946
+   ],
+   "km": 1.04,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    10.94101,
+    47.698123
+   ],
+   "end": [
+    10.950869,
+    47.698152
+   ],
+   "km": 1.02,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    11.66087,
+    48.520772
+   ],
+   "end": [
+    11.667677,
+    48.527553
+   ],
+   "km": 1.02,
+   "tags": [
+    "highway=unclassified surface=gravel",
+    "highway=unclassified tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    12.684192,
+    48.733771
+   ],
+   "end": [
+    12.670689,
+    48.732001
+   ],
+   "km": 1.01,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade4 access=yes"
+   ]
+  },
+  {
+   "start": [
+    11.441133,
+    48.334772
+   ],
+   "end": [
+    11.439088,
+    48.339086
+   ],
+   "km": 1.0,
+   "tags": [
+    "reversedirection=yes highway=track surface=compacted tracktype=grade2 motor_vehicle=yes",
+    "reversedirection=yes highway=track tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.435772,
+    48.649583
+   ],
+   "end": [
+    12.448266,
+    48.652702
+   ],
+   "km": 0.99,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade4 access=yes"
+   ]
+  },
+  {
+   "start": [
+    11.440965,
+    48.291472
+   ],
+   "end": [
+    11.446156,
+    48.296574
+   ],
+   "km": 0.97,
+   "tags": [
+    "reversedirection=yes highway=track tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    10.6722,
+    49.454316
+   ],
+   "end": [
+    10.662974,
+    49.458291
+   ],
+   "km": 0.97,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes",
+    "reversedirection=yes highway=track surface=pebblestone tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    10.208572,
+    47.929921
+   ],
+   "end": [
+    10.201925,
+    47.937209
+   ],
+   "km": 0.96,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=compacted tracktype=grade1",
+    "reversedirection=yes highway=unclassified surface=compacted tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    12.639817,
+    47.950917
+   ],
+   "end": [
+    12.638578,
+    47.958395
+   ],
+   "km": 0.95,
+   "tags": [
+    "highway=track tracktype=grade5 access=yes"
+   ]
+  },
+  {
+   "start": [
+    10.250898,
+    49.314268
+   ],
+   "end": [
+    10.241671,
+    49.318337
+   ],
+   "km": 0.95,
+   "tags": [
+    "reversedirection=yes highway=track tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    10.250898,
+    49.314268
+   ],
+   "end": [
+    10.250898,
+    49.314268
+   ],
+   "km": 0.95,
+   "tags": [
+    "highway=track tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    12.331958,
+    49.846506
+   ],
+   "end": [
+    12.330999,
+    49.854397
+   ],
+   "km": 0.95,
+   "tags": [
+    "highway=track surface=compacted tracktype=grade2 motor_vehicle=designated"
+   ]
+  },
+  {
+   "start": [
+    12.01525,
+    48.047495
+   ],
+   "end": [
+    12.01101,
+    48.054523
+   ],
+   "km": 0.94,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade2 motor_vehicle=yes",
+    "highway=track surface=ground tracktype=grade4 motor_vehicle=yes",
+    "highway=track surface=pebblestone tracktype=grade3 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    11.226263,
+    48.317503
+   ],
+   "end": [
+    11.218604,
+    48.323298
+   ],
+   "km": 0.94,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.406586,
+    48.038716
+   ],
+   "end": [
+    12.407496,
+    48.040149
+   ],
+   "km": 0.93,
+   "tags": [
+    "highway=unclassified surface=gravel",
+    "reversedirection=yes highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    11.693683,
+    49.185614
+   ],
+   "end": [
+    11.684397,
+    49.189946
+   ],
+   "km": 0.93,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.115886,
+    47.979286
+   ],
+   "end": [
+    12.118158,
+    47.987021
+   ],
+   "km": 0.92,
+   "tags": [
+    "highway=unclassified surface=compacted",
+    "reversedirection=yes highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    11.099289,
+    48.375234
+   ],
+   "end": [
+    11.110544,
+    48.37705
+   ],
+   "km": 0.92,
+   "tags": [
+    "highway=track tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.809298,
+    49.29607
+   ],
+   "end": [
+    12.815583,
+    49.302651
+   ],
+   "km": 0.92,
+   "tags": [
+    "highway=service surface=asphalt tracktype=grade2 access=yes motorcar=yes motorcycle=yes",
+    "highway=track surface=gravel tracktype=grade2 access=yes motorcar=yes motorcycle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.415575,
+    48.615946
+   ],
+   "end": [
+    12.425318,
+    48.619045
+   ],
+   "km": 0.91,
+   "tags": [
+    "highway=track surface=grass tracktype=grade4 access=yes",
+    "highway=track surface=grass tracktype=grade5 access=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    10.434812,
+    47.724206
+   ],
+   "end": [
+    10.443883,
+    47.720121
+   ],
+   "km": 0.9,
+   "tags": [
+    "highway=track tracktype=grade2 motor_vehicle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.12033,
+    48.719924
+   ],
+   "end": [
+    12.108987,
+    48.722694
+   ],
+   "km": 0.9,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    12.134283,
+    49.368146
+   ],
+   "end": [
+    12.135958,
+    49.374743
+   ],
+   "km": 0.9,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade2 access=yes motor_vehicle=yes motorcar=yes motorcycle=yes"
+   ]
+  },
+  {
+   "start": [
+    13.51717,
+    48.759711
+   ],
+   "end": [
+    13.514851,
+    48.767136
+   ],
+   "km": 0.88,
+   "tags": [
+    "highway=unclassified surface=unpaved tracktype=grade3"
+   ]
+  },
+  {
+   "start": [
+    11.39799,
+    48.760334
+   ],
+   "end": [
+    11.409793,
+    48.760359
+   ],
+   "km": 0.88,
+   "tags": [
+    "reversedirection=yes highway=residential surface=compacted oneway=no"
+   ]
+  },
+  {
+   "start": [
+    12.257273,
+    48.37556
+   ],
+   "end": [
+    12.24986,
+    48.381513
+   ],
+   "km": 0.87,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    11.063309,
+    49.659056
+   ],
+   "end": [
+    11.071682,
+    49.660686
+   ],
+   "km": 0.87,
+   "tags": [
+    "highway=track surface=ground tracktype=grade3 motorcar=yes motorcycle=yes",
+    "reversedirection=yes highway=track surface=fine_gravel tracktype=grade2 motorcar=yes motorcycle=yes",
+    "reversedirection=yes highway=track tracktype=grade2 motorcar=yes motorcycle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.295456,
+    48.299116
+   ],
+   "end": [
+    12.304697,
+    48.302919
+   ],
+   "km": 0.85,
+   "tags": [
+    "highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    12.824199,
+    48.395013
+   ],
+   "end": [
+    12.834014,
+    48.396399
+   ],
+   "km": 0.85,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    12.981361,
+    48.376433
+   ],
+   "end": [
+    12.9866,
+    48.372288
+   ],
+   "km": 0.85,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    11.420534,
+    48.615891
+   ],
+   "end": [
+    11.411426,
+    48.620309
+   ],
+   "km": 0.85,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=gravel tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    12.051062,
+    48.128314
+   ],
+   "end": [
+    12.051763,
+    48.135607
+   ],
+   "km": 0.84,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=fine_gravel"
+   ]
+  },
+  {
+   "start": [
+    12.054285,
+    48.399882
+   ],
+   "end": [
+    12.065079,
+    48.399423
+   ],
+   "km": 0.84,
+   "tags": [
+    "highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    13.23232,
+    48.48682
+   ],
+   "end": [
+    13.232873,
+    48.494124
+   ],
+   "km": 0.84,
+   "tags": [
+    "highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    11.364258,
+    48.542383
+   ],
+   "end": [
+    11.375085,
+    48.544271
+   ],
+   "km": 0.84,
+   "tags": [
+    "highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    12.134479,
+    49.518819
+   ],
+   "end": [
+    12.140604,
+    49.524341
+   ],
+   "km": 0.84,
+   "tags": [
+    "highway=track surface=gravel tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    13.135326,
+    48.621562
+   ],
+   "end": [
+    13.128574,
+    48.627359
+   ],
+   "km": 0.83,
+   "tags": [
+    "reversedirection=yes highway=residential surface=ground"
+   ]
+  },
+  {
+   "start": [
+    12.106236,
+    49.507953
+   ],
+   "end": [
+    12.110253,
+    49.507846
+   ],
+   "km": 0.83,
+   "tags": [
+    "reversedirection=yes highway=track surface=grass tracktype=grade4 access=yes",
+    "reversedirection=yes highway=track surface=gravel tracktype=grade2 access=yes"
+   ]
+  },
+  {
+   "start": [
+    12.670816,
+    48.732441
+   ],
+   "end": [
+    12.668002,
+    48.737516
+   ],
+   "km": 0.82,
+   "tags": [
+    "reversedirection=yes highway=track surface=gravel tracktype=grade3 access=yes"
+   ]
+  },
+  {
+   "start": [
+    11.13176,
+    49.57598
+   ],
+   "end": [
+    11.12103,
+    49.574547
+   ],
+   "km": 0.82,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=compacted",
+    "reversedirection=yes highway=unclassified surface=compacted tracktype=grade2"
+   ]
+  },
+  {
+   "start": [
+    12.404926,
+    47.710154
+   ],
+   "end": [
+    12.40425,
+    47.703743
+   ],
+   "km": 0.81,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=compacted",
+    "reversedirection=yes highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    12.40449,
+    47.708999
+   ],
+   "end": [
+    12.404926,
+    47.710154
+   ],
+   "km": 0.81,
+   "tags": [
+    "highway=unclassified surface=compacted",
+    "highway=unclassified surface=gravel"
+   ]
+  },
+  {
+   "start": [
+    13.24977,
+    48.744503
+   ],
+   "end": [
+    13.248373,
+    48.750909
+   ],
+   "km": 0.81,
+   "tags": [
+    "highway=unclassified surface=compacted"
+   ]
+  },
+  {
+   "start": [
+    12.513385,
+    48.786835
+   ],
+   "end": [
+    12.523458,
+    48.785908
+   ],
+   "km": 0.81,
+   "tags": [
+    "reversedirection=yes highway=track surface=grass tracktype=grade3 access=yes motor_vehicle=yes motorcar=yes motorcycle=yes"
+   ]
+  },
+  {
+   "start": [
+    12.230836,
+    47.876137
+   ],
+   "end": [
+    12.2374,
+    47.881588
+   ],
+   "km": 0.8,
+   "tags": [
+    "reversedirection=yes highway=unclassified surface=fine_gravel"
+   ]
+  }
+ ]
+}

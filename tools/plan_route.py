@@ -137,7 +137,10 @@ def main():
             d = check_breweries.district_of(c[0], c[1])
             if d and d not in bezirke:
                 bezirke.append(d)
+        import gravel_probe  # local import: avoids a circular import at module load
+        runs = gravel_probe.segments(geo, min_km=0.1)
         stage = {
+            "schotter_abschnitte": [{"km": r["km"], "pts": r["pts"]} for r in runs],
             "nr": n, "von": a["ort"], "nach": b["ort"], "ziel_brauerei": b["name"], "ziel_id": b["id"],
             "km": audit["km"], "unbefestigt_km": audit["unbefestigt_km"], "unbefestigt_anteil": audit["unbefestigt_anteil"],
             "strassentypen_km": audit["nach_strassentyp_km"], "bezirke": bezirke,
