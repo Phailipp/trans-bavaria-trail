@@ -82,13 +82,25 @@ def check_way(tags):
     return None
 
 
+def near_ways(p, ways, max_m):
+    out = []
+    for w in ways:
+        d = min(seg_dist_m(p, a, b) for a, b in zip(w["pts"], w["pts"][1:]))
+        if d <= max_m:
+            out.append((d, w))
+    return sorted(out, key=lambda x: x[0])
+
+
 def main():
     src = Path(sys.argv[1]) if len(sys.argv) > 1 else TOOLS / "stages.json"
     stages = json.loads(src.read_text(encoding="utf-8"))["etappen"]
     cache, problems, report = {}, [], []
+    live_unpaved = {}
     for s in stages:
+        live_km = 0.0
         for run in s.get("schotter_abschnitte", []):
             pts = run["pts"]
+            classes = {route_check.parse_tags(t).get("highway") for t in run.get("tags", [])}
             # interior samples only (run ends sit on junctions with the paved road)
             samples, acc = [], 0.0
             for a, b in zip(pts, pts[1:]):
@@ -99,36 +111,39 @@ def main():
             if not samples and len(pts) >= 3:
                 samples = [pts[len(pts) // 2]]
             if not samples:
-                samples = [((pts[0][0] + pts[-1][0]) / 2, (pts[0][1] + pts[-1][1]) / 2)]
-            seen, still_unpaved = {}, 0
+                continue
+            unpaved_hits = 0
             for p in samples:
                 bbox = (p[0] - BOX, p[1] - BOX, p[0] + BOX, p[1] + BOX)
                 try:
                     ways = load(bbox, cache)
                 except Exception as e:  # noqa: BLE001
-                    problems.append(f"E{s['nr']}: OSM-API-Fehler bei {p}: {e}")
+                    problems.append({"etappe": s["nr"], "lon": p[0], "lat": p[1], "grund": f"OSM-API-Fehler: {e}"})
                     continue
-                hit = nearest_way(p, ways)
-                if not hit or hit[0] > 25:
-                    problems.append(f"E{s['nr']}: kein OSM-Weg innerhalb 25 m von {p}")
+                cands = near_ways(p, ways, 20)
+                match = [c for c in cands if c[1]["tags"].get("highway") in classes]
+                if not match:
+                    got = ", ".join(sorted({c[1]["tags"].get("highway", "?") for c in cands})) or "nichts"
+                    problems.append({"etappe": s["nr"], "lon": p[0], "lat": p[1],
+                                     "grund": f"kein Weg der Klasse {sorted(classes)} im Umkreis 20 m (gefunden: {got})"})
                     continue
-                w = hit[1]
-                seen[w["id"]] = w["tags"]
-                if route_check.unpaved(w["tags"]):
-                    still_unpaved += 1
-            if still_unpaved < len(samples) / 2:
-                problems.append(f"E{s['nr']}: Abschnitt {run['km']} km laut aktuellen OSM-Daten überwiegend befestigt")
-            for wid, tags in seen.items():
-                err = check_way(tags)
+                w = match[0][1]
+                err = check_way(w["tags"])
                 if err:
-                    problems.append(f"E{s['nr']}: way/{wid}: {err}")
-            report.append({"etappe": s["nr"], "km": run["km"], "ways": sorted(seen), "stichproben": len(samples),
-                           "davon_unbefestigt_aktuell": still_unpaved})
-            print(f"E{s['nr']} {run['km']} km: {len(seen)} Wege geprüft, {still_unpaved}/{len(samples)} Stichproben aktuell unbefestigt")
-    (TOOLS / "osm_verify.json").write_text(json.dumps({"probleme": problems, "abschnitte": report}, ensure_ascii=False, indent=1))
+                    problems.append({"etappe": s["nr"], "lon": p[0], "lat": p[1], "grund": f"way/{w['id']}: {err}"})
+                elif route_check.unpaved(w["tags"]):
+                    unpaved_hits += 1
+            share = unpaved_hits / len(samples)
+            live_km += run["km"] * share
+            report.append({"etappe": s["nr"], "km": run["km"], "stichproben": len(samples), "aktuell_unbefestigt": unpaved_hits})
+            print(f"E{s['nr']} {run['km']} km: {unpaved_hits}/{len(samples)} Stichproben legal und aktuell unbefestigt")
+        live_unpaved[s["nr"]] = round(live_km, 1)
+    (TOOLS / "osm_verify.json").write_text(json.dumps(
+        {"probleme": problems, "unbefestigt_live_km": live_unpaved, "abschnitte": report}, ensure_ascii=False, indent=1))
     for p in problems:
-        print("PROBLEM:", p)
-    print(f"{len(report)} Schotter-Abschnitte geprüft, {len(problems)} Probleme")
+        print(f"PROBLEM E{p['etappe']} {p['lon']:.5f},{p['lat']:.5f}: {p['grund']}")
+    print(f"{len(report)} Abschnitte geprüft, {len(problems)} Probleme; unbefestigt laut Live-Daten: "
+          f"{sum(live_unpaved.values()):.0f} km")
     sys.exit(1 if problems else 0)
 
 

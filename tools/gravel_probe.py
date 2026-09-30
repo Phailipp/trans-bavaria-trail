@@ -86,13 +86,15 @@ def segments(geo, min_km=MIN_KM):
     ilon, ilat, idist, itags = head.index("Longitude"), head.index("Latitude"), head.index("Distance"), head.index("WayTags")
     runs, cur = [], None
     prev_pt = None
+    walked = 0.0
     for r in rows:
         pt = (int(r[ilon]) / 1e6, int(r[ilat]) / 1e6)
         t = route_check.parse_tags(r[itags])
         ok, _ = route_check.legal(t)
         if ok and route_check.unpaved(t):
             if cur is None:
-                cur = {"start": prev_pt or pt, "end": pt, "m": 0.0, "tags": set(), "pts": [prev_pt or pt]}
+                cur = {"start": prev_pt or pt, "end": pt, "m": 0.0, "tags": set(), "pts": [prev_pt or pt],
+                       "at_m": walked}
             cur["end"] = pt
             cur["pts"].append(pt)
             cur["m"] += float(r[idist])
@@ -101,10 +103,12 @@ def segments(geo, min_km=MIN_KM):
             runs.append(cur)
             cur = None
         prev_pt = pt
+        walked += float(r[idist])
     if cur is not None:
         runs.append(cur)
     return [{"start": s["start"], "end": s["end"], "km": round(s["m"] / 1000, 2), "tags": sorted(s["tags"]),
-             "pts": s["pts"]} for s in runs if s["m"] >= min_km * 1000]
+             "pts": s["pts"], "at_m": round(s["at_m"]), "len_m": round(s["m"])}
+            for s in runs if s["m"] >= min_km * 1000]
 
 
 def main():

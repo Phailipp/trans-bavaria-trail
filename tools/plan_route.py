@@ -79,10 +79,21 @@ def upload_profile():
     return res["profileid"]
 
 
-def route(pid, a, b, extra=None):
+NOGO_FILE = TOOLS / "nogos.json"
+
+
+def nogos():
+    """Small no-go circles around ways that failed the live OSM check (tools/osm_verify.py)."""
+    return json.loads(NOGO_FILE.read_text()) if NOGO_FILE.exists() else {}
+
+
+def route(pid, a, b, extra=None, avoid=None):
     pts = [(a["lon"], a["lat"])] + list(extra if extra is not None else VIA.get(b["id"], [])) + [(b["lon"], b["lat"])]
-    q = urllib.parse.urlencode({"lonlats": "|".join(f"{x},{y}" for x, y in pts),
-                                "profile": pid, "alternativeidx": 0, "format": "geojson"})
+    params = {"lonlats": "|".join(f"{x},{y}" for x, y in pts),
+              "profile": pid, "alternativeidx": 0, "format": "geojson"}
+    if avoid:
+        params["nogos"] = "|".join(f"{x:.6f},{y:.6f},{r}" for x, y, r in avoid)
+    q = urllib.parse.urlencode(params)
     for attempt in range(4):
         try:
             with urllib.request.urlopen(f"https://brouter.de/brouter?{q}", timeout=300) as r:
@@ -103,13 +114,16 @@ def in_bavaria(lon, lat):
     return any(check_breweries.inside(lon, lat, p) for p in _BAY_POLYS)
 
 
-def dense_slice(coords, start, end):
-    """Dense track geometry between two points of the route (inclusive)."""
-    def idx(p, lo=0):
-        return min(range(lo, len(coords)), key=lambda i: (coords[i][0] - p[0]) ** 2 + (coords[i][1] - p[1]) ** 2)
-    i = idx(start)
-    j = idx(end, i)
-    return [[c[0], c[1]] for c in coords[i:j + 1]]
+def dense_slice(coords, at_m, len_m):
+    """Dense track geometry of the part of the route between at_m and at_m + len_m (metres driven)."""
+    out, walked = [], 0.0
+    for a, b in zip(coords, coords[1:]):
+        if at_m <= walked <= at_m + len_m:
+            out.append([a[0], a[1]])
+        walked += check_breweries.km(a[1], a[0], b[1], b[0]) * 1000
+        if walked > at_m + len_m:
+            break
+    return out
 
 
 def nearest_dist_km(lat, lon, coords):
@@ -129,8 +143,9 @@ def main():
     gpx.name = "Trans Bavaria Trail – Etappen-Entwurf"
     stages, problems = [], []
     gv = gravel_vias()
+    ng = nogos()
     for n, (a, b) in enumerate(zip(chain, chain[1:]), 1):
-        geo = route(pid, a, b, gv.get(b["id"]))
+        geo = route(pid, a, b, gv.get(b["id"]), ng.get(str(n)))
         audit = route_check.audit(geo)
         coords = geo["features"][0]["geometry"]["coordinates"]
         outside = [c for c in coords if not in_bavaria(c[0], c[1])]
@@ -149,7 +164,8 @@ def main():
         import gravel_probe  # local import: avoids a circular import at module load
         runs = gravel_probe.segments(geo, min_km=0.1)
         stage = {
-            "schotter_abschnitte": [{"km": r["km"], "pts": dense_slice(coords, r["start"], r["end"])} for r in runs],
+            "schotter_abschnitte": [{"km": r["km"], "tags": r["tags"],
+                                     "pts": dense_slice(coords, r["at_m"], r["len_m"])} for r in runs],
             "nr": n, "von": a["ort"], "nach": b["ort"], "ziel_brauerei": b["name"], "ziel_id": b["id"],
             "km": audit["km"], "unbefestigt_km": audit["unbefestigt_km"], "unbefestigt_anteil": audit["unbefestigt_anteil"],
             "strassentypen_km": audit["nach_strassentyp_km"], "bezirke": bezirke,
