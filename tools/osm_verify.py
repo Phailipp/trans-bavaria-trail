@@ -109,57 +109,68 @@ def near_ways(p, ways, max_m):
     return sorted(out, key=lambda x: x[0])
 
 
+def check_run(run, cache, nr=0):
+    """Live check of one unpaved run. Returns (problems, samples, unpaved_hits)."""
+    pts = run["pts"]
+    classes = {route_check.parse_tags(t).get("highway") for t in run.get("tags", [])}
+    # samples only from the middle 80 % of the run and >= 60 m from its ends
+    total = sum(point_dist_m(a, b) for a, b in zip(pts, pts[1:]))
+    samples, walked, last = [], 0.0, -1e9
+    for a, b in zip(pts, pts[1:]):
+        walked += point_dist_m(a, b)
+        inner = 0.1 * total <= walked <= 0.9 * total and 60 <= walked <= total - 60
+        if inner and walked - last >= SAMPLE_M:
+            samples.append(b)
+            last = walked
+    if not samples:
+        if len(pts) < 3:
+            return [], 0, 0
+        samples = [pts[len(pts) // 2]]
+    # one API box per 6 samples
+    boxes = []
+    for i in range(0, len(samples), 6):
+        chunk = samples[i:i + 6]
+        boxes.append((min(c[0] for c in chunk) - 0.0008, min(c[1] for c in chunk) - 0.0008,
+                      max(c[0] for c in chunk) + 0.0008, max(c[1] for c in chunk) + 0.0008))
+    problems, unpaved_hits = [], 0
+    for k, p in enumerate(samples):
+        ways = load(boxes[k // 6], cache)   # ApiError aborts the whole check: never a no-go
+        cands = near_ways(p, ways, 20)
+        match = [c for c in cands if c[1]["tags"].get("highway") in classes]
+        if not match:
+            got = ", ".join(sorted({c[1]["tags"].get("highway", "?") for c in cands})) or "nichts"
+            problems.append({"etappe": nr, "lon": p[0], "lat": p[1],
+                             "grund": f"kein Weg der Klasse {sorted(classes)} im Umkreis 20 m (gefunden: {got})"})
+            continue
+        w = match[0][1]
+        err = check_way(w["tags"])
+        if err:
+            problems.append({"etappe": nr, "lon": p[0], "lat": p[1], "grund": f"way/{w['id']}: {err}"})
+        elif route_check.unpaved(w["tags"]):
+            unpaved_hits += 1
+    return problems, len(samples), unpaved_hits
+
+
+def load_cache():
+    return json.loads(CACHE_FILE.read_text()) if CACHE_FILE.exists() else {}
+
+
 def main():
     src = Path(sys.argv[1]) if len(sys.argv) > 1 else TOOLS / "stages.json"
     stages = json.loads(src.read_text(encoding="utf-8"))["etappen"]
-    cache = json.loads(CACHE_FILE.read_text()) if CACHE_FILE.exists() else {}
+    cache = load_cache()
     problems, report = [], []
     live_unpaved = {}
     for s in stages:
         live_km = 0.0
         for run in s.get("schotter_abschnitte", []):
-            pts = run["pts"]
-            classes = {route_check.parse_tags(t).get("highway") for t in run.get("tags", [])}
-            # samples only from the middle 80 % of the run and >= 60 m from its ends
-            total = sum(point_dist_m(a, b) for a, b in zip(pts, pts[1:]))
-            samples, walked, last = [], 0.0, -1e9
-            for a, b in zip(pts, pts[1:]):
-                walked += point_dist_m(a, b)
-                inner = 0.1 * total <= walked <= 0.9 * total and 60 <= walked <= total - 60
-                if inner and walked - last >= SAMPLE_M:
-                    samples.append(b)
-                    last = walked
-            if not samples:
-                mid = pts[len(pts) // 2] if len(pts) >= 3 else None
-                if mid is None:
-                    continue
-                samples = [mid]
-            # one API box around the samples (split if the run is long)
-            boxes = []
-            for i in range(0, len(samples), 6):
-                chunk = samples[i:i + 6]
-                boxes.append((min(c[0] for c in chunk) - 0.0008, min(c[1] for c in chunk) - 0.0008,
-                              max(c[0] for c in chunk) + 0.0008, max(c[1] for c in chunk) + 0.0008))
-            unpaved_hits = 0
-            for k, p in enumerate(samples):
-                ways = load(boxes[k // 6], cache)   # ApiError aborts the whole check: never a no-go
-                cands = near_ways(p, ways, 20)
-                match = [c for c in cands if c[1]["tags"].get("highway") in classes]
-                if not match:
-                    got = ", ".join(sorted({c[1]["tags"].get("highway", "?") for c in cands})) or "nichts"
-                    problems.append({"etappe": s["nr"], "lon": p[0], "lat": p[1],
-                                     "grund": f"kein Weg der Klasse {sorted(classes)} im Umkreis 20 m (gefunden: {got})"})
-                    continue
-                w = match[0][1]
-                err = check_way(w["tags"])
-                if err:
-                    problems.append({"etappe": s["nr"], "lon": p[0], "lat": p[1], "grund": f"way/{w['id']}: {err}"})
-                elif route_check.unpaved(w["tags"]):
-                    unpaved_hits += 1
-            share = unpaved_hits / len(samples)
-            live_km += run["km"] * share
-            report.append({"etappe": s["nr"], "km": run["km"], "stichproben": len(samples), "aktuell_unbefestigt": unpaved_hits})
-            print(f"E{s['nr']} {run['km']} km: {unpaved_hits}/{len(samples)} Stichproben legal und aktuell unbefestigt")
+            probs, n, hits = check_run(run, cache, s["nr"])
+            problems += probs
+            if not n:
+                continue
+            live_km += run["km"] * hits / n
+            report.append({"etappe": s["nr"], "km": run["km"], "stichproben": n, "aktuell_unbefestigt": hits})
+            print(f"E{s['nr']} {run['km']} km: {hits}/{n} Stichproben legal und aktuell unbefestigt")
         live_unpaved[s["nr"]] = round(live_km, 1)
     (TOOLS / "osm_verify.json").write_text(json.dumps(
         {"probleme": problems, "unbefestigt_live_km": live_unpaved, "abschnitte": report}, ensure_ascii=False, indent=1))

@@ -17,21 +17,34 @@ from pathlib import Path
 TOOLS = Path(__file__).resolve().parent
 sys.path.insert(0, str(TOOLS))
 import check_breweries  # noqa: E402
+import gravel_probe  # noqa: E402
+import osm_verify  # noqa: E402
 import plan_route as pr  # noqa: E402
 import route_check  # noqa: E402
 
 CORRIDOR_KM = 12
 DETOUR_PER_KM = 4
 MAX_STAGE_KM = 190
-MAX_TRIES = 14
+MAX_TRIES = 20
 
 
-def evaluate(pid, a, b, vias):
-    geo = pr.route(pid, a, b, vias)
+def evaluate(pid, a, b, vias, avoid, cache):
+    """BRouter legality audit + Bavaria border + LIVE OSM check of every unpaved run.
+    Returns (ok, km, live_unpaved_km, coords)."""
+    geo = pr.route(pid, a, b, vias, avoid)
     audit = route_check.audit(geo)
     coords = geo["features"][0]["geometry"]["coordinates"]
-    ok = not audit["verstoesse"] and all(pr.in_bavaria(c[0], c[1]) for c in coords[::4])
-    return ok, audit, coords
+    if audit["verstoesse"] or not all(pr.in_bavaria(c[0], c[1]) for c in coords[::4]):
+        return False, audit["km"], 0.0, coords
+    live = 0.0
+    for r in gravel_probe.segments(geo, min_km=0.1):
+        run = {"km": r["km"], "tags": r["tags"], "pts": pr.dense_slice(coords, r["at_m"], r["len_m"])}
+        probs, n, hits = osm_verify.check_run(run, cache)
+        if probs:
+            return False, audit["km"], 0.0, coords
+        if n:
+            live += r["km"] * hits / n
+    return True, audit["km"], round(live, 2), coords
 
 
 def main():
@@ -39,12 +52,16 @@ def main():
     brews = {b["id"]: b for b in json.loads((TOOLS / "breweries.json").read_text(encoding="utf-8"))["brauereien"]}
     chain = [pr.START] + [brews[i] for i in pr.CHAIN]
     pid = pr.upload_profile()
+    ng = pr.nogos()
+    cache = osm_verify.load_cache()
     result, report = {}, []
     for n, (a, b) in enumerate(zip(chain, chain[1:]), 1):
+        avoid = ng.get(str(n))
+        blocked = [(x, y) for x, y, _ in (avoid or [])]
         vias = list(pr.VIA.get(b["id"], []))
-        ok, cur, coords = evaluate(pid, a, b, vias)
-        assert ok, f"Basisroute Etappe {n} ungültig"
-        base_km, base_unp = cur["km"], cur["unbefestigt_km"]
+        ok, km, unp, coords = evaluate(pid, a, b, vias, avoid, cache)
+        assert ok, f"Basisroute Etappe {n} besteht die Prüfung nicht"
+        base_km, base_unp = km, unp
         sample = coords[::8]
 
         def dist_to_track(p):
@@ -52,6 +69,8 @@ def main():
 
         cands = []
         for s in segs:
+            if any(check_breweries.km(y, x, q[1], q[0]) < 0.3 for x, y in blocked for q in (s["start"], s["end"])):
+                continue
             mid = ((s["start"][0] + s["end"][0]) / 2, (s["start"][1] + s["end"][1]) / 2)
             d = dist_to_track(mid)
             if d <= CORRIDOR_KM:
@@ -61,21 +80,23 @@ def main():
         for _, s, d in cands[:MAX_TRIES]:
             ends = pr.order_vias(coords, [tuple(s["start"]), tuple(s["end"])])
             trial = pr.order_vias(coords, vias + ends)
-            ok, aud, new_coords = evaluate(pid, a, b, trial)
+            try:
+                ok, tkm, tunp, _ = evaluate(pid, a, b, trial, avoid, cache)
+            except Exception as e:  # noqa: BLE001  (routing failure = reject candidate)
+                print("   verworfen:", e)
+                continue
             time.sleep(1)
             if not ok:
                 continue
-            gain = aud["unbefestigt_km"] - cur["unbefestigt_km"]
-            extra = aud["km"] - cur["km"]
-            if gain >= 0.7 * s["km"] and extra <= DETOUR_PER_KM * gain and aud["km"] <= MAX_STAGE_KM:
-                vias, cur = trial, aud
+            gain, extra = tunp - unp, tkm - km
+            if gain >= 0.5 * s["km"] and extra <= DETOUR_PER_KM * gain and tkm <= MAX_STAGE_KM:
+                vias, km, unp = trial, tkm, tunp
                 used.append({"km": s["km"], "abstand_km": round(d, 1), "start": s["start"], "end": s["end"]})
         result[b["id"]] = vias
-        line = (f'E{n} {a["ort"]} → {b["ort"]}: {base_km} km/{base_unp} km unbefestigt  →  '
-                f'{cur["km"]} km/{cur["unbefestigt_km"]} km unbefestigt ({len(used)} Abschnitte eingebaut)')
-        print(line)
+        print(f'E{n} {a["ort"]} → {b["ort"]}: {base_km} km/{base_unp} km live-unbefestigt  →  '
+              f'{km} km/{unp} km ({len(used)} Abschnitte)')
         report.append({"etappe": n, "vorher_km": base_km, "vorher_unbefestigt": base_unp,
-                       "nachher_km": cur["km"], "nachher_unbefestigt": cur["unbefestigt_km"], "abschnitte": used})
+                       "nachher_km": km, "nachher_unbefestigt": unp, "abschnitte": used})
     (TOOLS / "gravel_vias.json").write_text(json.dumps({"vias": result, "bericht": report}, ensure_ascii=False, indent=1))
 
 
