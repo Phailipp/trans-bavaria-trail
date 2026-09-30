@@ -90,13 +90,14 @@ def place_check(b):
 
 
 def url_ok(url):
-    for method in (["-I"], []):
-        r = subprocess.run(
-            ["curl", "-sL", "-o", "/dev/null", "-w", "%{http_code}", "--max-time", "20", "-A",
-             "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36", *method, url],
-            capture_output=True, text=True)
-        code = r.stdout.strip()
-        if code.isdigit() and 200 <= int(code) < 400:
+    """A link counts as working only if it returns 200 with a real HTML <title> (not a bot challenge)."""
+    code = ""
+    for ua in ([], ["-A", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36"]):
+        r = subprocess.run(["curl", "-sL", "--max-time", "25", *ua, "-w", "\n%{http_code}", url],
+                           capture_output=True, text=True, errors="ignore")
+        body, _, code = r.stdout.rpartition("\n")
+        title = body.lower().split("<title", 1)[-1][:200] if "<title" in body.lower() else ""
+        if code == "200" and title and "just a moment" not in title:
             return True, code
     return False, code
 
