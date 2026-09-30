@@ -286,6 +286,73 @@
   };
   if (line) requestAnimationFrame(animateRoute);
 
+  /* ---------------- Brauerei-Atlas: filter + map/list linking ---------------- */
+  const atlasList = $("#atlas-list");
+  if (atlasList) {
+    const cards = $$(".bcard", atlasList);
+    const dots = $$("#atlas-map .bdot");
+    const chips = $$("#atlas-chips .fchip");
+    const rooms = $("#atlas-rooms");
+    const count = $("#atlas-count");
+    const atlasDistricts = $$("#atlas-map .district");
+    const dotById = Object.fromEntries(dots.map((d) => [d.dataset.id, d]));
+    const cardById = Object.fromEntries(cards.map((c) => [c.dataset.id, c]));
+    let bezirk = "";
+    const empty = document.createElement("li");
+    empty.className = "atlas-empty";
+    empty.textContent = "Keine Brauerei mit diesem Filter. Zimmer-Filter ausschalten?";
+
+    const apply = () => {
+      let n = 0;
+      cards.forEach((c) => {
+        const show = (!bezirk || c.dataset.bezirk === bezirk) && (!rooms.checked || c.dataset.zimmer === "ja");
+        c.hidden = !show;
+        dotById[c.dataset.id]?.classList.toggle("is-off", !show);
+        if (show) n++;
+      });
+      count.textContent = n;
+      atlasDistricts.forEach((d) => d.classList.toggle("is-active", d.dataset.district === bezirk));
+      if (!n) atlasList.append(empty);
+      else empty.remove();
+      atlasList.scrollTop = 0;
+    };
+    chips.forEach((ch) =>
+      ch.addEventListener("click", () => {
+        bezirk = ch.dataset.bezirk;
+        chips.forEach((c) => c.classList.toggle("is-on", c === ch));
+        apply();
+      })
+    );
+    rooms.addEventListener("change", apply);
+
+    const hot = (id, on) => {
+      dotById[id]?.classList.toggle("is-hot", on);
+      cardById[id]?.classList.toggle("is-hot", on);
+    };
+    cards.forEach((c) => {
+      c.addEventListener("pointerenter", () => hot(c.dataset.id, true));
+      c.addEventListener("pointerleave", () => hot(c.dataset.id, false));
+    });
+    const focusCard = (id) => {
+      const c = cardById[id];
+      if (!c) return;
+      cards.forEach((x) => x.classList.remove("is-hot"));
+      dots.forEach((x) => x.classList.remove("is-hot"));
+      hot(id, true);
+      atlasList.scrollTo({ top: c.offsetTop - atlasList.offsetTop - 6, behavior: reduceMotion ? "auto" : "smooth" });
+      if (window.matchMedia("(max-width: 900px)").matches) c.scrollIntoView({ block: "nearest" });
+    };
+    dots.forEach((d) => {
+      d.addEventListener("click", () => focusCard(d.dataset.id));
+      d.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          focusCard(d.dataset.id);
+        }
+      });
+    });
+  }
+
   /* ---------------- BBS seal tilt ---------------- */
   const seal = $("#seal");
   if (seal && !reduceMotion && window.matchMedia("(pointer: fine)").matches) {

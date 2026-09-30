@@ -7,6 +7,7 @@ file. Run: python3 tools/build.py
 import json
 import math
 import random
+import html
 import re
 from pathlib import Path
 
@@ -256,15 +257,105 @@ TULIPS = {
 }
 
 
+# same projection as the map data (see paths.json)
+LON0, LON1, LAT0, LAT1 = 8.95, 13.87, 47.25, 50.58
+K = math.cos(math.radians(48.9))
+SCALE = 1000 / ((LON1 - LON0) * K)
+BEZIRKE = ["Unterfranken", "Oberfranken", "Oberpfalz", "Mittelfranken", "Niederbayern", "Oberbayern", "Schwaben"]
+
+
+def project(lon, lat):
+    return (lon - LON0) * K * SCALE, (LAT1 - lat) * SCALE
+
+
+def slug(text):
+    t = text.lower()
+    for a, b in (("ä", "ae"), ("ö", "oe"), ("ü", "ue"), ("ß", "ss")):
+        t = t.replace(a, b)
+    return re.sub(r"[^a-z0-9]+", "-", t).strip("-")
+
+
+def load_breweries():
+    f = TOOLS / "breweries.json"
+    if not f.exists():
+        return {"stand": "", "brauereien": []}
+    data = json.loads(f.read_text(encoding="utf-8"))
+    order = {b: i for i, b in enumerate(BEZIRKE)}
+    data["brauereien"].sort(key=lambda b: (order.get(b["bezirk"], 9), -b["lat"]))
+    return data
+
+
+def atlas_map(brews):
+    h = paths["H"]
+    e = html.escape
+    parts = [
+        f'<svg id="atlas-map" viewBox="-20 -20 1040 {h + 40}" role="img" aria-label="Karte Bayern mit allen Brauereien des Atlas">',
+        f'<path class="land" d="{paths["bayern"]}"/>',
+    ]
+    for name, d in paths["rb"].items():
+        parts.append(f'<path class="district" data-district="{name}" d="{d}"/>')
+    parts.append(f'<path class="route-ghost" d="{route["route"]}"/>')
+    for b in brews:
+        x, y = project(b["lon"], b["lat"])
+        cls = "bdot room" if b.get("zimmer") == "ja" else "bdot"
+        parts.append(
+            f'<g class="{cls}" data-id="{b["id"]}" data-bezirk="{b["bezirk"]}" tabindex="0" role="button" '
+            f'aria-label="{e(b["name"])}, {e(b["ort"])}"><circle cx="{x:.1f}" cy="{y:.1f}" r="7"/>'
+            f'<title>{e(b["name"])} · {e(b["ort"])}</title></g>'
+        )
+    parts.append("</svg>")
+    return "".join(parts)
+
+
+def atlas_cards(brews):
+    e = html.escape
+    out = []
+    for b in brews:
+        badges = []
+        if b.get("zimmer") == "ja":
+            badges.append('<span class="badge room">Zimmer</span>')
+        if b.get("einkehr") == "ja":
+            badges.append('<span class="badge">Einkehr</span>')
+        if b.get("seit") and b["seit"].lower() != "unbekannt":
+            badges.append(f'<span class="badge">seit {e(b["seit"])}</span>')
+        link = ""
+        if b.get("website"):
+            link = f'<a class="blink mono" href="{e(b["website"])}" target="_blank" rel="noopener">Website ↗</a>'
+        out.append(
+            f'<li class="bcard" id="b-{b["id"]}" data-id="{b["id"]}" data-bezirk="{b["bezirk"]}" data-zimmer="{b.get("zimmer", "unklar")}">'
+            f'<div class="bcard-top mono"><span>{e(b["bezirk"])}</span><span>{e(b.get("landschaft", ""))}</span></div>'
+            f'<h3>{e(b["name"])}</h3>'
+            f'<p class="bplace">{e(b["ort"])} · Lkr. {e(b["landkreis"].replace("Landkreis ", ""))}</p>'
+            f'<p class="bdesc">{e(b["beschreibung"])}</p>'
+            f'<p class="bspec"><b class="mono">Im Glas</b> {e(b["spezialitaet"])}</p>'
+            f'<div class="bfoot"><div class="badges">{"".join(badges)}</div>{link}</div>'
+            "</li>"
+        )
+    return "".join(out)
+
+
 def main():
     src = (TOOLS / "index.src.html").read_text(encoding="utf-8")
+    atlas = load_breweries()
+    brews = atlas["brauereien"]
+    chips = "".join(
+        f'<button type="button" class="fchip" data-bezirk="{b}">{b} <small>{sum(1 for x in brews if x["bezirk"] == b)}</small></button>'
+        for b in BEZIRKE
+    )
     out = (
-        src.replace("{{MAP}}", bavaria_map())
+        src.replace("{{ATLAS_MAP}}", atlas_map(brews))
+        .replace("{{ATLAS_CARDS}}", atlas_cards(brews))
+        .replace("{{ATLAS_CHIPS}}", chips)
+        .replace("{{ATLAS_COUNT}}", str(len(brews)))
+        .replace("{{ATLAS_STAND}}", atlas["stand"])
+        .replace("{{MAP}}", bavaria_map())
         .replace("{{LANDSCAPE}}", landscape())
         .replace("{{SEAL}}", bbs_seal())
         .replace("{{STAMP}}", stamp())
     )
     out = re.sub(r"\{\{TULIP_(\d)\}\}", lambda m: TULIPS[m.group(1)], out)
+    for b in brews:
+        assert 47.2 < b["lat"] < 50.6 and 8.9 < b["lon"] < 13.9, b["name"]
     assert "{{" not in out, re.findall(r"\{\{\w+\}\}", out)
     (ROOT / "index.html").write_text(out, encoding="utf-8")
     print(f"index.html: {len(out) / 1024:.0f} KB")

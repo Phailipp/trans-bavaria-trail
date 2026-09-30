@@ -1468,6 +1468,284 @@ a {
 }
 
 /* ------------------------------------------------------------------
+   Brauerei-Atlas
+------------------------------------------------------------------- */
+.atlas {
+  background:
+    radial-gradient(ellipse 50% 50% at 85% 20%, rgba(224, 154, 45, 0.08), transparent 70%),
+    var(--ink);
+  border-top: 1px solid var(--line);
+}
+.atlas-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 24px;
+  margin-bottom: 22px;
+}
+.atlas-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.fchip {
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 100px;
+  background: rgba(239, 230, 208, 0.06);
+  box-shadow: inset 0 0 0 1px var(--line);
+  color: var(--cream-dim);
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+.fchip small {
+  margin-left: 4px;
+  color: var(--gold);
+  font-size: 1em;
+}
+.fchip:hover {
+  color: var(--cream);
+  box-shadow: inset 0 0 0 1px rgba(239, 230, 208, 0.4);
+}
+.fchip.is-on {
+  background: var(--amber);
+  color: var(--navy);
+  box-shadow: none;
+}
+.fchip.is-on small {
+  color: var(--navy);
+}
+.atlas-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--cream);
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.atlas-toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--amber);
+}
+
+.atlas-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 18px;
+  align-items: stretch;
+}
+.atlas-map-frame {
+  align-self: start;
+}
+.legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.legend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.lg-room {
+  background: var(--amber);
+}
+.lg-other {
+  margin-left: 8px;
+  background: var(--navy);
+  box-shadow: inset 0 0 0 2px var(--cream);
+}
+#atlas-map {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+#atlas-map .land {
+  fill: rgba(47, 127, 200, 0.07);
+  stroke: rgba(216, 230, 243, 0.55);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+#atlas-map .district {
+  fill: transparent;
+  stroke: rgba(216, 230, 243, 0.16);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+  transition: fill 0.5s var(--ease);
+}
+#atlas-map .district.is-active {
+  fill: rgba(47, 127, 200, 0.18);
+}
+#atlas-map .route-ghost {
+  fill: none;
+  stroke: rgba(224, 154, 45, 0.25);
+  stroke-width: 2;
+  stroke-dasharray: 2 7;
+}
+.bdot {
+  cursor: pointer;
+  outline: none;
+}
+.bdot circle {
+  fill: var(--navy);
+  stroke: var(--cream);
+  stroke-width: 2.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.3s var(--ease), opacity 0.3s, fill 0.3s;
+}
+.bdot.room circle {
+  fill: var(--amber);
+  stroke: var(--navy);
+}
+.bdot:hover circle,
+.bdot:focus-visible circle,
+.bdot.is-hot circle {
+  transform: scale(1.8);
+  stroke: var(--cream);
+}
+.bdot.is-hot circle {
+  fill: var(--blue-hi);
+}
+.bdot.is-off {
+  pointer-events: none;
+}
+.bdot.is-off circle {
+  opacity: 0.1;
+}
+
+.atlas-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 6px 0 0;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  max-height: min(78vh, 860px);
+  overflow-y: auto;
+  scrollbar-color: rgba(201, 160, 78, 0.5) transparent;
+  scrollbar-width: thin;
+}
+.bcard {
+  position: relative;
+  padding: 20px 22px;
+  border-radius: var(--radius);
+  background: var(--navy);
+  box-shadow: inset 0 0 0 1px var(--line);
+  transition: box-shadow 0.3s, background 0.3s;
+}
+.bcard[hidden] {
+  display: none;
+}
+.bcard.is-hot {
+  background: var(--ink-2);
+  box-shadow: inset 0 0 0 1.5px var(--amber);
+}
+.bcard-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--gold);
+  font-size: 0.66rem;
+}
+.bcard-top span:last-child {
+  color: var(--cream-dim);
+  text-align: right;
+}
+.bcard h3 {
+  margin: 10px 0 2px;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: 1.65rem;
+  line-height: 1;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.bplace {
+  margin: 0 0 10px;
+  color: var(--blue-hi);
+  font-size: 0.9rem;
+}
+.bdesc {
+  margin: 0 0 10px;
+  color: var(--cream-dim);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.bspec {
+  margin: 0 0 14px;
+  font-size: 0.92rem;
+}
+.bspec b {
+  margin-right: 6px;
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.66rem;
+}
+.bfoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.badge {
+  padding: 4px 9px;
+  border-radius: 100px;
+  box-shadow: inset 0 0 0 1px var(--line);
+  color: var(--cream-dim);
+  font-family: var(--f-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.badge.room {
+  background: rgba(224, 154, 45, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(224, 154, 45, 0.5);
+  color: var(--amber);
+}
+.blink {
+  color: var(--blue-hi);
+  font-size: 0.68rem;
+  text-decoration: none;
+}
+.blink:hover {
+  color: var(--amber);
+}
+.atlas-empty {
+  padding: 30px;
+  color: var(--cream-dim);
+}
+.atlas-note {
+  display: block !important;
+  margin-top: 18px;
+}
+
+@media (max-width: 900px) {
+  .atlas-body {
+    grid-template-columns: 1fr;
+  }
+  .atlas-list {
+    max-height: 72vh;
+  }
+}
+
+/* ------------------------------------------------------------------
    Reveal on scroll
 ------------------------------------------------------------------- */
 .reveal {

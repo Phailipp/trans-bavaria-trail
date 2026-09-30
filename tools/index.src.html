@@ -41,6 +41,7 @@
       <nav class="nav mono" id="nav" aria-label="Hauptnavigation">
         <a href="#idee">Idee</a>
         <a href="#route">Route</a>
+        <a href="#atlas">Atlas</a>
         <a href="#code">Code</a>
         <a href="#setup">Setup</a>
         <a href="#crew">Crew</a>
@@ -141,9 +142,9 @@
             <p>Von Unterfranken bis ins Allgäu.</p>
           </div>
           <div class="stat reveal" data-delay="1">
-            <strong data-count="10">10</strong>
-            <span class="mono">Brauerei-Ziele</span>
-            <p>Auf der Ideenliste. Tendenz: durstig.</p>
+            <strong data-count="{{ATLAS_COUNT}}">{{ATLAS_COUNT}}</strong>
+            <span class="mono">Landbrauereien</span>
+            <p>Im Atlas, gegengeprüft. Tendenz: durstig.</p>
           </div>
           <div class="stat reveal" data-delay="2">
             <strong>0</strong>
@@ -269,11 +270,45 @@
         </div>
       </section>
 
+      <!-- ATLAS ----------------------------------------------------- -->
+      <section class="section atlas" id="atlas">
+        <div class="wrap">
+          <div class="section-tag mono"><span><b>03</b> / Brauerei-Atlas</span><span class="hide-sm">Landbrauereien · recherchiert {{ATLAS_STAND}}</span></div>
+          <div class="route-head">
+            <h2 class="h-display reveal">Wo das Bier<br />noch im <em>Dorf</em> gebraut wird.</h2>
+            <p class="lead muted reveal" data-delay="1">
+              {{ATLAS_COUNT}} Landbrauereien in allen sieben Bezirken, von unserem Recherche-Team gesucht und gegengeprüft.
+              Das ist der Rohstoff, aus dem die Etappen entstehen. Filter nach Bezirk oder nach Brauereien mit Zimmern.
+            </p>
+          </div>
+
+          <div class="atlas-controls" role="group" aria-label="Brauereien filtern">
+            <div class="atlas-chips" id="atlas-chips">
+              <button type="button" class="fchip is-on" data-bezirk="">Alle</button>
+              {{ATLAS_CHIPS}}
+            </div>
+            <label class="atlas-toggle"><input type="checkbox" id="atlas-rooms" /> <span>Nur mit Zimmern</span></label>
+          </div>
+
+          <div class="atlas-body">
+            <div class="map-frame atlas-map-frame">
+              <div class="map-meta mono">
+                <span><b id="atlas-count">{{ATLAS_COUNT}}</b> Brauereien</span>
+                <span class="legend"><i class="lg-room"></i> mit Zimmern <i class="lg-other"></i> Einkehr</span>
+              </div>
+              {{ATLAS_MAP}}
+            </div>
+            <ul class="atlas-list" id="atlas-list" aria-live="polite">{{ATLAS_CARDS}}</ul>
+          </div>
+          <p class="map-note mono atlas-note">Stand {{ATLAS_STAND}}. Keine Kooperationen. Öffnungszeiten und Zimmer vor dem Besuch direkt bei der Brauerei prüfen.</p>
+        </div>
+      </section>
+
       <!-- CODE ------------------------------------------------------ -->
       <section class="section code" id="code">
         {{STAMP}}
         <div class="wrap">
-          <div class="section-tag mono"><span><b>03</b> / Unser Code</span><span class="hide-sm">How we ride</span></div>
+          <div class="section-tag mono"><span><b>04</b> / Unser Code</span><span class="hide-sm">How we ride</span></div>
           <div class="code-head">
             <div>
               <p class="eyebrow mono">Wild im Kopf</p>
@@ -298,7 +333,7 @@
       <!-- SETUP ----------------------------------------------------- -->
       <section class="section" id="setup">
         <div class="wrap">
-          <div class="section-tag mono"><span><b>04</b> / Setup</span><span class="hide-sm">Was du brauchst</span></div>
+          <div class="section-tag mono"><span><b>05</b> / Setup</span><span class="hide-sm">Was du brauchst</span></div>
           <div class="setup-grid">
             <div>
               <h2 class="h-display reveal">Kein Rennen.<br /><em>Keine Kaffee&shy;fahrt.</em></h2>
@@ -322,7 +357,7 @@
       <!-- CREW ------------------------------------------------------ -->
       <section class="section crew" id="crew">
         <div class="wrap">
-          <div class="section-tag mono"><span><b>05</b> / Die Crew</span><span class="hide-sm">Bavarian Beer Seekers MC. Nomads</span></div>
+          <div class="section-tag mono"><span><b>06</b> / Die Crew</span><span class="hide-sm">Bavarian Beer Seekers MC. Nomads</span></div>
           <div class="crew-grid">
             <div class="bbs-seal reveal" id="seal">{{SEAL}}</div>
             <div class="crew-copy">
@@ -346,7 +381,7 @@
       <!-- FAQ ------------------------------------------------------- -->
       <section class="section" id="faq">
         <div class="wrap">
-          <div class="section-tag mono"><span><b>06</b> / FAQ</span><span class="hide-sm">Ehrliche Antworten</span></div>
+          <div class="section-tag mono"><span><b>07</b> / FAQ</span><span class="hide-sm">Ehrliche Antworten</span></div>
           <div class="faq-grid">
             <h2 class="h-display reveal">Fragen<br />am <em>Stammtisch.</em></h2>
             <div class="faq-list">
@@ -386,7 +421,7 @@
       <!-- MITMACHEN ------------------------------------------------- -->
       <section class="section join" id="mitmachen">
         <div class="wrap">
-          <div class="section-tag mono"><span><b>07</b> / Mitmachen</span><span class="hide-sm">Scout-Liste &amp; Tipps</span></div>
+          <div class="section-tag mono"><span><b>08</b> / Mitmachen</span><span class="hide-sm">Scout-Liste &amp; Tipps</span></div>
           <div class="join-grid">
             <div class="join-card reveal">
               <p class="eyebrow mono">Scout-Liste</p>
@@ -457,6 +492,7 @@
             <ul>
               <li><a href="#idee">Die Idee</a></li>
               <li><a href="#route">Die Route</a></li>
+              <li><a href="#atlas">Brauerei-Atlas</a></li>
               <li><a href="#code">Unser Code</a></li>
               <li><a href="#mitmachen">Scout-Liste</a></li>
             </ul>
