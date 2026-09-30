@@ -4,6 +4,8 @@ High-end One-Pager für den **Trans Bavaria Trail**: eine Enduro-Route der Bavar
 
 > Offroad to Bavaria's best breweries.
 
+**Live:** https://phailipp.github.io/trans-bavaria-trail/
+
 ## Struktur
 
 | Datei | Zweck |
