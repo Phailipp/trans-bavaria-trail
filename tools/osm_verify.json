@@ -1,76 +1,15 @@
 {
- "probleme": [
-  {
-   "etappe": 4,
-   "lon": 11.947648,
-   "lat": 49.57172,
-   "grund": "kein Weg der Klasse ['track'] im Umkreis 20 m (gefunden: path, tertiary)"
-  },
-  {
-   "etappe": 4,
-   "lon": 12.241156,
-   "lat": 49.478019,
-   "grund": "way/339688787: nicht legal: highway=track ohne Kfz-Freigabe"
-  },
-  {
-   "etappe": 4,
-   "lon": 12.244896,
-   "lat": 49.476303,
-   "grund": "kein Weg der Klasse ['track'] im Umkreis 20 m (gefunden: residential, service)"
-  },
-  {
-   "etappe": 4,
-   "lon": 12.244461,
-   "lat": 49.473472,
-   "grund": "kein Weg der Klasse ['track'] im Umkreis 20 m (gefunden: residential)"
-  },
-  {
-   "etappe": 6,
-   "lon": 12.66482,
-   "lat": 48.745656,
-   "grund": "way/1421974129: nicht legal: highway=track ohne Kfz-Freigabe"
-  },
-  {
-   "etappe": 6,
-   "lon": 12.664477,
-   "lat": 48.745857,
-   "grund": "way/1421974129: nicht legal: highway=track ohne Kfz-Freigabe"
-  },
-  {
-   "etappe": 6,
-   "lon": 12.682173,
-   "lat": 48.746683,
-   "grund": "kein Weg der Klasse ['track'] im Umkreis 20 m (gefunden: tertiary)"
-  },
-  {
-   "etappe": 6,
-   "lon": 12.68755,
-   "lat": 48.746338,
-   "grund": "kein Weg der Klasse ['track'] im Umkreis 20 m (gefunden: tertiary)"
-  },
-  {
-   "etappe": 6,
-   "lon": 12.685054,
-   "lat": 48.746682,
-   "grund": "kein Weg der Klasse ['track'] im Umkreis 20 m (gefunden: service, tertiary)"
-  },
-  {
-   "etappe": 8,
-   "lon": 12.023068,
-   "lat": 48.085272,
-   "grund": "kein Weg der Klasse ['track'] im Umkreis 20 m (gefunden: footway, path, residential, service)"
-  }
- ],
+ "probleme": [],
  "unbefestigt_live_km": {
   "1": 2.4,
-  "2": 2.0,
-  "3": 22.6,
-  "4": 2.4,
-  "5": 0.0,
-  "6": 11.6,
+  "2": 0.1,
+  "3": 7.7,
+  "4": 2.5,
+  "5": 0.8,
+  "6": 1.9,
   "7": 1.2,
-  "8": 18.2,
-  "9": 8.8,
+  "8": 8.1,
+  "9": 5.2,
   "10": 1.2
  },
  "abschnitte": [
@@ -93,130 +32,34 @@
    "aktuell_unbefestigt": 1
   },
   {
-   "etappe": 2,
-   "km": 0.6,
-   "stichproben": 1,
-   "aktuell_unbefestigt": 1
-  },
-  {
-   "etappe": 2,
-   "km": 0.53,
-   "stichproben": 1,
-   "aktuell_unbefestigt": 1
-  },
-  {
-   "etappe": 2,
-   "km": 0.75,
-   "stichproben": 2,
-   "aktuell_unbefestigt": 2
-  },
-  {
    "etappe": 3,
-   "km": 6.25,
-   "stichproben": 12,
-   "aktuell_unbefestigt": 12
-  },
-  {
-   "etappe": 3,
-   "km": 5.32,
-   "stichproben": 10,
-   "aktuell_unbefestigt": 9
-  },
-  {
-   "etappe": 3,
-   "km": 5.29,
-   "stichproben": 10,
-   "aktuell_unbefestigt": 9
-  },
-  {
-   "etappe": 3,
-   "km": 6.0,
-   "stichproben": 10,
-   "aktuell_unbefestigt": 9
-  },
-  {
-   "etappe": 3,
-   "km": 2.26,
-   "stichproben": 5,
-   "aktuell_unbefestigt": 3
+   "km": 7.69,
+   "stichproben": 14,
+   "aktuell_unbefestigt": 14
   },
   {
    "etappe": 4,
-   "km": 2.32,
+   "km": 2.47,
    "stichproben": 5,
-   "aktuell_unbefestigt": 3
-  },
-  {
-   "etappe": 4,
-   "km": 2.41,
-   "stichproben": 5,
-   "aktuell_unbefestigt": 2
+   "aktuell_unbefestigt": 5
   },
   {
    "etappe": 5,
    "km": 0.61,
    "stichproben": 2,
-   "aktuell_unbefestigt": 0
+   "aktuell_unbefestigt": 1
   },
   {
    "etappe": 5,
    "km": 1.05,
    "stichproben": 2,
-   "aktuell_unbefestigt": 0
+   "aktuell_unbefestigt": 1
   },
   {
    "etappe": 6,
    "km": 1.91,
    "stichproben": 4,
    "aktuell_unbefestigt": 4
-  },
-  {
-   "etappe": 6,
-   "km": 4.1,
-   "stichproben": 6,
-   "aktuell_unbefestigt": 6
-  },
-  {
-   "etappe": 6,
-   "km": 0.72,
-   "stichproben": 2,
-   "aktuell_unbefestigt": 0
-  },
-  {
-   "etappe": 6,
-   "km": 0.72,
-   "stichproben": 2,
-   "aktuell_unbefestigt": 2
-  },
-  {
-   "etappe": 6,
-   "km": 1.4,
-   "stichproben": 3,
-   "aktuell_unbefestigt": 1
-  },
-  {
-   "etappe": 6,
-   "km": 1.01,
-   "stichproben": 2,
-   "aktuell_unbefestigt": 2
-  },
-  {
-   "etappe": 6,
-   "km": 0.82,
-   "stichproben": 1,
-   "aktuell_unbefestigt": 1
-  },
-  {
-   "etappe": 6,
-   "km": 1.85,
-   "stichproben": 3,
-   "aktuell_unbefestigt": 2
-  },
-  {
-   "etappe": 6,
-   "km": 1.32,
-   "stichproben": 2,
-   "aktuell_unbefestigt": 2
   },
   {
    "etappe": 7,
@@ -226,39 +69,45 @@
   },
   {
    "etappe": 8,
-   "km": 0.83,
-   "stichproben": 2,
+   "km": 1.65,
+   "stichproben": 4,
+   "aktuell_unbefestigt": 4
+  },
+  {
+   "etappe": 8,
+   "km": 0.49,
+   "stichproben": 1,
    "aktuell_unbefestigt": 1
   },
   {
    "etappe": 8,
-   "km": 0.34,
-   "stichproben": 1,
-   "aktuell_unbefestigt": 0
-  },
-  {
-   "etappe": 8,
-   "km": 7.59,
-   "stichproben": 13,
-   "aktuell_unbefestigt": 13
-  },
-  {
-   "etappe": 8,
-   "km": 7.59,
-   "stichproben": 13,
-   "aktuell_unbefestigt": 13
-  },
-  {
-   "etappe": 8,
-   "km": 3.58,
-   "stichproben": 7,
+   "km": 2.5,
+   "stichproben": 5,
    "aktuell_unbefestigt": 5
   },
   {
-   "etappe": 9,
-   "km": 1.55,
+   "etappe": 8,
+   "km": 1.17,
+   "stichproben": 2,
+   "aktuell_unbefestigt": 2
+  },
+  {
+   "etappe": 8,
+   "km": 0.79,
+   "stichproben": 1,
+   "aktuell_unbefestigt": 1
+  },
+  {
+   "etappe": 8,
+   "km": 1.17,
    "stichproben": 3,
-   "aktuell_unbefestigt": 3
+   "aktuell_unbefestigt": 2
+  },
+  {
+   "etappe": 8,
+   "km": 0.74,
+   "stichproben": 1,
+   "aktuell_unbefestigt": 1
   },
   {
    "etappe": 9,
@@ -268,15 +117,9 @@
   },
   {
    "etappe": 9,
-   "km": 2.31,
-   "stichproben": 4,
-   "aktuell_unbefestigt": 4
-  },
-  {
-   "etappe": 9,
-   "km": 0.95,
+   "km": 0.77,
    "stichproben": 2,
-   "aktuell_unbefestigt": 1
+   "aktuell_unbefestigt": 2
   },
   {
    "etappe": 10,

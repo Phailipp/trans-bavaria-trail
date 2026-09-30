@@ -49,6 +49,11 @@ def load_route():
     import gpxpy
 
     stages = json.loads((TOOLS / "stages.json").read_text(encoding="utf-8"))["etappen"]
+    # publish only what the live OSM check confirmed as legal AND unpaved today (conservative)
+    ver = json.loads((TOOLS / "osm_verify.json").read_text(encoding="utf-8"))
+    assert not ver["probleme"], "Live-OSM-Prüfung nicht sauber – nicht veröffentlichen"
+    for s_ in stages:
+        s_["unbefestigt_km"] = min(s_["unbefestigt_km"], ver["unbefestigt_live_km"][str(s_["nr"])])
     gpx = gpxpy.parse((ROOT / "gpx" / "trans-bavaria-trail-entwurf.gpx").read_text(encoding="utf-8"))
     assert len(gpx.tracks) == len(stages)
     pts = []
