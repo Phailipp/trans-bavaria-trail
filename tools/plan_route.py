@@ -43,16 +43,30 @@ CHAIN = [
 
 # via points keep a stage inside Bavaria / on the intended line (lon, lat of the town centre)
 VIA = {
-    # bavarian bank of the Main: Stadtprozelten, (Spessart), Marktheidenfeld, Randersacker
-    # right (bavarian) bank: Großheubach, Collenberg-Fechenbach, then Stadtprozelten, (Spessart),
-    # Marktheidenfeld, Randersacker
-    # (coordinates geocoded via OSM/Photon)
+    # right (bavarian) bank of the Main: Großheubach, Reistenhausen, Fechenbach, Stadtprozelten,
+    # then through the Spessart to Marktheidenfeld and Randersacker (coordinates geocoded via OSM/Photon)
     "kauzen-braeu-gasthof-kauzen-ochsenfurt": [(9.2275, 49.7347), (9.2951, 49.7577), (9.3383, 49.7910),
                                                (9.4053, 49.7809), (9.6036, 49.8453),
                                                (9.9829, 49.7597)],
     "gasthof-brauerei-hennemann-stublang": [(10.7220, 49.6720)],           # Uehlfeld (Aischgrund)
     "ayinger-privatbrauerei-aying": [(11.8696, 48.1875)],                          # Schweiger, Markt Schwaben
 }
+
+
+GRAVEL_FILE = TOOLS / "gravel_vias.json"
+
+
+def gravel_vias():
+    """Extra via points (start/end of legal gravel segments) chosen by tools/gravel_optimize.py."""
+    return json.loads(GRAVEL_FILE.read_text())["vias"] if GRAVEL_FILE.exists() else {}
+
+
+def order_vias(base_coords, pts):
+    """Sort via points by their position along the base track."""
+    def pos(p):
+        return min(range(0, len(base_coords), 3),
+                   key=lambda i: (base_coords[i][0] - p[0]) ** 2 + (base_coords[i][1] - p[1]) ** 2)
+    return sorted(pts, key=pos)
 
 
 def upload_profile():
@@ -65,8 +79,8 @@ def upload_profile():
     return res["profileid"]
 
 
-def route(pid, a, b):
-    pts = [(a["lon"], a["lat"])] + VIA.get(b["id"], []) + [(b["lon"], b["lat"])]
+def route(pid, a, b, extra=None):
+    pts = [(a["lon"], a["lat"])] + list(extra if extra is not None else VIA.get(b["id"], [])) + [(b["lon"], b["lat"])]
     q = urllib.parse.urlencode({"lonlats": "|".join(f"{x},{y}" for x, y in pts),
                                 "profile": pid, "alternativeidx": 0, "format": "geojson"})
     for attempt in range(4):
@@ -105,8 +119,9 @@ def main():
     gpx.creator = "Trans Bavaria Trail (Entwurf) – BRouter + OpenStreetMap"
     gpx.name = "Trans Bavaria Trail – Etappen-Entwurf"
     stages, problems = [], []
+    gv = gravel_vias()
     for n, (a, b) in enumerate(zip(chain, chain[1:]), 1):
-        geo = route(pid, a, b)
+        geo = route(pid, a, b, gv.get(b["id"]))
         audit = route_check.audit(geo)
         coords = geo["features"][0]["geometry"]["coordinates"]
         outside = [c for c in coords if not in_bavaria(c[0], c[1])]
