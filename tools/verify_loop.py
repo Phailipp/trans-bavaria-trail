@@ -25,9 +25,12 @@ def main():
         print(f"--- Runde {rnd}")
         if run("plan_route.py") != 0:
             raise SystemExit("plan_route fehlgeschlagen")
-        if run("osm_verify.py") == 0:
+        rc = run("osm_verify.py")
+        if rc == 0:
             print("Live-Prüfung sauber.")
             return
+        if rc != 1:
+            raise SystemExit("Live-Prüfung abgebrochen (API) – nichts gesperrt")
         probs = json.loads((TOOLS / "osm_verify.json").read_text())["probleme"]
         nog = json.loads(nog_path.read_text()) if nog_path.exists() else {}
         for p in probs:

@@ -11,6 +11,7 @@ import json
 import math
 import sys
 import time
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -19,10 +20,16 @@ TOOLS = Path(__file__).resolve().parent
 sys.path.insert(0, str(TOOLS))
 import route_check  # noqa: E402
 
-BOX = 0.0025          # ~250 m half-size of each API box
 SAMPLE_M = 400        # one sample every ~400 m along a run
 UA = "TransBavariaTrail-verify/1.0 (route legality check)"
 BAD_COND = ("no", "private", "agricultural", "forestry", "destination", "permit", "delivery", "customers")
+
+
+CACHE_FILE = TOOLS / ".osm_api_cache.json"
+
+
+class ApiError(Exception):
+    pass
 
 
 def load(bbox, cache):
@@ -31,8 +38,18 @@ def load(bbox, cache):
         return cache[key]
     url = "https://api.openstreetmap.org/api/0.6/map?bbox=" + key
     req = urllib.request.Request(url, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        root = ET.fromstring(r.read())
+    for attempt in range(6):
+        try:
+            with urllib.request.urlopen(req, timeout=90) as r:
+                root = ET.fromstring(r.read())
+            break
+        except urllib.error.HTTPError as e:
+            if e.code in (429, 509, 503) and attempt < 5:
+                wait = 60 * (attempt + 1)
+                print(f"  API {e.code}, warte {wait} s")
+                time.sleep(wait)
+                continue
+            raise ApiError(f"HTTP {e.code}") from e
     nodes = {n.get("id"): (float(n.get("lon")), float(n.get("lat"))) for n in root.iter("node")}
     ways = []
     for w in root.iter("way"):
@@ -43,7 +60,8 @@ def load(bbox, cache):
         if len(pts) >= 2:
             ways.append({"id": w.get("id"), "tags": tags, "pts": pts})
     cache[key] = ways
-    time.sleep(1.1)
+    CACHE_FILE.write_text(json.dumps(cache))
+    time.sleep(1.5)
     return ways
 
 
@@ -94,32 +112,37 @@ def near_ways(p, ways, max_m):
 def main():
     src = Path(sys.argv[1]) if len(sys.argv) > 1 else TOOLS / "stages.json"
     stages = json.loads(src.read_text(encoding="utf-8"))["etappen"]
-    cache, problems, report = {}, [], []
+    cache = json.loads(CACHE_FILE.read_text()) if CACHE_FILE.exists() else {}
+    problems, report = [], []
     live_unpaved = {}
     for s in stages:
         live_km = 0.0
         for run in s.get("schotter_abschnitte", []):
             pts = run["pts"]
             classes = {route_check.parse_tags(t).get("highway") for t in run.get("tags", [])}
-            # interior samples only (run ends sit on junctions with the paved road)
-            samples, acc = [], 0.0
+            # samples only from the middle 80 % of the run and >= 60 m from its ends
+            total = sum(point_dist_m(a, b) for a, b in zip(pts, pts[1:]))
+            samples, walked, last = [], 0.0, -1e9
             for a, b in zip(pts, pts[1:]):
-                acc += point_dist_m(a, b)
-                if acc >= SAMPLE_M:
+                walked += point_dist_m(a, b)
+                inner = 0.1 * total <= walked <= 0.9 * total and 60 <= walked <= total - 60
+                if inner and walked - last >= SAMPLE_M:
                     samples.append(b)
-                    acc = 0.0
-            if not samples and len(pts) >= 3:
-                samples = [pts[len(pts) // 2]]
+                    last = walked
             if not samples:
-                continue
-            unpaved_hits = 0
-            for p in samples:
-                bbox = (p[0] - BOX, p[1] - BOX, p[0] + BOX, p[1] + BOX)
-                try:
-                    ways = load(bbox, cache)
-                except Exception as e:  # noqa: BLE001
-                    problems.append({"etappe": s["nr"], "lon": p[0], "lat": p[1], "grund": f"OSM-API-Fehler: {e}"})
+                mid = pts[len(pts) // 2] if len(pts) >= 3 else None
+                if mid is None:
                     continue
+                samples = [mid]
+            # one API box around the samples (split if the run is long)
+            boxes = []
+            for i in range(0, len(samples), 6):
+                chunk = samples[i:i + 6]
+                boxes.append((min(c[0] for c in chunk) - 0.0008, min(c[1] for c in chunk) - 0.0008,
+                              max(c[0] for c in chunk) + 0.0008, max(c[1] for c in chunk) + 0.0008))
+            unpaved_hits = 0
+            for k, p in enumerate(samples):
+                ways = load(boxes[k // 6], cache)   # ApiError aborts the whole check: never a no-go
                 cands = near_ways(p, ways, 20)
                 match = [c for c in cands if c[1]["tags"].get("highway") in classes]
                 if not match:
@@ -148,4 +171,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except ApiError as e:
+        print(f"ABBRUCH: OSM-API nicht verfügbar ({e}) – keine Aussage möglich")
+        sys.exit(2)
