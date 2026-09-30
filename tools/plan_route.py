@@ -103,6 +103,15 @@ def in_bavaria(lon, lat):
     return any(check_breweries.inside(lon, lat, p) for p in _BAY_POLYS)
 
 
+def dense_slice(coords, start, end):
+    """Dense track geometry between two points of the route (inclusive)."""
+    def idx(p, lo=0):
+        return min(range(lo, len(coords)), key=lambda i: (coords[i][0] - p[0]) ** 2 + (coords[i][1] - p[1]) ** 2)
+    i = idx(start)
+    j = idx(end, i)
+    return [[c[0], c[1]] for c in coords[i:j + 1]]
+
+
 def nearest_dist_km(lat, lon, coords):
     return min(check_breweries.km(lat, lon, c[1], c[0]) for c in coords[::5])
 
@@ -140,7 +149,7 @@ def main():
         import gravel_probe  # local import: avoids a circular import at module load
         runs = gravel_probe.segments(geo, min_km=0.1)
         stage = {
-            "schotter_abschnitte": [{"km": r["km"], "pts": r["pts"]} for r in runs],
+            "schotter_abschnitte": [{"km": r["km"], "pts": dense_slice(coords, r["start"], r["end"])} for r in runs],
             "nr": n, "von": a["ort"], "nach": b["ort"], "ziel_brauerei": b["name"], "ziel_id": b["id"],
             "km": audit["km"], "unbefestigt_km": audit["unbefestigt_km"], "unbefestigt_anteil": audit["unbefestigt_anteil"],
             "strassentypen_km": audit["nach_strassentyp_km"], "bezirke": bezirke,
